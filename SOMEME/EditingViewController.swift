@@ -8,30 +8,44 @@
 import UIKit
 import Kingfisher
 
-class EditingViewController: UIViewController,  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate, UIGestureRecognizerDelegate{
-    
-    func didTapImage(image: UIImage) {
-        addLayerToImageView(image: image)
+class EditingViewController: UIViewController,  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate, UIGestureRecognizerDelegate, UIColorPickerViewControllerDelegate{
+    func didTapImage(imageView: UIImageView) {
+        addImageViewToImageView(imageView: imageView)
     }
-    //設置存放圖層的array
-    var addedLayers: [CALayer] = []
+    
+    var selectedTextView: UITextView?
+    
+    // 新增存放UIImageView的array
+    var addedImageViews: [UIImageView] = []
+    
+    // 新增存放UIImageView的array
+    var addedTextLabel: [UILabel] = []
+    
     
     // 設定接前頁傳值資料
     var imageViewLoad: UIImage?
     
-    //追蹤圖層
-    var selectedLayer: CALayer?
+    // 追蹤圖層
+    var selectedImageView: UIImageView?
+    
+    //追蹤label
+    var selectedLabel: UILabel?
+    
+    //新增view把photoImage包起來
+    @IBOutlet weak var photoView: UIView!
+    
     
     //設定本頁顯示圖片outlet
     @IBOutlet weak var photoImageView: UIImageView!
+    
     var collectionView: UICollectionView!
     
     //設定假資料顯示內容
-    //    var mockData = ["duck", "duck", "duck", "duck", "duck", "duck", "duck", "duck", "duck", "duck"]
+    var textData = ["恐龍扛狼", "要確欸", "哇酷哇酷", "芭比 Q 了", "注意看，這個男人太狠了", "我沒了", "UCCU", "歸剛欸", "YYDS", "萊納，你坐啊！"]
     var items = [MemeLoadDatum]() // 儲存從api取得銷售品資料
     
-    //新增打叉view
-    var deleteImageView: UIImageView!
+    //文字顏色按鈕
+    @IBOutlet weak var textColorButton: UIButton!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -47,6 +61,7 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         cell.update(meme: item)
         return cell
     }
+    
     // 調整collectionView的大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100) // 調整 cell 大小
@@ -90,20 +105,106 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         //初始畫面並無梗圖標示
         collectionView.isHidden = true
         
-        //設定手勢功能
+        //設定圖片手勢功能
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         panGesture.delegate = self
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
         pinchGesture.delegate = self
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
+        rotationGesture.delegate = self
         
-        view.addGestureRecognizer(panGesture)
-        view.addGestureRecognizer(pinchGesture)
+        photoView.addGestureRecognizer(rotationGesture)
+        photoView.addGestureRecognizer(panGesture)
+        photoView.addGestureRecognizer(pinchGesture)
+        
+        // 設定 label 手勢功能
+        let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
+        labelPanGesture.delegate = self
+        let labelPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
+        labelPinchGesture.delegate = self
+        let labelRotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
+        labelRotationGesture.delegate = self
+        
+        //點一下進行編輯、點旁邊一下結束編輯
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 1
+        doubleTapGesture.delegate = self
+        
+        photoView.addGestureRecognizer(labelRotationGesture)
+        photoView.addGestureRecognizer(labelPanGesture)
+        photoView.addGestureRecognizer(labelPinchGesture)
+        photoView.addGestureRecognizer(doubleTapGesture)
+        
+        //初始字體顏色按鈕隱藏
+        textColorButton.isHidden = true
         
     }
     
+    @objc func handleDoubleTap(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let location = sender.location(in: photoImageView)
+            
+            // 檢查是否點擊在 label 上
+            for label in addedTextLabel {
+                if label.frame.contains(location) {
+                    // 進行文字編輯
+                    startEditing(label: label)
+                    return
+                }
+            }
+            // 若點擊在 label 以外的地方，結束編輯
+            endEditing()
+        }
+    }
+    
+    // 開始文字編輯
+    func startEditing(label: UILabel) {
+        // 建立一個 UITextView 並放置在與 label 相同位置
+        let textView = UITextView(frame: label.frame)
+        textView.text = label.text
+        textView.textAlignment = label.textAlignment
+        textView.textColor = label.textColor
+        textView.font = label.font
+        textView.backgroundColor = .clear
+        
+        // 將 UITextView 添加到畫面中
+        photoImageView.addSubview(textView)
+        
+        // 將選定的 label 隱藏
+        label.isHidden = true
+        
+        // 設定選定的 UITextView
+        selectedTextView = textView
+        
+        // 讓 UITextView 成為第一回應者，開始編輯
+        textView.becomeFirstResponder()
+    }
+    
+    func endEditing() {
+        // 如果有選定的 UITextView，結束編輯
+        if let textView = selectedTextView {
+            textView.resignFirstResponder()
+            
+            // 將 UITextView 的內容套用到對應的 label 上
+            if let label = addedTextLabel.first(where: { $0.tag == selectedTextView?.tag }) {
+                label.text = textView.text
+                label.isHidden = false
+            }
+            
+            // 移除 UITextView
+            selectedTextView?.removeFromSuperview()
+            selectedTextView = nil
+        }
+    }
+    
+    // UITextViewDelegate 方法，用於結束編輯時的處理
+    func textViewDidEndEditing(_ textView: UITextView) {
+        endEditing()
+    }
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // 不允許同時識別多手勢
-        return false
+        //允許同時識別多手勢
+        return true
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -111,38 +212,30 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         return gestureRecognizer is UIPanGestureRecognizer && otherGestureRecognizer is UITapGestureRecognizer
     }
     
-    func bringLayerToFront() {
-        guard let selectedLayer = selectedLayer else { return }
-        // 移動到最上層
-        selectedLayer.removeFromSuperlayer() // 先將圖層移除
-        photoImageView.layer.addSublayer(selectedLayer) // 再將圖層加回去，即可置於最上層
-    }
-
-    
     //調整位置
     @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
-        guard let selectedLayer = selectedLayer else { return }
+        guard let selectedImageView = selectedImageView else { return }
         let translation = sender.translation(in: photoImageView)
-        let newPositionX = selectedLayer.position.x + translation.x
-        let newPositionY = selectedLayer.position.y + translation.y
-        let minX = selectedLayer.bounds.width / 2
-        let maxX = photoImageView.bounds.width - minX
-        let minY = selectedLayer.bounds.height / 2
-        let maxY = photoImageView.bounds.height - minY
-        selectedLayer.position.x = min(maxX, max(minX, newPositionX))
-        selectedLayer.position.y = min(maxY, max(minY, newPositionY))
+        selectedImageView.center = CGPoint(x: selectedImageView.center.x + translation.x, y: selectedImageView.center.y + translation.y)
         sender.setTranslation(.zero, in: photoImageView)
-        
     }
     
     //調整大小
     @objc func handlePinchGesture(_ sender: UIPinchGestureRecognizer) {
-        guard let selectedLayer = selectedLayer else { return }
+        guard let selectedImageView = selectedImageView else { return }
         let scale = sender.scale
-        var currentTransform = selectedLayer.transform
-        currentTransform = CATransform3DScale(currentTransform, scale, scale, 1.0)
-        selectedLayer.transform = currentTransform
+        selectedImageView.transform = selectedImageView.transform.scaledBy(x: scale, y: scale)
         sender.scale = 1.0
+    }
+    
+    //旋轉
+    @objc func handleRotationGesture(_ sender: UIRotationGestureRecognizer) {
+        guard let selectedImageView = selectedImageView else { return }
+        
+        if sender.state == .began || sender.state == .changed {
+            selectedImageView.transform = selectedImageView.transform.rotated(by: sender.rotation)
+            sender.rotation = 0
+        }
     }
     
     func loadMemeData() {
@@ -182,68 +275,153 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         collectionView.isHidden = false
         loadMemeData()
         updateCollectionView()
-        
     }
     
-    //    新增圖層的行為
-    func addLayerToImageView(image: UIImage) {
-        let newLayer = CALayer()
-            newLayer.contents = image.cgImage
-            newLayer.bounds = CGRect(x: 0, y: 0, width: 200, height: 200)
-            newLayer.position = CGPoint(x: photoImageView.bounds.midX, y: photoImageView.bounds.midY)
-            photoImageView.layer.addSublayer(newLayer)
-            addedLayers.append(newLayer)
-
-            // 新增 deleteImageView
-            let deleteImageViewForLayer = UIImageView(image: UIImage(systemName: "xmark.circle.fill"))
-            deleteImageViewForLayer.tintColor = UIColor.red
-            deleteImageViewForLayer.isUserInteractionEnabled = true
-
-            // 設定 tap 手勢
-            let deleteTapGestureForLayer = UITapGestureRecognizer(target: self, action: #selector(deleteLayer))
-            deleteImageViewForLayer.addGestureRecognizer(deleteTapGestureForLayer)
-
-            // 加到 newLayer 上的 photoImageView 上
-            photoImageView.addSubview(deleteImageViewForLayer)
-
-            // 設定 deleteImageView 位置
-            deleteImageViewForLayer.translatesAutoresizingMaskIntoConstraints = false
-            
-            let topConstraint = deleteImageViewForLayer.topAnchor.constraint(
-                equalTo: photoImageView.topAnchor,
-                constant: newLayer.position.y - newLayer.bounds.height / 2 - 8
-            )
-            
-            let trailingConstraint = deleteImageViewForLayer.trailingAnchor.constraint(
-                equalTo: photoImageView.leadingAnchor,
-                constant: newLayer.position.x + newLayer.bounds.width / 2 + 8
-            )
-            
-            let widthConstraint = deleteImageViewForLayer.widthAnchor.constraint(equalToConstant: 30)
-            let heightConstraint = deleteImageViewForLayer.heightAnchor.constraint(equalToConstant: 30)
-
-            NSLayoutConstraint.activate([
-                topConstraint,
-                trailingConstraint,
-                widthConstraint,
-                heightConstraint
-            ])
-
-            //選定新增的圖層
-            selectedLayer = newLayer
+    // 新增圖層
+    func addImageViewToImageView(imageView: UIImageView) {
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        newImageView.center = CGPoint(x: photoImageView.bounds.midX, y: photoImageView.bounds.midY)
+        newImageView.isUserInteractionEnabled = true
+        photoImageView.addSubview(newImageView)
+        //新增tag
+        newImageView.tag = addedImageViews.count
+        
+        // 添加到陣列
+        addedImageViews.append(newImageView)
+        
+        // 選定新增的圖層
+        selectedImageView = newImageView
+        
+        // 添加手勢
+        //            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        //            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        //            newImageView.addGestureRecognizer(panGesture)
+        //            newImageView.addGestureRecognizer(pinchGesture)
+        
+        //新增打叉按鈕
+        let closeButton = UIButton(type: .system)
+        closeButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
+        closeButton.tintColor = .red
+        closeButton.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.tag = newImageView.tag
+        closeButton.isUserInteractionEnabled = true
+        newImageView.addSubview(closeButton)
+        
+        
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: newImageView.topAnchor, constant: 5),
+            closeButton.trailingAnchor.constraint(equalTo: newImageView.trailingAnchor, constant: -5),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
     }
-    @objc func deleteLayer() {
-        guard let selectedLayer = selectedLayer else { return }
-
-        // 從 addedLayers 中移除選定的圖層
-        if let index = addedLayers.firstIndex(of: selectedLayer) {
-            addedLayers.remove(at: index)
+    
+    @objc func closeButtonTapped(_ sender: UIButton) {
+        let tag = sender.tag
+        if tag < addedImageViews.count {
+            let newImageView = addedImageViews[tag]
+            newImageView.removeFromSuperview()
+            addedImageViews.remove(at: tag)
         }
-
-        // 移除圖層
-        selectedLayer.removeFromSuperlayer()
-
-        // 清空 selectedLayer
-        self.selectedLayer = nil
+    }
+    
+    
+    //新增label
+    @IBAction func addText(_ sender: Any) {
+        collectionView.isHidden = true
+        textColorButton.isHidden = false
+        //Create a new label
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+        label.center = CGPoint(x: photoImageView.bounds.midX, y: photoImageView.bounds.midY)
+        label.text = "點一下進行編輯"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        photoImageView.addSubview(label)
+        
+        // Add close button
+        addCloseButton(to: label)
+        
+        //新增tag
+        label.tag = addedTextLabel.count
+        
+        // 添加到陣列
+        addedTextLabel.append(label)
+        
+        // 選定新增的圖層
+        selectedLabel = label
+        
+        // 添加手勢
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
+        
+        label.addGestureRecognizer(panGesture)
+        label.addGestureRecognizer(pinchGesture)
+        label.addGestureRecognizer(rotationGesture)
+        
+        // Ensure that subviews of the label also respond to user interaction
+        for subview in label.subviews {
+            subview.isUserInteractionEnabled = true
+        }
+    }
+    
+    func addCloseButton(to label: UILabel) {
+        let closeButton = UIButton(type: .system)
+        closeButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
+        closeButton.tintColor = .red
+        //        closeButton.addTarget(self, action: #selector(textCloseButtonTapped(_:)), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        label.addSubview(closeButton)
+        
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: label.topAnchor, constant: 5),
+            closeButton.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: -5),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    @objc func handleLabelPanGesture(_ sender: UIPanGestureRecognizer) {
+        guard let selectedLabel = selectedLabel else { return }
+        let translation = sender.translation(in: photoImageView)
+        selectedLabel.center = CGPoint(x: selectedLabel.center.x + translation.x, y: selectedLabel.center.y + translation.y)
+        sender.setTranslation(.zero, in: photoImageView)
+    }
+    
+    @objc func handleLabelPinchGesture(_ sender: UIPinchGestureRecognizer) {
+        guard let selectedLabel = selectedLabel else { return }
+        let scale = sender.scale
+        selectedLabel.transform = selectedLabel.transform.scaledBy(x: scale, y: scale)
+        sender.scale = 1.0
+    }
+    
+    @objc func handleLabelRotationGesture(_ sender: UIRotationGestureRecognizer) {
+        guard let selectedLabel = selectedLabel else { return }
+        if sender.state == .began || sender.state == .changed {
+            selectedLabel.transform = selectedLabel.transform.rotated(by: sender.rotation)
+            sender.rotation = 0
+        }
+    }
+    
+    
+    @IBAction func changeTextColor(_ sender: Any) {
+        let controller = UIColorPickerViewController()
+        controller.delegate = self
+        present(controller, animated: true, completion: nil)
+    }
+    
+    //新增顏色
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        if let textView = selectedTextView {
+            textView.textColor = viewController.selectedColor
+            if let label = selectedLabel {
+                label.textColor = viewController.selectedColor
+            }
+        }
     }
 }
+

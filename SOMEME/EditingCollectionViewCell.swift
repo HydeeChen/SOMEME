@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EditingCollectionViewCellDelegate: AnyObject {
-    func didTapImage(image: UIImage)
+    func didTapImage(imageView: UIImageView)
 }
 class EditingCollectionViewCell: UICollectionViewCell {
     static let cellID: String = "EditingCollectionViewCell"
@@ -34,9 +34,9 @@ class EditingCollectionViewCell: UICollectionViewCell {
     
     @objc func handleImageTap(_ sender: UITapGestureRecognizer) {
         if let image = memeImage.image {
-                  delegate?.didTapImage(image: image)
-              }
+            delegate?.didTapImage(imageView: memeImage)
         }
+    }
     
     func configure(){
         // 初始化 imageView

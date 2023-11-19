@@ -181,16 +181,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFH-Hg-Y99">
-                                <rect key="frame" x="35" y="231" width="323" height="324"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlu-xc-lwQ">
+                                <rect key="frame" x="35" y="212" width="324" height="324"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFH-Hg-Y99">
+                                        <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="324.33333333333331"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="rfZ-P2-rI4">
                                 <rect key="frame" x="8" y="149" width="76.666666666666629" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -256,6 +263,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="A">
                                     <fontDescription key="titleFontDescription" name="Nagurigaki-Crayon" family="Nagurigaki Crayon" pointSize="25"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addText:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="uya-zh-6nN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="wOA-pW-qxn">
                                 <rect key="frame" x="330" y="103" width="40" height="40"/>
@@ -266,6 +276,18 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
                                 </buttonConfiguration>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wet-Zc-wVi">
+                                <rect key="frame" x="147" y="575" width="99" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="paintpalette.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="changeTextColor:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="6pE-RH-GCA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w1o-1z-hTa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,6 +295,8 @@
                     <navigationItem key="navigationItem" id="d6k-wl-n5a"/>
                     <connections>
                         <outlet property="photoImageView" destination="fFH-Hg-Y99" id="Jt1-O7-kKV"/>
+                        <outlet property="photoView" destination="vlu-xc-lwQ" id="WvC-EQ-giv"/>
+                        <outlet property="textColorButton" destination="Wet-Zc-wVi" id="Y0Y-bM-Xp6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="om1-7K-1PU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -302,6 +326,7 @@
         <image name="camera.filters" catalog="system" width="128" height="119"/>
         <image name="crop" catalog="system" width="128" height="116"/>
         <image name="flip.horizontal.fill" catalog="system" width="128" height="109"/>
+        <image name="paintpalette.fill" catalog="system" width="128" height="105"/>
         <image name="person.and.background.dotted" catalog="system" width="128" height="101"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="rotate.left.fill" catalog="system" width="117" height="128"/>
