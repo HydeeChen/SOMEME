@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class EditingViewController: UIViewController,  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate, UIGestureRecognizerDelegate, UIColorPickerViewControllerDelegate{
+  
     func didTapImage(imageView: UIImageView) {
         addImageViewToImageView(imageView: imageView)
     }
@@ -22,9 +23,9 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     
     // 新增存放UIImageView的array
     var addedTextLabel: [UILabel] = []
+    
     //新增存放uitextview的array
     var addedTextViews: [UITextView] = []
-    
     
     // 設定接前頁傳值資料
     var imageViewLoad: UIImage?
@@ -43,28 +44,58 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     
     var collectionView: UICollectionView!
     
+    var isMaterialCollectionView = false
+    
     //設定假資料顯示內容
     var textData = ["恐龍扛狼", "要確欸", "哇酷哇酷", "芭比 Q 了", "注意看，這個男人太狠了", "我沒了", "UCCU", "歸剛欸", "YYDS", "萊納，你坐啊！"]
-    var items = [MemeLoadDatum]() // 儲存從api取得銷售品資料
+    
+    var materialData = ["cool guy", "talk", "wacu", "我就爛", "技安", "是在哭", "柴犬", "煙", "貓", "鴨1", "鴨2", "鴨3", "黑人問號"]
+    
+    var materialCollectionView: UICollectionView!
+    
+    var items = [MemeLoadDatum]() // 儲存從api取得資料
     
     //文字顏色按鈕
     @IBOutlet weak var textColorButton: UIButton!
     
     //collectionView欄位設定
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        if isMaterialCollectionView {
+            return materialData.count
+        } else {
+            return items.count
+        }
     }
     
     // 設定collectionView內容的來源
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditingCollectionViewCell", for: indexPath) as? EditingCollectionViewCell else {
-            fatalError("Unable to dequeue EditingCollectionViewCell")
-        }
-        let item = items[indexPath.row]
-        cell.delegate = self
-        cell.memeImage.kf.setImage(with: item.src)
-        cell.update(meme: item)
-        return cell
+               fatalError("Unable to dequeue EditingCollectionViewCell")
+           }
+
+           if isMaterialCollectionView {
+               // materialCollectionView 的設置
+               if indexPath.row < materialData.count {
+                   let materialName = materialData[indexPath.row]
+                   if let materialImage = UIImage(named: materialName) {
+                       cell.memeImage.image = materialImage
+                   }
+               } else {
+                   print("Index out of range for materialData")
+               }
+           } else {
+            
+               if indexPath.row < items.count {
+                   let item = items[indexPath.row]
+                   cell.delegate = self
+                   cell.memeImage.kf.setImage(with: item.src)
+                   cell.update(meme: item)
+               } else {
+                   print("Index out of range for items")
+               }
+           }
+
+           return cell
     }
     
     // 調整collectionView的大小
@@ -75,7 +106,7 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     //設定viewDidLoad的功能
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         //設定顯示傳值過來的圖片
         photoImageView.image = imageViewLoad
         
@@ -281,6 +312,7 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     }
     
     @IBAction func addMeme(_ sender: Any) {
+        isMaterialCollectionView = false
         collectionView.isHidden = false
         loadMemeData()
         updateCollectionView()
@@ -420,7 +452,7 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     //新增顏色
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         selectedTextView?.textColor = viewController.selectedColor
-            selectedLabel?.textColor = viewController.selectedColor
+        selectedLabel?.textColor = viewController.selectedColor
     }
     
     //imageView和label共用移除功能（目前fail~）
@@ -462,11 +494,19 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     
     @IBAction func shareOrSave(_ sender: Any) {
         let renderer = UIGraphicsImageRenderer(size:    photoView.bounds.size)
-            let editedImage = renderer.image { UIGraphicsImageRendererContext in
-                photoView.drawHierarchy(in: photoView.bounds, afterScreenUpdates: true)
-            }
-            let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
+        let editedImage = renderer.image { UIGraphicsImageRendererContext in
+            photoView.drawHierarchy(in: photoView.bounds, afterScreenUpdates: true)
+        }
+        let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func showMaterial(_ sender: Any) {
+        isMaterialCollectionView = true
+        collectionView.isHidden = false
+        updateCollectionView()
+        
     }
     
 }
