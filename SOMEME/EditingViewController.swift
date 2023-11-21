@@ -15,11 +15,15 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     
     var selectedTextView: UITextView?
     
+    var textView: UITextView?
+    
     // 新增存放UIImageView的array
     var addedImageViews: [UIImageView] = []
     
     // 新增存放UIImageView的array
     var addedTextLabel: [UILabel] = []
+    //新增存放uitextview的array
+    var addedTextViews: [UITextView] = []
     
     
     // 設定接前頁傳值資料
@@ -34,7 +38,6 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     //新增view把photoImage包起來
     @IBOutlet weak var photoView: UIView!
     
-    
     //設定本頁顯示圖片outlet
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -47,9 +50,11 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     //文字顏色按鈕
     @IBOutlet weak var textColorButton: UIButton!
     
+    //collectionView欄位設定
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
+    
     // 設定collectionView內容的來源
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditingCollectionViewCell", for: indexPath) as? EditingCollectionViewCell else {
@@ -67,9 +72,10 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         return CGSize(width: 100, height: 100) // 調整 cell 大小
     }
     
-    //    設定viewDidLoad的功能
+    //設定viewDidLoad的功能
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         //設定顯示傳值過來的圖片
         photoImageView.image = imageViewLoad
         
@@ -135,6 +141,7 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         photoView.addGestureRecognizer(labelPinchGesture)
         photoView.addGestureRecognizer(doubleTapGesture)
         
+        
         //初始字體顏色按鈕隱藏
         textColorButton.isHidden = true
         
@@ -169,6 +176,8 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         
         // 將 UITextView 添加到畫面中
         photoImageView.addSubview(textView)
+        addedTextViews.append(textView)
+        
         
         // 將選定的 label 隱藏
         label.isHidden = true
@@ -294,38 +303,31 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         selectedImageView = newImageView
         
         // 添加手勢
-        //            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        //            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
-        //            newImageView.addGestureRecognizer(panGesture)
-        //            newImageView.addGestureRecognizer(pinchGesture)
+        //                    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        //                    let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        //                    newImageView.addGestureRecognizer(panGesture)
+        //                    newImageView.addGestureRecognizer(pinchGesture)
         
         //新增打叉按鈕
-        let closeButton = UIButton(type: .system)
-        closeButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
-        closeButton.tintColor = .red
-        closeButton.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.tag = newImageView.tag
-        closeButton.isUserInteractionEnabled = true
-        newImageView.addSubview(closeButton)
-        
-        
-        NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: newImageView.topAnchor, constant: 5),
-            closeButton.trailingAnchor.constraint(equalTo: newImageView.trailingAnchor, constant: -5),
-            closeButton.widthAnchor.constraint(equalToConstant: 30),
-            closeButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
+        //        let closeButton = UIButton(type: .system)
+        //        closeButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
+        //        closeButton.tintColor = .red
+        //        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        //        closeButton.tag = newImageView.tag
+        //        closeButton.isUserInteractionEnabled = true
+        //        newImageView.addSubview(closeButton)
+        //
+        //        //新增功能
+        //        closeButton.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
+        //
+        //        NSLayoutConstraint.activate([
+        //            closeButton.topAnchor.constraint(equalTo: newImageView.topAnchor, constant: 5),
+        //            closeButton.trailingAnchor.constraint(equalTo: newImageView.trailingAnchor, constant: -5),
+        //            closeButton.widthAnchor.constraint(equalToConstant: 30),
+        //            closeButton.heightAnchor.constraint(equalToConstant: 30)
+        //        ])
     }
     
-    @objc func closeButtonTapped(_ sender: UIButton) {
-        let tag = sender.tag
-        if tag < addedImageViews.count {
-            let newImageView = addedImageViews[tag]
-            newImageView.removeFromSuperview()
-            addedImageViews.remove(at: tag)
-        }
-    }
     
     
     //新增label
@@ -343,7 +345,7 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         photoImageView.addSubview(label)
         
         // Add close button
-        addCloseButton(to: label)
+        //        addCloseButton(to: label)
         
         //新增tag
         label.tag = addedTextLabel.count
@@ -373,9 +375,11 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         let closeButton = UIButton(type: .system)
         closeButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
         closeButton.tintColor = .red
-        //        closeButton.addTarget(self, action: #selector(textCloseButtonTapped(_:)), for: .touchUpInside)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         label.addSubview(closeButton)
+        
+        //新增target功能
+        closeButton.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: label.topAnchor, constant: 5),
@@ -407,7 +411,6 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
         }
     }
     
-    
     @IBAction func changeTextColor(_ sender: Any) {
         let controller = UIColorPickerViewController()
         controller.delegate = self
@@ -416,12 +419,55 @@ class EditingViewController: UIViewController,  UICollectionViewDataSource, UICo
     
     //新增顏色
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        if let textView = selectedTextView {
-            textView.textColor = viewController.selectedColor
-            if let label = selectedLabel {
-                label.textColor = viewController.selectedColor
-            }
+        selectedTextView?.textColor = viewController.selectedColor
+            selectedLabel?.textColor = viewController.selectedColor
+    }
+    
+    //imageView和label共用移除功能（目前fail~）
+    @objc func closeButtonTapped(_ sender: UIButton) {
+        if let imageView = addedImageViews.first(where: { $0.tag == sender.tag }) {
+            imageView.removeFromSuperview()
+            addedImageViews.removeAll { $0.tag == sender.tag }
+            selectedImageView = nil
+        }
+        
+        if let label = addedTextLabel.first(where: { $0.tag == sender.tag }) {
+            label.removeFromSuperview()
+            addedTextLabel.removeAll { $0.tag == sender.tag }
+            selectedLabel = nil
         }
     }
+    
+    @IBAction func removeText(_ sender: Any) {
+        for label in addedTextLabel {
+            label.removeFromSuperview()
+        }
+        addedTextLabel.removeAll()
+        selectedLabel = nil
+        
+        for textView in addedTextViews {
+            textView.removeFromSuperview()
+        }
+        addedTextViews.removeAll()
+        selectedTextView = nil
+    }
+    
+    @IBAction func removeImageView(_ sender: Any) {
+        for imageView in addedImageViews {
+            imageView.removeFromSuperview()
+        }
+        addedImageViews.removeAll()
+        selectedImageView = nil
+    }
+    
+    @IBAction func shareOrSave(_ sender: Any) {
+        let renderer = UIGraphicsImageRenderer(size:    photoView.bounds.size)
+            let editedImage = renderer.image { UIGraphicsImageRendererContext in
+                photoView.drawHierarchy(in: photoView.bounds, afterScreenUpdates: true)
+            }
+            let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
 

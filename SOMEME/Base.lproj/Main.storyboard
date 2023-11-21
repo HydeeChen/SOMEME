@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GHh-Bv-4M9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jaw-2h-hTt">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -171,7 +171,144 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967.17557251908397" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="1932" y="-35"/>
+        </scene>
+        <!--My Collection View Controller-->
+        <scene sceneID="vCN-nQ-yUq">
+            <objects>
+                <viewController storyboardIdentifier="MyCollectionViewController" id="RKK-6s-st6" customClass="MyCollectionViewController" customModule="SOMEME" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BK4-Nx-8Iv">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="UKT-5s-xRd">
+                                <rect key="frame" x="16" y="0.0" width="377" height="214"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-sm-F7j">
+                                <rect key="frame" x="0.0" y="194" width="393" height="557"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nz-a3-84g">
+                                <rect key="frame" x="69" y="222" width="254" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xta-oF-HgP"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="star" catalog="system" largeContentSizeImage="star" selectedImage="star.fill" id="MxC-yl-FLU"/>
+                    <connections>
+                        <outlet property="shadowVIew" destination="Sz7-sm-F7j" id="zu5-US-PIC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FVk-GH-VRS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2588.5496183206105" y="-35.211267605633807"/>
+        </scene>
+        <!--Hot View Controller-->
+        <scene sceneID="OIq-Cu-1Rx">
+            <objects>
+                <viewController restorationIdentifier="HotViewController" storyboardIdentifier="HotViewController" id="piK-yA-uNO" customClass="HotViewController" customModule="SOMEME" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W7B-0e-Yzj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="LrN-PR-Bx9">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="214"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNZ-HF-kwG">
+                                <rect key="frame" x="0.0" y="174" width="393" height="575"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="熱門梗圖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64T-zS-TIs">
+                                        <rect key="frame" x="223" y="8" width="178" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="2" height="2"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGl-5t-Tl3">
+                                        <rect key="frame" x="19" y="18" width="86" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="list.dash" catalog="system" title="選單"/>
+                                        <connections>
+                                            <action selector="popBurgerList:" destination="piK-yA-uNO" eventType="touchUpInside" id="1nu-mX-BRA"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="所在位置：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIV-q4-UnC">
+                                        <rect key="frame" x="104" y="8" width="178" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="2" height="2"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UfG-uO-Ord"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="flame.circle" catalog="system" largeContentSizeImage="flame.circle" selectedImage="flame.circle.fill" id="4ww-cH-LBO"/>
+                    <connections>
+                        <outlet property="nowPosition" destination="64T-zS-TIs" id="kEf-dq-Kpa"/>
+                        <outlet property="selectOptionButton" destination="uGl-5t-Tl3" id="s95-Ex-J7l"/>
+                        <outlet property="shadowView" destination="VNZ-HF-kwG" id="SHb-3M-yCq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14b-NY-vho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3243.5114503816794" y="-35.211267605633807"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gYS-j1-hOR">
+            <objects>
+                <viewController id="029-Il-70Q" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yDl-86-Yrg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="why you 搜 meme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69D-If-MDv">
+                                <rect key="frame" x="69" y="59" width="254" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jTo-VO-eBf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass.circle" catalog="system" largeContentSizeImage="magnifyingglass.circle" selectedImage="magnifyingglass.circle.fill" id="0Jc-aJ-FIf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A32-ZH-QtG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3894" y="-35"/>
         </scene>
         <!--Editing View Controller-->
         <scene sceneID="Jnl-rB-uOQ">
@@ -208,7 +345,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="rJ5-hC-LcK">
-                                <rect key="frame" x="73" y="147" width="61.666666666666629" height="55"/>
+                                <rect key="frame" x="68" y="147" width="61.666666666666515" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
@@ -217,7 +354,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eY4-AX-avm">
-                                <rect key="frame" x="114" y="149" width="74.333333333333371" height="55"/>
+                                <rect key="frame" x="113" y="149" width="74.333333333333485" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
@@ -251,9 +388,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="person.and.background.dotted" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="plain" title="素材"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KmG-qS-hgT">
                                 <rect key="frame" x="330" y="154" width="40" height="40"/>
@@ -268,25 +403,55 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="wOA-pW-qxn">
-                                <rect key="frame" x="330" y="103" width="40" height="40"/>
+                                <rect key="frame" x="330" y="101" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="shareOrSave:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="xHN-nc-0oC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7k-FC-k1g">
+                                <rect key="frame" x="161" y="106" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="清空圖片"/>
+                                <connections>
+                                    <action selector="removeImageView:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="fwd-Wi-JMv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2E-Gs-iq5">
+                                <rect key="frame" x="243" y="106" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="清空文字"/>
+                                <connections>
+                                    <action selector="removeText:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="Cy9-vt-euh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wet-Zc-wVi">
-                                <rect key="frame" x="147" y="575" width="99" height="65"/>
+                                <rect key="frame" x="35" y="104" width="34" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="paintpalette.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="changeTextColor:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="6pE-RH-GCA"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCk-1X-7aq">
+                                <rect key="frame" x="77" y="106" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="收藏圖片"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w1o-1z-hTa"/>
@@ -301,12 +466,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="om1-7K-1PU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965.64885496183206" y="729.57746478873241"/>
+            <point key="canvasLocation" x="1930.534351145038" y="655.63380281690149"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ewv-yz-veJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GHh-Bv-4M9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="pencil.circle" catalog="system" landscapeImage="pencil.circle" largeContentSizeImage="pencil.circle" selectedImage="pencil.circle.fill" id="RAM-rp-JxD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wy4-MM-XaJ">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -319,18 +485,50 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lk-VJ-DDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43.511450381679388" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="1262" y="-35"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="30D-xk-Pyj">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jaw-2h-hTt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WUb-3f-1pE">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GHh-Bv-4M9" kind="relationship" relationship="viewControllers" id="gbd-bi-iqN"/>
+                        <segue destination="RKK-6s-st6" kind="relationship" relationship="viewControllers" id="Gaq-uI-IPf"/>
+                        <segue destination="piK-yA-uNO" kind="relationship" relationship="viewControllers" id="IPw-BB-Qw4"/>
+                        <segue destination="029-Il-70Q" kind="relationship" relationship="viewControllers" id="gCk-Gh-lm0"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="84w-5y-H5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="624" y="-35"/>
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="564" height="423"/>
         <image name="camera.filters" catalog="system" width="128" height="119"/>
+        <image name="cat" width="564" height="846"/>
         <image name="crop" catalog="system" width="128" height="116"/>
+        <image name="flame.circle" catalog="system" width="128" height="123"/>
+        <image name="flame.circle.fill" catalog="system" width="128" height="123"/>
         <image name="flip.horizontal.fill" catalog="system" width="128" height="109"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <image name="paintpalette.fill" catalog="system" width="128" height="105"/>
-        <image name="person.and.background.dotted" catalog="system" width="128" height="101"/>
+        <image name="pencil.circle" catalog="system" width="128" height="123"/>
+        <image name="pencil.circle.fill" catalog="system" width="128" height="123"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="rotate.left.fill" catalog="system" width="117" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
             <color red="0.82099997997283936" green="0.14900000393390656" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
