@@ -7,4 +7,5 @@ target 'SOMEME' do
   # Pods for SOMEME
     pod 'Kingfisher'
     pod 'SwiftLint'
+    pod 'TOCropViewController'
 end

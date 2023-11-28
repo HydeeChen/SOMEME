@@ -29,4 +29,3 @@ let memeCategories: [MemeCategory] = [
     MemeCategory(name: "我就爛", apiUrl: URL(string: "https://memes.tw/wtf/api?contest=33")!),
     MemeCategory(name: "時事", apiUrl: URL(string: "https://memes.tw/wtf/api?contest=35")!)
 ]
-

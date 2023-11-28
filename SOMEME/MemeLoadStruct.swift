@@ -18,7 +18,6 @@ struct MemeLoadDatum: Codable {
     let createdAt: CreatedAt
     let hashtag: String
     let contest: Contest
-    
     enum CodingKeys: String, CodingKey {
         case id
         case url
@@ -31,22 +30,21 @@ struct MemeLoadDatum: Codable {
         case hashtag
         case contest
     }
-    
+
     struct Author: Codable {
         let id: Int
         let name: String
     }
-    
+
     struct CreatedAt: Codable {
         let timestamp: TimeInterval
         let dateTimeString: String
-        
         enum CodingKeys: String, CodingKey {
             case timestamp
             case dateTimeString = "date_time_string"
         }
     }
-    
+
     struct Contest: Codable {
         let id: Int
         let name: String
