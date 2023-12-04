@@ -74,7 +74,7 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         shadowView.layer.cornerRadius = CGFloat(30)
         shadowView.layer.shadowOpacity = Float(1)
         shadowView.layer.shadowRadius = CGFloat(15)
-        shadowView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        shadowView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         // 彈出視窗
         setBurgerTableView()
         // 設定collectionView

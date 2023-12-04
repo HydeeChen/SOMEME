@@ -635,8 +635,4 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func mlRemoveBG(_ sender: Any) {
-        
-    }
 }

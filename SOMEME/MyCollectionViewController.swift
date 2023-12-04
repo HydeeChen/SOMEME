@@ -78,7 +78,6 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         expandedImageView = imageView
         overlayView.isHidden = false
     }
-    
     @objc func removeExpandedImageView() {
         // Remove the expandedImageView when tapped
         expandedImageView?.removeFromSuperview()
@@ -107,14 +106,14 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
         ])
         // 設定背景陰影
         shadowVIew.layer.cornerRadius = CGFloat(30)
         shadowVIew.layer.shadowOpacity = Float(1)
         shadowVIew.layer.shadowRadius = CGFloat(15)
-        shadowVIew.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        shadowVIew.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         //黑色底平常為隱藏
         overlayView.frame = view.bounds
         overlayView.backgroundColor = UIColor.black

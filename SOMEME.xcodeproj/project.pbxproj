@@ -21,6 +21,27 @@
 		A24443CB2B19C43300A5B56D /* RemoveBGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */; };
 		A24443CD2B1C874700A5B56D /* DeepLabV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */; };
 		A255101D2B1D981E00653960 /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3452B05E6AD0098B6A9 /* Main.storyboard */; };
+		A255109B2B1DA84300653960 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255108A2B1DA84300653960 /* Array+Extensions.swift */; };
+		A255109C2B1DA84300653960 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255108B2B1DA84300653960 /* Math.swift */; };
+		A255109D2B1DA84300653960 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255108C2B1DA84300653960 /* UIImage+CVPixelBuffer.swift */; };
+		A255109E2B1DA84300653960 /* Predictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255108D2B1DA84300653960 /* Predictions.swift */; };
+		A255109F2B1DA84300653960 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255108E2B1DA84300653960 /* UIImage+Extensions.swift */; };
+		A25510A02B1DA84300653960 /* CGImagePropertyOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255108F2B1DA84300653960 /* CGImagePropertyOrientation.swift */; };
+		A25510A12B1DA84300653960 /* UIImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510902B1DA84300653960 /* UIImage+RawBytes.swift */; };
+		A25510A22B1DA84300653960 /* MLMultiArray+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510912B1DA84300653960 /* MLMultiArray+Helpers.swift */; };
+		A25510A32B1DA84300653960 /* MLModel+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510922B1DA84300653960 /* MLModel+Images.swift */; };
+		A25510A42B1DA84300653960 /* CoreML+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510932B1DA84300653960 /* CoreML+Combine.swift */; };
+		A25510A52B1DA84300653960 /* CVPixelBuffer+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510942B1DA84300653960 /* CVPixelBuffer+Create.swift */; };
+		A25510A62B1DA84300653960 /* CGImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510952B1DA84300653960 /* CGImage+CVPixelBuffer.swift */; };
+		A25510A72B1DA84300653960 /* NonMaxSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510962B1DA84300653960 /* NonMaxSuppression.swift */; };
+		A25510A82B1DA84300653960 /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510972B1DA84300653960 /* CGImage+RawBytes.swift */; };
+		A25510A92B1DA84300653960 /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510982B1DA84300653960 /* MLMultiArray+Image.swift */; };
+		A25510AA2B1DA84300653960 /* CVPixelBuffer+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510992B1DA84300653960 /* CVPixelBuffer+Resize.swift */; };
+		A25510AB2B1DA84300653960 /* CVPixelBuffer+Rotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A255109A2B1DA84300653960 /* CVPixelBuffer+Rotate.swift */; };
+		A25510AD2B1DAE4900653960 /* MaterialCreaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510AC2B1DAE4900653960 /* MaterialCreaterViewController.swift */; };
+		A25510AE2B1DC57900653960 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = A22BE34B2B05E6AE0098B6A9 /* Assets.xcassets */; };
+		A25510AF2B1DC5E100653960 /* Mamelon.otf in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3592B05EF360098B6A9 /* Mamelon.otf */; };
+		A25510B02B1DC64800653960 /* LaunchScreen.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = A22BE34D2B05E6AE0098B6A9 /* LaunchScreen.storyboard */; };
 		A25D280A2B0B054800857B98 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D28092B0B054700857B98 /* MyCollectionViewController.swift */; };
 		A25D280C2B0B079000857B98 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */; };
 		A25D280E2B0B5F6C00857B98 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D280D2B0B5F6C00857B98 /* HotViewController.swift */; };
@@ -52,6 +73,24 @@
 		A24443C82B18613C00A5B56D /* DoodleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleView.swift; sourceTree = "<group>"; };
 		A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveBGManager.swift; sourceTree = "<group>"; };
 		A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3.mlmodel; sourceTree = "<group>"; };
+		A255108A2B1DA84300653960 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		A255108B2B1DA84300653960 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		A255108C2B1DA84300653960 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		A255108D2B1DA84300653960 /* Predictions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Predictions.swift; sourceTree = "<group>"; };
+		A255108E2B1DA84300653960 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		A255108F2B1DA84300653960 /* CGImagePropertyOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImagePropertyOrientation.swift; sourceTree = "<group>"; };
+		A25510902B1DA84300653960 /* UIImage+RawBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+RawBytes.swift"; sourceTree = "<group>"; };
+		A25510912B1DA84300653960 /* MLMultiArray+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Helpers.swift"; sourceTree = "<group>"; };
+		A25510922B1DA84300653960 /* MLModel+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLModel+Images.swift"; sourceTree = "<group>"; };
+		A25510932B1DA84300653960 /* CoreML+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreML+Combine.swift"; sourceTree = "<group>"; };
+		A25510942B1DA84300653960 /* CVPixelBuffer+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Create.swift"; sourceTree = "<group>"; };
+		A25510952B1DA84300653960 /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		A25510962B1DA84300653960 /* NonMaxSuppression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonMaxSuppression.swift; sourceTree = "<group>"; };
+		A25510972B1DA84300653960 /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
+		A25510982B1DA84300653960 /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Image.swift"; sourceTree = "<group>"; };
+		A25510992B1DA84300653960 /* CVPixelBuffer+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Resize.swift"; sourceTree = "<group>"; };
+		A255109A2B1DA84300653960 /* CVPixelBuffer+Rotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Rotate.swift"; sourceTree = "<group>"; };
+		A25510AC2B1DAE4900653960 /* MaterialCreaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialCreaterViewController.swift; sourceTree = "<group>"; };
 		A25D28092B0B054700857B98 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		A25D280D2B0B5F6C00857B98 /* HotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +171,8 @@
 				A25D28132B0C4FF100857B98 /* HotCollectionViewCell.swift */,
 				A25D28192B0DCCC400857B98 /* SearchViewController.swift */,
 				A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */,
+				A25510AC2B1DAE4900653960 /* MaterialCreaterViewController.swift */,
+				A25510892B1DA84300653960 /* CoreMLHelpers copy */,
 				A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */,
 				A22BE3592B05EF360098B6A9 /* Mamelon.otf */,
 				A22BE34B2B05E6AE0098B6A9 /* Assets.xcassets */,
@@ -140,6 +181,31 @@
 				A22BE3482B05E6AD0098B6A9 /* SOMEME.xcdatamodeld */,
 			);
 			path = SOMEME;
+			sourceTree = "<group>";
+		};
+		A25510892B1DA84300653960 /* CoreMLHelpers copy */ = {
+			isa = PBXGroup;
+			children = (
+				A255108A2B1DA84300653960 /* Array+Extensions.swift */,
+				A255108B2B1DA84300653960 /* Math.swift */,
+				A255108C2B1DA84300653960 /* UIImage+CVPixelBuffer.swift */,
+				A255108D2B1DA84300653960 /* Predictions.swift */,
+				A255108E2B1DA84300653960 /* UIImage+Extensions.swift */,
+				A255108F2B1DA84300653960 /* CGImagePropertyOrientation.swift */,
+				A25510902B1DA84300653960 /* UIImage+RawBytes.swift */,
+				A25510912B1DA84300653960 /* MLMultiArray+Helpers.swift */,
+				A25510922B1DA84300653960 /* MLModel+Images.swift */,
+				A25510932B1DA84300653960 /* CoreML+Combine.swift */,
+				A25510942B1DA84300653960 /* CVPixelBuffer+Create.swift */,
+				A25510952B1DA84300653960 /* CGImage+CVPixelBuffer.swift */,
+				A25510962B1DA84300653960 /* NonMaxSuppression.swift */,
+				A25510972B1DA84300653960 /* CGImage+RawBytes.swift */,
+				A25510982B1DA84300653960 /* MLMultiArray+Image.swift */,
+				A25510992B1DA84300653960 /* CVPixelBuffer+Resize.swift */,
+				A255109A2B1DA84300653960 /* CVPixelBuffer+Rotate.swift */,
+			);
+			name = "CoreMLHelpers copy";
+			path = "../../../Downloads/super-eureka-main/BackgroundErase/CoreMLHelpers copy";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,15 +327,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A25510B02B1DC64800653960 /* LaunchScreen.storyboard in Sources */,
+				A25510AF2B1DC5E100653960 /* Mamelon.otf in Sources */,
+				A25510AE2B1DC57900653960 /* Assets.xcassets in Sources */,
 				A255101D2B1D981E00653960 /* Main.storyboard in Sources */,
 				A25D280E2B0B5F6C00857B98 /* HotViewController.swift in Sources */,
 				A24443C92B18613C00A5B56D /* DoodleView.swift in Sources */,
 				A23953392B158CE900E57326 /* SearchManager.swift in Sources */,
 				A24443CD2B1C874700A5B56D /* DeepLabV3.mlmodel in Sources */,
 				A25D281C2B0F450100857B98 /* FavoritesManager.swift in Sources */,
+				A25510A02B1DA84300653960 /* CGImagePropertyOrientation.swift in Sources */,
 				A25D280A2B0B054800857B98 /* MyCollectionViewController.swift in Sources */,
+				A25510A72B1DA84300653960 /* NonMaxSuppression.swift in Sources */,
 				A22BE34A2B05E6AD0098B6A9 /* SOMEME.xcdatamodeld in Sources */,
+				A25510A32B1DA84300653960 /* MLModel+Images.swift in Sources */,
+				A25510AA2B1DA84300653960 /* CVPixelBuffer+Resize.swift in Sources */,
 				A25D28122B0C49B500857B98 /* HotTableViewCell.swift in Sources */,
+				A25510A62B1DA84300653960 /* CGImage+CVPixelBuffer.swift in Sources */,
+				A25510AD2B1DAE4900653960 /* MaterialCreaterViewController.swift in Sources */,
+				A25510A22B1DA84300653960 /* MLMultiArray+Helpers.swift in Sources */,
+				A25510A82B1DA84300653960 /* CGImage+RawBytes.swift in Sources */,
 				A25D280C2B0B079000857B98 /* MyCollectionViewCell.swift in Sources */,
 				A24366B72B1498BF00FED5DD /* SearchCollectionViewCell.swift in Sources */,
 				A22BE3402B05E6AD0098B6A9 /* AppDelegate.swift in Sources */,
@@ -277,11 +354,21 @@
 				A22BE35F2B0610450098B6A9 /* MemeLoadStruct.swift in Sources */,
 				A25D281A2B0DCCC400857B98 /* SearchViewController.swift in Sources */,
 				A22BE3422B05E6AD0098B6A9 /* SceneDelegate.swift in Sources */,
+				A25510A12B1DA84300653960 /* UIImage+RawBytes.swift in Sources */,
+				A25510A52B1DA84300653960 /* CVPixelBuffer+Create.swift in Sources */,
+				A255109B2B1DA84300653960 /* Array+Extensions.swift in Sources */,
+				A255109E2B1DA84300653960 /* Predictions.swift in Sources */,
 				A22BE3612B06117E0098B6A9 /* EditingCollectionViewCell.swift in Sources */,
+				A25510AB2B1DA84300653960 /* CVPixelBuffer+Rotate.swift in Sources */,
 				A22BE35D2B0601800098B6A9 /* EditingViewController.swift in Sources */,
+				A25510A42B1DA84300653960 /* CoreML+Combine.swift in Sources */,
+				A25510A92B1DA84300653960 /* MLMultiArray+Image.swift in Sources */,
 				A24443CB2B19C43300A5B56D /* RemoveBGManager.swift in Sources */,
 				A25D28142B0C4FF100857B98 /* HotCollectionViewCell.swift in Sources */,
+				A255109D2B1DA84300653960 /* UIImage+CVPixelBuffer.swift in Sources */,
+				A255109F2B1DA84300653960 /* UIImage+Extensions.swift in Sources */,
 				A22BE3582B05EEDE0098B6A9 /* PhotoEditViewController.swift in Sources */,
+				A255109C2B1DA84300653960 /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

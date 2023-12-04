@@ -218,11 +218,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="UKT-5s-xRd">
-                                <rect key="frame" x="16" y="0.0" width="377" height="230"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-sm-F7j">
-                                <rect key="frame" x="0.0" y="194" width="393" height="557"/>
+                                <rect key="frame" x="16" y="174" width="361" height="577"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -231,7 +228,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nz-a3-84g">
-                                <rect key="frame" x="80" y="220" width="254" height="37.333333333333329"/>
+                                <rect key="frame" x="80" y="190" width="254" height="37.333333333333314"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="35"/>
                                 <nil key="textColor"/>
@@ -239,17 +236,17 @@
                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="柴犬" translatesAutoresizingMaskIntoConstraints="NO" id="lSj-8g-Bbo">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xta-oF-HgP"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="leading" secondItem="xta-oF-HgP" secondAttribute="leading" id="27E-72-NGA"/>
-                            <constraint firstItem="UKT-5s-xRd" firstAttribute="leading" secondItem="BK4-Nx-8Iv" secondAttribute="leadingMargin" id="5wi-fY-4u4"/>
-                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="trailing" secondItem="xta-oF-HgP" secondAttribute="trailing" id="F7Y-Jp-MuR"/>
-                            <constraint firstItem="UKT-5s-xRd" firstAttribute="top" secondItem="BK4-Nx-8Iv" secondAttribute="topMargin" constant="-59" id="J01-3O-Xon"/>
-                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="top" secondItem="xta-oF-HgP" secondAttribute="top" constant="135" id="SVX-rB-wjb"/>
-                            <constraint firstItem="xta-oF-HgP" firstAttribute="bottom" secondItem="UKT-5s-xRd" secondAttribute="bottom" constant="539" id="gjA-It-Z6p"/>
-                            <constraint firstItem="UKT-5s-xRd" firstAttribute="trailing" secondItem="Sz7-sm-F7j" secondAttribute="trailing" id="iaX-WX-G6I"/>
+                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="leading" secondItem="xta-oF-HgP" secondAttribute="leading" constant="16" id="27E-72-NGA"/>
+                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="trailing" secondItem="xta-oF-HgP" secondAttribute="trailing" constant="-16" id="F7Y-Jp-MuR"/>
+                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="top" secondItem="xta-oF-HgP" secondAttribute="top" constant="115" id="SVX-rB-wjb"/>
                             <constraint firstItem="xta-oF-HgP" firstAttribute="bottom" secondItem="Sz7-sm-F7j" secondAttribute="bottom" constant="18" id="qxg-sk-eWc"/>
                         </constraints>
                     </view>
@@ -270,21 +267,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="LrN-PR-Bx9">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="214"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="柴犬" translatesAutoresizingMaskIntoConstraints="NO" id="U1L-F3-G3X">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNZ-HF-kwG">
-                                <rect key="frame" x="0.0" y="174" width="393" height="575"/>
+                                <rect key="frame" x="16" y="174" width="361" height="575"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="熱門梗圖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64T-zS-TIs">
-                                        <rect key="frame" x="223" y="8" width="178" height="54"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="25"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <size key="shadowOffset" width="2" height="2"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGl-5t-Tl3">
                                         <rect key="frame" x="19" y="18" width="86" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -303,6 +292,15 @@
                                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="2" height="2"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="熱門梗圖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64T-zS-TIs">
+                                        <rect key="frame" x="212" y="7" width="178" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="2" height="2"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -313,16 +311,12 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UfG-uO-Ord"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="VNZ-HF-kwG" firstAttribute="leading" secondItem="UfG-uO-Ord" secondAttribute="leading" id="1F3-Tm-fYd"/>
+                            <constraint firstItem="VNZ-HF-kwG" firstAttribute="leading" secondItem="UfG-uO-Ord" secondAttribute="leading" constant="16" id="1F3-Tm-fYd"/>
                             <constraint firstItem="VNZ-HF-kwG" firstAttribute="top" secondItem="UfG-uO-Ord" secondAttribute="top" constant="115" id="2NQ-Da-VDv"/>
-                            <constraint firstItem="LrN-PR-Bx9" firstAttribute="trailing" secondItem="UfG-uO-Ord" secondAttribute="trailing" id="QKD-Cl-Pa2"/>
-                            <constraint firstItem="VNZ-HF-kwG" firstAttribute="trailing" secondItem="UfG-uO-Ord" secondAttribute="trailing" id="UJ0-Yp-J6h"/>
-                            <constraint firstItem="LrN-PR-Bx9" firstAttribute="top" secondItem="W7B-0e-Yzj" secondAttribute="top" id="YpD-qJ-7oz"/>
-                            <constraint firstItem="LrN-PR-Bx9" firstAttribute="leading" secondItem="UfG-uO-Ord" secondAttribute="leading" id="c4O-fU-Qpp"/>
+                            <constraint firstItem="VNZ-HF-kwG" firstAttribute="trailing" secondItem="UfG-uO-Ord" secondAttribute="trailing" constant="-16" id="UJ0-Yp-J6h"/>
                             <constraint firstItem="UfG-uO-Ord" firstAttribute="bottom" secondItem="VNZ-HF-kwG" secondAttribute="bottom" constant="20" id="khB-zC-vYa"/>
-                            <constraint firstItem="UfG-uO-Ord" firstAttribute="bottom" secondItem="LrN-PR-Bx9" secondAttribute="bottom" constant="555" id="sLT-e0-4rp"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="flame.circle" catalog="system" largeContentSizeImage="flame.circle" selectedImage="flame.circle.fill" id="4ww-cH-LBO"/>
@@ -334,7 +328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14b-NY-vho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3237" y="-35"/>
+            <point key="canvasLocation" x="3235.8778625954196" y="-35.211267605633807"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="gYS-j1-hOR">
@@ -347,7 +341,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="why you 搜 meme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69D-If-MDv">
                                 <rect key="frame" x="69" y="59" width="254" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="35"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -647,16 +641,6 @@
                                     <action selector="dismiss:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="ztJ-rj-Ues"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwy-5z-0I9">
-                                <rect key="frame" x="73" y="52" width="94" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="AccentColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="模型去背"/>
-                                <connections>
-                                    <action selector="mlRemoveBG:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="KGs-at-AS2"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w1o-1z-hTa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -681,6 +665,159 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="om1-7K-1PU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1930.534351145038" y="655.63380281690149"/>
+        </scene>
+        <!--Material Creater View Controller-->
+        <scene sceneID="2af-bl-ER7">
+            <objects>
+                <viewController storyboardIdentifier="MaterialCreaterViewController" id="n8l-ak-biW" customClass="MaterialCreaterViewController" customModule="SOMEME" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ORC-eR-8fy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="素材產生器" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHr-SE-26g">
+                                <rect key="frame" x="69" y="59" width="254" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Rt-Q2-K20">
+                                <rect key="frame" x="35" y="171" width="323" height="324"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8I-EE-8WP">
+                                <rect key="frame" x="222" y="525" width="136" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="相簿" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2T-Qu-lTQ">
+                                        <rect key="frame" x="17" y="18" width="102" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex1-Ny-zNq" userLabel="相簿按鈕">
+                                        <rect key="frame" x="-4" y="9" width="143" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="gallery:" destination="n8l-ak-biW" eventType="touchUpInside" id="h0e-Lz-jdX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-Va-vhd">
+                                <rect key="frame" x="35" y="525" width="136" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="相機" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ag2-nj-EAu">
+                                        <rect key="frame" x="17" y="18" width="102" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r67-lM-PXU" userLabel="相機按鈕">
+                                        <rect key="frame" x="-4" y="-1" width="143" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="camera:" destination="n8l-ak-biW" eventType="touchUpInside" id="oNS-e1-Sdx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.79215686269999996" green="0.050980392159999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-4D-jTK">
+                                <rect key="frame" x="222" y="619" width="136" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="上傳素材" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey2-NF-ONI">
+                                        <rect key="frame" x="17" y="18" width="102" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYk-5y-WRj" userLabel="上傳素材">
+                                        <rect key="frame" x="-4" y="9" width="143" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YpO-KU-ZIV">
+                                <rect key="frame" x="35" y="619" width="136" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="去背" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-EU-O4G">
+                                        <rect key="frame" x="17" y="18" width="102" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zP-sN-5dp" userLabel="模型去背">
+                                        <rect key="frame" x="-4" y="9" width="143" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="removeBG:" destination="n8l-ak-biW" eventType="touchUpInside" id="5hb-13-chH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HUA-R1-sEm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="person.and.background.dotted" catalog="system" largeContentSizeImage="person.and.background.dotted" selectedImage="person.and.background.dotted" id="ac7-q7-45X"/>
+                    <connections>
+                        <outlet property="photoImageView" destination="5Rt-Q2-K20" id="7AA-w6-fuK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZ7-f1-XBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4591.6030534351139" y="-35.211267605633807"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ewv-yz-veJ">
@@ -710,6 +847,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.79215686269999996" green="0.050980392159999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
@@ -717,6 +855,7 @@
                         <segue destination="RKK-6s-st6" kind="relationship" relationship="viewControllers" id="Gaq-uI-IPf"/>
                         <segue destination="piK-yA-uNO" kind="relationship" relationship="viewControllers" id="IPw-BB-Qw4"/>
                         <segue destination="029-Il-70Q" kind="relationship" relationship="viewControllers" id="gCk-Gh-lm0"/>
+                        <segue destination="n8l-ak-biW" kind="relationship" relationship="viewControllers" id="wRu-y3-LbS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84w-5y-H5u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -727,9 +866,7 @@
     <resources>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="arrow.up.and.down.righttriangle.up.righttriangle.down.fill" catalog="system" width="128" height="124"/>
-        <image name="background" width="564" height="423"/>
         <image name="camera.filters" catalog="system" width="128" height="119"/>
-        <image name="cat" width="564" height="846"/>
         <image name="crop" catalog="system" width="128" height="116"/>
         <image name="flame.circle" catalog="system" width="128" height="123"/>
         <image name="flame.circle.fill" catalog="system" width="128" height="123"/>
@@ -742,6 +879,7 @@
         <image name="pencil.circle" catalog="system" width="128" height="123"/>
         <image name="pencil.circle.fill" catalog="system" width="128" height="123"/>
         <image name="pencil.tip.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.and.background.dotted" catalog="system" width="128" height="101"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="rotate.left.fill" catalog="system" width="117" height="128"/>
         <image name="rotate.right.fill" catalog="system" width="117" height="128"/>
@@ -750,6 +888,7 @@
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="trash.fill" catalog="system" width="117" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="柴犬" width="327" height="327"/>
         <namedColor name="AccentColor">
             <color red="0.82099997997283936" green="0.14900000393390656" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
