@@ -41,6 +41,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet var photoImageView: UIImageView!
     var collectionView: UICollectionView!
     var isMaterialCollectionView = false
+    @IBOutlet weak var doodleView: DoodleView!
     // 設定假資料顯示內容
     var textData = ["恐龍扛狼", "要確欸", "哇酷哇酷", "芭比 Q 了", "注意看，這個男人太狠了", "我沒了", "UCCU", "歸剛欸", "YYDS", "萊納，你坐啊！"]
     var materialData = ["cool guy", "talk", "wacu", "我就爛", "技安", "是在哭", "柴犬", "煙", "貓", "鴨1", "鴨2", "鴨3", "黑人問號"]
@@ -51,6 +52,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     var items = [MemeLoadDatum]() // 儲存從api取得資料
     // 文字顏色按鈕
     @IBOutlet var textColorButton: UIButton!
+    var photoViewGestures: [UIGestureRecognizer] = []
     // collectionView欄位設定
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         if isMaterialCollectionView {
@@ -64,25 +66,21 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditingCollectionViewCell", for: indexPath) as? EditingCollectionViewCell else {
             fatalError("Unable to dequeue EditingCollectionViewCell")
         }
-        if isMaterialCollectionView {
+        if isMaterialCollectionView == true {
             // materialCollectionView 的設置
-            if indexPath.row < materialData.count {
                 let materialName = materialData[indexPath.row]
                 if let materialImage = UIImage(named: materialName) {
                     cell.memeImage.image = materialImage
-                }
+                    //少了delegate，protocal就沒有辦法啟用喔！
+                    cell.delegate = self
             } else {
                 print("Index out of range for materialData")
             }
         } else {
-            if indexPath.row < items.count {
                 let item = items[indexPath.row]
                 cell.delegate = self
                 cell.memeImage.kf.setImage(with: item.src)
                 cell.update(meme: item)
-            } else {
-                print("Index out of range for items")
-            }
         }
         return cell
     }
@@ -100,9 +98,15 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     // 設定viewDidLoad的功能
     override func viewDidLoad() {
         super.viewDidLoad()
+        photoView.layer.cornerRadius = 30
+        photoView.layer.shadowOpacity = Float(1)
+        photoView.layer.shadowRadius = CGFloat(15)
+        photoView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        doodleView.clipsToBounds = true
+        doodleView.isMultipleTouchEnabled = false
+        tabBarController?.tabBar.isHidden = false
         // 設定顯示傳值過來的圖片
         photoImageView.image = imageViewLoad
-        //        photoImageView.image = selectedImage
         // 梗圖collectionView設定
         let layoutPersonal = UICollectionViewFlowLayout()
         layoutPersonal.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 0)
@@ -139,6 +143,9 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         photoView.addGestureRecognizer(rotationGesture)
         photoView.addGestureRecognizer(panGesture)
         photoView.addGestureRecognizer(pinchGesture)
+        photoViewGestures.append(rotationGesture)
+        photoViewGestures.append(panGesture)
+        photoViewGestures.append(pinchGesture)
         // 設定 label 手勢功能
         let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
         labelPanGesture.delegate = self
@@ -154,6 +161,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         photoView.addGestureRecognizer(labelPanGesture)
         photoView.addGestureRecognizer(labelPinchGesture)
         photoView.addGestureRecognizer(doubleTapGesture)
+        photoViewGestures.append(labelRotationGesture)
+        photoViewGestures.append(labelPanGesture)
+        photoViewGestures.append(labelPinchGesture)
+        photoViewGestures.append(doubleTapGesture)
         // 初始字體顏色按鈕隱藏
         textColorButton.isHidden = true
         // 設定水平滑動的 scrollView
@@ -187,11 +198,18 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             imageView.tag = index
             // Add imageView to the array
             imageViews.append(imageView)
+            // 設定 contentSize，確保可以左右滑動
+            imageScrollView.contentSize = CGSize(width: CGFloat(picArray.count) * 90, height: 80)
+            imageScrollView.isHidden = true
+            rotateOutlet.isHidden = true
+            doodleView.isUserInteractionEnabled = false
         }
-        // 設定 contentSize，確保可以左右滑動
-        imageScrollView.contentSize = CGSize(width: CGFloat(picArray.count) * 90, height: 80)
-        imageScrollView.isHidden = true
-        rotateOutlet.isHidden = true
+    }
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     @objc func imageViewTapped(_ gesture: UITapGestureRecognizer) {
         if let imageView = gesture.view as? UIImageView {
@@ -274,10 +292,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     func textViewDidEndEditing(_: UITextView) {
         endEditing()
     }
-    func gestureRecognizer(_: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer) -> Bool {
-        // 允許同時識別多手勢
-        return true
-    }
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         // 防止與其他手勢衝突
         return gestureRecognizer is UIPanGestureRecognizer && otherGestureRecognizer is UITapGestureRecognizer
@@ -343,6 +357,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         loadMemeData()
         updateCollectionView()
         textColorButton.isHidden = true
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
+        }
     }
     // 新增圖層
     func addImageViewToImageView(imageView: UIImageView) {
@@ -379,16 +397,13 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         addedTextLabel.append(label)
         // 選定新增的圖層
         selectedLabel = label
-        // 添加手勢
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
-        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
-        label.addGestureRecognizer(panGesture)
-        label.addGestureRecognizer(pinchGesture)
-        label.addGestureRecognizer(rotationGesture)
         // Ensure that subviews of the label also respond to user interaction
         for subview in label.subviews {
             subview.isUserInteractionEnabled = true
+        }
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
         }
     }
     @objc func handleLabelPanGesture(_ sender: UIPanGestureRecognizer) {
@@ -420,19 +435,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         selectedTextView?.textColor = viewController.selectedColor
         selectedLabel?.textColor = viewController.selectedColor
     }
-    // imageView和label共用移除功能（目前fail~）
-    @objc func closeButtonTapped(_ sender: UIButton) {
-        if let imageView = addedImageViews.first(where: { $0.tag == sender.tag }) {
-            imageView.removeFromSuperview()
-            addedImageViews.removeAll { $0.tag == sender.tag }
-            selectedImageView = nil
-        }
-        if let label = addedTextLabel.first(where: { $0.tag == sender.tag }) {
-            label.removeFromSuperview()
-            addedTextLabel.removeAll { $0.tag == sender.tag }
-            selectedLabel = nil
-        }
-    }
     @IBAction func removeText(_: Any) {
         for label in addedTextLabel {
             label.removeFromSuperview()
@@ -460,6 +462,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
+        }
     }
     @IBAction func showMaterial(_: Any) {
         imageScrollView.isHidden = true
@@ -469,6 +475,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.isHidden = false
         rotateOutlet.isHidden = true
         updateCollectionView()
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
+        }
     }
     @IBAction func addMyfavorite(_ sender: Any) {
         // 使用 UIGraphicsImageRenderer 將 photoView 畫成一張圖片
@@ -560,6 +570,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.isHidden = true
         rotateOutlet.isHidden = true
         textColorButton.isHidden = true
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
+        }
         guard let image = photoImageView.image else {
             // 如果沒有圖片，不進行裁切
             return
@@ -575,12 +589,54 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.isHidden = true
         rotateOutlet.isHidden = true
         textColorButton.isHidden = true
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
+        }
     }
-    
     @IBAction func rotateImage(_ sender: Any) {
         rotateOutlet.isHidden = false
         imageScrollView.isHidden = true
         collectionView.isHidden = true
         textColorButton.isHidden = true
+        doodleView.isUserInteractionEnabled = false
+        for gesture in photoViewGestures {
+            gesture.isEnabled = true
+        }
+    }
+    @IBAction func doodle(_ sender: Any) {
+        collectionView.isHidden = true
+        doodleView.isUserInteractionEnabled = true
+        for gesture in photoViewGestures {
+            gesture.isEnabled = false
+        }
+    }
+    @IBAction func removeDoodle(_ sender: Any) {
+        doodleView.clearCanvas()
+    }
+    @IBAction func removeBG(_ sender: Any) {
+        //        guard let image = photoImageView.image else {
+        //            // 確保有圖片可供去背
+        //            return
+        //        }
+        //        // 調用 RemoveBGManager 進行去背
+        //        RemoveBGManager.shared.removeImageBg(uiImage: image) { removedImage in
+        //            if let removedImage = removedImage {
+        //                // 成功處理去背後的圖片
+        //                DispatchQueue.main.async {
+        //                    self.photoImageView.image = removedImage
+        //                }
+        //            } else {
+        //                // 處理失敗的情況
+        //                print("Error removing background")
+        //            }
+        //        }
+    }
+    @IBAction func dismiss(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func mlRemoveBG(_ sender: Any) {
+        
     }
 }

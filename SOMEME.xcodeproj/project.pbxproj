@@ -10,17 +10,17 @@
 		3A644884968E29967AD43A1D /* Pods_SOMEME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E645B95306CE52706BF4A31 /* Pods_SOMEME.framework */; };
 		A22BE3402B05E6AD0098B6A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BE33F2B05E6AD0098B6A9 /* AppDelegate.swift */; };
 		A22BE3422B05E6AD0098B6A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3412B05E6AD0098B6A9 /* SceneDelegate.swift */; };
-		A22BE3472B05E6AD0098B6A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A22BE3452B05E6AD0098B6A9 /* Main.storyboard */; };
 		A22BE34A2B05E6AD0098B6A9 /* SOMEME.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3482B05E6AD0098B6A9 /* SOMEME.xcdatamodeld */; };
-		A22BE34C2B05E6AE0098B6A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A22BE34B2B05E6AE0098B6A9 /* Assets.xcassets */; };
-		A22BE34F2B05E6AE0098B6A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A22BE34D2B05E6AE0098B6A9 /* LaunchScreen.storyboard */; };
 		A22BE3582B05EEDE0098B6A9 /* PhotoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3572B05EEDE0098B6A9 /* PhotoEditViewController.swift */; };
-		A22BE35A2B05EF360098B6A9 /* Mamelon.otf in Resources */ = {isa = PBXBuildFile; fileRef = A22BE3592B05EF360098B6A9 /* Mamelon.otf */; };
 		A22BE35D2B0601800098B6A9 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BE35C2B0601800098B6A9 /* EditingViewController.swift */; };
 		A22BE35F2B0610450098B6A9 /* MemeLoadStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BE35E2B0610450098B6A9 /* MemeLoadStruct.swift */; };
 		A22BE3612B06117E0098B6A9 /* EditingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3602B06117E0098B6A9 /* EditingCollectionViewCell.swift */; };
 		A23953392B158CE900E57326 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23953382B158CE900E57326 /* SearchManager.swift */; };
 		A24366B72B1498BF00FED5DD /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */; };
+		A24443C92B18613C00A5B56D /* DoodleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24443C82B18613C00A5B56D /* DoodleView.swift */; };
+		A24443CB2B19C43300A5B56D /* RemoveBGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */; };
+		A24443CD2B1C874700A5B56D /* DeepLabV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */; };
+		A255101D2B1D981E00653960 /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = A22BE3452B05E6AD0098B6A9 /* Main.storyboard */; };
 		A25D280A2B0B054800857B98 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D28092B0B054700857B98 /* MyCollectionViewController.swift */; };
 		A25D280C2B0B079000857B98 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */; };
 		A25D280E2B0B5F6C00857B98 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D280D2B0B5F6C00857B98 /* HotViewController.swift */; };
@@ -49,6 +49,9 @@
 		A22BE3602B06117E0098B6A9 /* EditingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingCollectionViewCell.swift; sourceTree = "<group>"; };
 		A23953382B158CE900E57326 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		A24443C82B18613C00A5B56D /* DoodleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleView.swift; sourceTree = "<group>"; };
+		A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveBGManager.swift; sourceTree = "<group>"; };
+		A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3.mlmodel; sourceTree = "<group>"; };
 		A25D28092B0B054700857B98 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		A25D280D2B0B5F6C00857B98 /* HotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
@@ -117,9 +120,11 @@
 				A25D280F2B0C467E00857B98 /* HotAPIstruct.swift */,
 				A25D281B2B0F450100857B98 /* FavoritesManager.swift */,
 				A23953382B158CE900E57326 /* SearchManager.swift */,
+				A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */,
 				A22BE3572B05EEDE0098B6A9 /* PhotoEditViewController.swift */,
 				A22BE35C2B0601800098B6A9 /* EditingViewController.swift */,
 				A22BE3602B06117E0098B6A9 /* EditingCollectionViewCell.swift */,
+				A24443C82B18613C00A5B56D /* DoodleView.swift */,
 				A25D28092B0B054700857B98 /* MyCollectionViewController.swift */,
 				A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */,
 				A25D280D2B0B5F6C00857B98 /* HotViewController.swift */,
@@ -127,6 +132,7 @@
 				A25D28132B0C4FF100857B98 /* HotCollectionViewCell.swift */,
 				A25D28192B0DCCC400857B98 /* SearchViewController.swift */,
 				A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */,
+				A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */,
 				A22BE3592B05EF360098B6A9 /* Mamelon.otf */,
 				A22BE34B2B05E6AE0098B6A9 /* Assets.xcassets */,
 				A22BE34D2B05E6AE0098B6A9 /* LaunchScreen.storyboard */,
@@ -146,7 +152,6 @@
 				1CC9EB404F2E6A1B2BAE5FEB /* [CP] Check Pods Manifest.lock */,
 				A22BE3382B05E6AD0098B6A9 /* Sources */,
 				A22BE3392B05E6AD0098B6A9 /* Frameworks */,
-				A22BE33A2B05E6AD0098B6A9 /* Resources */,
 				61950396820F6917BE611BF8 /* [CP] Embed Pods Frameworks */,
 				A22BE3562B05E7BD0098B6A9 /* ShellScript */,
 			);
@@ -191,20 +196,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		A22BE33A2B05E6AD0098B6A9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A22BE34F2B05E6AE0098B6A9 /* LaunchScreen.storyboard in Resources */,
-				A22BE34C2B05E6AE0098B6A9 /* Assets.xcassets in Resources */,
-				A22BE3472B05E6AD0098B6A9 /* Main.storyboard in Resources */,
-				A22BE35A2B05EF360098B6A9 /* Mamelon.otf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		1CC9EB404F2E6A1B2BAE5FEB /* [CP] Check Pods Manifest.lock */ = {
@@ -270,8 +261,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A255101D2B1D981E00653960 /* Main.storyboard in Sources */,
 				A25D280E2B0B5F6C00857B98 /* HotViewController.swift in Sources */,
+				A24443C92B18613C00A5B56D /* DoodleView.swift in Sources */,
 				A23953392B158CE900E57326 /* SearchManager.swift in Sources */,
+				A24443CD2B1C874700A5B56D /* DeepLabV3.mlmodel in Sources */,
 				A25D281C2B0F450100857B98 /* FavoritesManager.swift in Sources */,
 				A25D280A2B0B054800857B98 /* MyCollectionViewController.swift in Sources */,
 				A22BE34A2B05E6AD0098B6A9 /* SOMEME.xcdatamodeld in Sources */,
@@ -285,6 +279,7 @@
 				A22BE3422B05E6AD0098B6A9 /* SceneDelegate.swift in Sources */,
 				A22BE3612B06117E0098B6A9 /* EditingCollectionViewCell.swift in Sources */,
 				A22BE35D2B0601800098B6A9 /* EditingViewController.swift in Sources */,
+				A24443CB2B19C43300A5B56D /* RemoveBGManager.swift in Sources */,
 				A25D28142B0C4FF100857B98 /* HotCollectionViewCell.swift in Sources */,
 				A22BE3582B05EEDE0098B6A9 /* PhotoEditViewController.swift in Sources */,
 			);

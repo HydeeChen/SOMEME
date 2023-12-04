@@ -8,17 +8,23 @@
 import UIKit
 import Kingfisher
 
+// 設定cell的protocal
+protocol SearchCollectionViewCellDelegate: AnyObject {
+    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressShareButton Button: Any)
+    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressEditButton Button: Any, withImage image: UIImage?)
+    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressLikeButton Button: Any)
+}
 class SearchCollectionViewCell: UICollectionViewCell {
     static let cellID: String = "SearchCollectionViewCell"
     var memeImage: UIImageView!
     var shareButton: UIButton!
     var EditButton: UIButton!
     var likeButton: UIButton!
+    weak var delegate: SearchCollectionViewCellDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -34,7 +40,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         shareButton.setTitleColor(.white, for: .normal)
         shareButton.backgroundColor = .red
         shareButton.layer.cornerRadius = 5
-//        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         contentView.addSubview(shareButton)
         // 新增編輯按鈕
         EditButton = UIButton(type: .system)
@@ -42,7 +48,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         EditButton.setTitleColor(.white, for: .normal)
         EditButton.backgroundColor = .red
         EditButton.layer.cornerRadius = 5
-//        EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
+        EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
         contentView.addSubview(EditButton)
         // 新增收藏按鈕
         likeButton = UIButton(type: .system)
@@ -50,7 +56,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         likeButton.setTitleColor(.white, for: .normal)
         likeButton.backgroundColor = .red
         likeButton.layer.cornerRadius = 5
-//        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         contentView.addSubview(likeButton)
         // 設定按鈕的 constraints
         shareButton.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +77,17 @@ class SearchCollectionViewCell: UICollectionViewCell {
             likeButton.heightAnchor.constraint(equalToConstant: 30) // 設定高度
         ])
     }
-
+    
     func update(meme: MemeLoadDatum) {
         memeImage.kf.setImage(with: meme.src)
+    }
+    @objc func shareButtonTapped() {
+        delegate?.SearchCollectionViewCell(_Cell: self, didPressShareButton: shareButton ?? "")
+    }
+    @objc func EditButtonTapped() {
+        delegate?.SearchCollectionViewCell(_Cell: self, didPressEditButton: EditButton, withImage: memeImage.image)
+    }
+    @objc func likeButtonTapped() {
+        delegate?.SearchCollectionViewCell(_Cell: self, didPressLikeButton: likeButton ?? "")
     }
 }

@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 
-class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //  拉陰影
+    @IBOutlet weak var shadowOfCreate: UIView!
     @IBOutlet var shadowOfEdit: UIView!
     @IBOutlet var shadowOfCamera: UIView!
     @IBOutlet var shadowOfGallery: UIView!
@@ -22,6 +24,10 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // 設定照片陰影
+        shadowOfCreate.layer.cornerRadius = CGFloat(30)
+        shadowOfCreate.layer.shadowOpacity = Float(1)
+        shadowOfCreate.layer.shadowRadius = CGFloat(15)
+        shadowOfCreate.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
         shadowOfEdit.layer.cornerRadius = CGFloat(30)
         shadowOfEdit.layer.shadowOpacity = Float(1)
         shadowOfEdit.layer.shadowRadius = CGFloat(15)
@@ -63,22 +69,60 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
 
     @IBAction func takePhoto(_: Any) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .camera
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-        // 開始編輯ui顯示設定
-        shadowOfEdit.isHidden = false
-        redViewOfEdit.isHidden = false
-        editButtonOutlet.isHidden = false
-        // 尚未選擇照片文字隱藏
-        unselectLabel.isHidden = true
+        // 檢查相機是否可用
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+                print("相機不可用")
+                return
+            }
+            // 檢查是否有相機許可權
+            let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+            switch cameraAuthorizationStatus {
+            case .authorized:
+                // 有相機許可權，執行相機操作
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .camera
+                imagePickerController.delegate = self
+                present(imagePickerController, animated: true, completion: nil)
+                // 開始編輯ui顯示設定
+                shadowOfEdit.isHidden = false
+                redViewOfEdit.isHidden = false
+                editButtonOutlet.isHidden = false
+                // 尚未選擇照片文字隱藏
+                unselectLabel.isHidden = true
+            case .notDetermined:
+                // 尚未詢問用戶許可權，執行詢問用戶
+                AVCaptureDevice.requestAccess(for: .video) { granted in
+                    if granted {
+                        // 用戶同意許可權，執行相機操作（這個在主線程執行）
+                        DispatchQueue.main.async {
+                            self.takePhoto(self)
+                        }
+                    } else {
+                        // 用戶拒絕許可權，提供提示
+                        print("相機許可權被拒絕")
+                    }
+                }
+            case .denied, .restricted:
+                // 用戶拒絕或限制許可權，提供提示
+                print("相機許可權被拒絕或受限")
+            }
     }
-
-    @IBSegueAction func passData(_ coder: NSCoder) -> EditingViewController? {
-        let photo = photoImageView.image!
-        let controller = EditingViewController(coder: coder)
-        controller?.imageViewLoad = photo
-        return controller
+    @IBAction func creativeMode(_ sender: Any) {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+               let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+               // 設定全螢幕呈現模式
+               editVC.modalPresentationStyle = .fullScreen
+               self.present(editVC, animated: true)
+    }
+    @IBAction func startToEdit(_ sender: Any) {
+        if let photo = photoImageView.image {
+                let st = UIStoryboard(name: "Main", bundle: nil)
+                let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+                // 傳遞圖片給 EditingViewController
+                editVC.imageViewLoad = photo
+                // 設定全螢幕呈現模式
+                editVC.modalPresentationStyle = .fullScreen
+                self.present(editVC, animated: true)
+            }
     }
 }

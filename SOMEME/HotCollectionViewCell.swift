@@ -40,7 +40,7 @@ class HotCollectionViewCell: UICollectionViewCell {
         shareButton = UIButton(type: .system)
         shareButton.setTitle("分享", for: .normal)
         shareButton.setTitleColor(.white, for: .normal)
-        shareButton.backgroundColor = .red
+        shareButton.backgroundColor = UIColor(hex: 0xCA0D1F)
         shareButton.layer.cornerRadius = 5
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         contentView.addSubview(shareButton)
@@ -48,7 +48,7 @@ class HotCollectionViewCell: UICollectionViewCell {
         EditButton = UIButton(type: .system)
         EditButton.setTitle("編輯", for: .normal)
         EditButton.setTitleColor(.white, for: .normal)
-        EditButton.backgroundColor = .red
+        EditButton.backgroundColor = UIColor(hex: 0xCA0D1F)
         EditButton.layer.cornerRadius = 5
         EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
         contentView.addSubview(EditButton)
@@ -56,7 +56,7 @@ class HotCollectionViewCell: UICollectionViewCell {
         likeButton = UIButton(type: .system)
         likeButton.setTitle("收藏", for: .normal)
         likeButton.setTitleColor(.white, for: .normal)
-        likeButton.backgroundColor = .red
+        likeButton.backgroundColor = UIColor(hex: 0xCA0D1F)
         likeButton.layer.cornerRadius = 5
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         contentView.addSubview(likeButton)
@@ -76,7 +76,7 @@ class HotCollectionViewCell: UICollectionViewCell {
             likeButton.leadingAnchor.constraint(equalTo: EditButton.trailingAnchor, constant: 5),
             likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             likeButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            likeButton.heightAnchor.constraint(equalToConstant: 30), // 設定高度
+            likeButton.heightAnchor.constraint(equalToConstant: 30) // 設定高度
         ])
     }
 
@@ -88,7 +88,7 @@ class HotCollectionViewCell: UICollectionViewCell {
         delegate?.HotCollectionViewCell(_Cell: self, didPressShareButton: shareButton ?? "")
     }
     @objc func EditButtonTapped() {
-        delegate?.HotCollectionViewCell(_Cell: self, didPressEditButton: shareButton, withImage: memeImage.image)
+        delegate?.HotCollectionViewCell(_Cell: self, didPressEditButton: shareButton ?? "", withImage: memeImage.image)
     }
     @objc func likeButtonTapped() {
         delegate?.HotCollectionViewCell(_Cell: self, didPressLikeButton: shareButton ?? "")

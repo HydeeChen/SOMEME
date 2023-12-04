@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class MyCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate {
+    var overlayView = UIView()
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return FavoritesManager.shared.favoritePhotos.count
     }
@@ -51,42 +52,38 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         collectionView.reloadData()
     }
     // 點了會有放大圖的神奇功能
-        func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            // 檢查索引是否在範圍內
-                guard indexPath.item < FavoritesManager.shared.favoritePhotos.count else {
-                    return
-                }
-
-            let selectedItem = FavoritesManager.shared.favoritePhotos[indexPath.item]
-
-            // Create a new imageView and set its image
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 350, height: 500))
-            imageView.center = view.center
-            imageView.contentMode = .scaleAspectFit
-
-            if let image = FavoritesManager.shared.getImage(for: selectedItem) {
-                imageView.image = image
-            } else {
-                // Handle the case where the image is not available
-                imageView.image = UIImage(named: "")
-            }
-
-            // Add tap gesture to remove the imageView
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeExpandedImageView))
-            imageView.addGestureRecognizer(tapGesture)
-            imageView.isUserInteractionEnabled = true
-
-            // Add the imageView to the view
-            view.addSubview(imageView)
-
-            // Set the expandedImageView property
-            expandedImageView = imageView
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 檢查索引是否在範圍內
+        guard indexPath.item < FavoritesManager.shared.favoritePhotos.count else {
+            return
+        }
+        let selectedItem = FavoritesManager.shared.favoritePhotos[indexPath.item]
+        // Create a new imageView and set its image
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 350, height: 500))
+        imageView.center = view.center
+        imageView.contentMode = .scaleAspectFit
+        if let image = FavoritesManager.shared.getImage(for: selectedItem) {
+            imageView.image = image
+        } else {
+            // Handle the case where the image is not available
+            imageView.image = UIImage(named: "")
+        }
+        // Add tap gesture to remove the imageView
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeExpandedImageView))
+        imageView.addGestureRecognizer(tapGesture)
+        imageView.isUserInteractionEnabled = true
+        // Add the imageView to the view
+        view.addSubview(imageView)
+        // Set the expandedImageView property
+        expandedImageView = imageView
+        overlayView.isHidden = false
     }
     
     @objc func removeExpandedImageView() {
         // Remove the expandedImageView when tapped
         expandedImageView?.removeFromSuperview()
         expandedImageView = nil
+        overlayView.isHidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,20 +93,16 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         layoutPersonal.minimumInteritemSpacing = CGFloat(integerLiteral: 10)
         layoutPersonal.scrollDirection = UICollectionView.ScrollDirection.vertical
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutPersonal)
-        
         // collectionView資料源設定
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(SOMEME.MyCollectionViewCell.self as AnyClass, forCellWithReuseIdentifier: SOMEME.MyCollectionViewCell.cellID)
         collectionView.backgroundColor = UIColor.clear
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
-        
         // 把myCollectioniew加到畫面裡
         view.addSubview(collectionView)
-        
         // 自動調整關閉
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         // CollectionView的限制
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -117,15 +110,29 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60),
         ])
-        
         // 設定背景陰影
         shadowVIew.layer.cornerRadius = CGFloat(30)
         shadowVIew.layer.shadowOpacity = Float(1)
         shadowVIew.layer.shadowRadius = CGFloat(15)
         shadowVIew.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        //黑色底平常為隱藏
+        overlayView.frame = view.bounds
+        overlayView.backgroundColor = UIColor.black
+        overlayView.alpha = 0.7
+        overlayView.isHidden = true
+        view.addSubview(overlayView)
     }
 }
 extension MyCollectionViewController: MyCollectionViewCellDelegate {
+    func MyCollectionViewCell(_Cell: MyCollectionViewCell, didPressEditButton Button: UIButton, withImage image: UIImage?) {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+        // 傳遞圖片給 EditingViewController
+        editVC.imageViewLoad = image
+        // 設定全螢幕呈現模式
+        editVC.modalPresentationStyle = .fullScreen
+        self.present(editVC, animated: true)
+    }
     func MyCollectionViewCell(_Cell: MyCollectionViewCell, didPressShareButton Button: Any) {
         if let indexPath = collectionView.indexPath(for: _Cell) {
             let selectedItem = FavoritesManager.shared.favoritePhotos[indexPath.row]
@@ -137,27 +144,22 @@ extension MyCollectionViewController: MyCollectionViewCellDelegate {
             present(activityViewController, animated: true, completion: nil)
         }
     }
-
     func MyCollectionViewCell(_Cell: MyCollectionViewCell, didPressRemoveButton Button: Any) {
         if let indexPath = collectionView.indexPath(for: _Cell) {
-                    let selectedItem = FavoritesManager.shared.favoritePhotos[indexPath.row]
-
-                    // 建立一個確認刪除的提示框
-                    let alertController = UIAlertController(title: "確認刪除", message: "確定要從收藏夾中刪除這張照片嗎？", preferredStyle: .alert)
-
-                    // 增加確認按鈕
-                    alertController.addAction(UIAlertAction(title: "確定", style: .destructive) { _ in
-                        // 執行刪除邏輯
-                        FavoritesManager.shared.removeFavorite(selectedItem)
-                        // 重新載入 collectionView 數據
-                        self.collectionView.reloadData()
-                    })
-
-                    // 增加取消按鈕
-                    alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-
-                    // 顯示提示框
-                    present(alertController, animated: true, completion: nil)
-                }
+            let selectedItem = FavoritesManager.shared.favoritePhotos[indexPath.row]
+            // 建立一個確認刪除的提示框
+            let alertController = UIAlertController(title: "確認刪除", message: "確定要從收藏夾中刪除這張照片嗎？", preferredStyle: .alert)
+            // 增加確認按鈕
+            alertController.addAction(UIAlertAction(title: "確定", style: .destructive) { _ in
+                // 執行刪除邏輯
+                FavoritesManager.shared.removeFavorite(selectedItem)
+                // 重新載入 collectionView 數據
+                self.collectionView.reloadData()
+            })
+            // 增加取消按鈕
+            alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+            // 顯示提示框
+            present(alertController, animated: true, completion: nil)
+        }
     }
 }

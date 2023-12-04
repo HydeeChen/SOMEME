@@ -1,24 +1,28 @@
 PODS:
+  - Alamofire (5.8.0)
   - Kingfisher (7.9.1)
   - SwiftLint (0.54.0)
   - TOCropViewController (2.6.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.0)
   - Kingfisher
   - SwiftLint
   - TOCropViewController
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Kingfisher
     - SwiftLint
     - TOCropViewController
 
 SPEC CHECKSUMS:
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
 
-PODFILE CHECKSUM: 50b6a035ca9cca9467ca363681f49a5c511097d5
+PODFILE CHECKSUM: e093bc871056a7b2cd846321cc3c63e9375bf2f7
 
 COCOAPODS: 1.13.0

@@ -8,4 +8,5 @@ target 'SOMEME' do
     pod 'Kingfisher'
     pod 'SwiftLint'
     pod 'TOCropViewController'
+    pod 'Alamofire', '~> 5.0'
 end

@@ -162,7 +162,6 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "HotTableViewCell", for: indexPath)
         cell.textLabel?.text = memeCategories[indexPath.row].name
         cell.textLabel?.textAlignment = .center
-        
         if indexPath.row == selectedCategoryIndex {
             cell.textLabel?.textColor = .blue // Set your desired highlight color
         } else {
@@ -228,10 +227,12 @@ extension HotViewController: HotCollectionViewCellDelegate {
     }
     func HotCollectionViewCell(_Cell Cell: HotCollectionViewCell, didPressEditButton _: Any, withImage image: UIImage? ) {
         let st = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
-        // 傳遞圖片給 EditingViewController
-        editVC.imageViewLoad = image
-        self.present(editVC, animated: true)
+               let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+               // 傳遞圖片給 EditingViewController
+               editVC.imageViewLoad = image
+               // 設定全螢幕呈現模式
+               editVC.modalPresentationStyle = .fullScreen
+               self.present(editVC, animated: true)
     }
     func HotCollectionViewCell(_Cell Cell: HotCollectionViewCell, didPressLikeButton _: Any) {
         // 將圖片轉換為 Data

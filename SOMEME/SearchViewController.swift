@@ -19,6 +19,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         let item = searchResult[indexPath.row]
         cell.memeImage.kf.setImage(with: item.src)
         cell.update(meme: item)
+        cell.delegate = self
         return cell
     }
     // 調整collectionView的大小
@@ -101,3 +102,45 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
 }
+extension SearchViewController: SearchCollectionViewCellDelegate {
+    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressShareButton Button: Any) {
+        if let indexPath = collectionView.indexPath(for: _Cell) {
+            let selectedItem = searchResult[indexPath.row]
+            let renderer = UIGraphicsImageRenderer(size: _Cell.memeImage.bounds.size)
+            let editedImage = renderer.image { _ in
+                _Cell.memeImage.drawHierarchy(in: _Cell.memeImage.bounds, afterScreenUpdates: true)
+            }
+            let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressEditButton Button: Any, withImage image: UIImage?) {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+               let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+               // 傳遞圖片給 EditingViewController
+               editVC.imageViewLoad = image
+               // 設定全螢幕呈現模式
+               editVC.modalPresentationStyle = .fullScreen
+               self.present(editVC, animated: true)
+    }    
+    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressLikeButton Button: Any) {
+        // 將圖片轉換為 Data
+            if let image = _Cell.memeImage.image, let imageData = image.jpegData(compressionQuality: 1.0) {
+                // 生成一個唯一的名稱，可以使用 UUID
+                let photoName = "EditedPhoto_" + UUID().uuidString
+                // 將圖片名稱和圖片數據保存到 UserDefaults
+                FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
+                // 顯示成功添加的提示
+                showAlert(title: "成功", message: "已將照片添加到收藏夾")
+            } else {
+                // 處理圖片為空的情況
+                showAlert(title: "錯誤", message: "無法將圖片轉換為數據")
+            }
+        // 提取的提示框處理函數
+           func showAlert(title: String, message: String) {
+               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
+               present(alert, animated: true, completion: nil)
+           }
+    }
+    }
