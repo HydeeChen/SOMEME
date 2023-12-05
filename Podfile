@@ -9,5 +9,7 @@ target 'SOMEME' do
     pod 'SwiftLint'
     pod 'TOCropViewController'
     pod 'Alamofire', '~> 5.0'
-    
+    pod 'Firebase/Firestore'
+    pod 'FirebaseFirestoreSwift'
+    pod 'Firebase/Storage'
 end

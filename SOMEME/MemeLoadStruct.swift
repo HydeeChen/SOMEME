@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseCore
+import FirebaseFirestore
 
 struct MemeLoadDatum: Codable {
     let id: Int
@@ -30,12 +32,12 @@ struct MemeLoadDatum: Codable {
         case hashtag
         case contest
     }
-
+    
     struct Author: Codable {
         let id: Int
         let name: String
     }
-
+    
     struct CreatedAt: Codable {
         let timestamp: TimeInterval
         let dateTimeString: String
@@ -44,9 +46,21 @@ struct MemeLoadDatum: Codable {
             case dateTimeString = "date_time_string"
         }
     }
-
+    
     struct Contest: Codable {
         let id: Int
         let name: String
+    }
+}
+
+struct MaterialData: Codable {
+    let id: String
+    let hashtag: [String]
+    let url: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case hashtag
+        case url
     }
 }

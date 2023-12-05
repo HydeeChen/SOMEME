@@ -23,7 +23,6 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet var editButtonOutlet: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 設定照片陰影
         shadowOfCreate.layer.cornerRadius = CGFloat(30)
         shadowOfCreate.layer.shadowOpacity = Float(1)
         shadowOfCreate.layer.shadowRadius = CGFloat(15)

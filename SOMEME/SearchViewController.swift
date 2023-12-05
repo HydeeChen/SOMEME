@@ -85,7 +85,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             // 處理空搜尋文字
             return
         }
-        
         MemeService.searchMemesByHashtag(hashtag: searchText) { [weak self] memes in
             DispatchQueue.main.async {
                 if let memes = memes {

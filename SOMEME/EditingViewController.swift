@@ -9,6 +9,8 @@ import Kingfisher
 import UIKit
 import TOCropViewController
 import CoreImage
+import FirebaseCore
+import FirebaseFirestore
 
 class EditingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate, UIGestureRecognizerDelegate, UIColorPickerViewControllerDelegate, TOCropViewControllerDelegate {
     func didTapImage(imageView: UIImageView) {
@@ -50,13 +52,14 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     let picName = ["Original", "Tonal", "Mono", "Transfer", "Instant", "Fade", "Process", "Chrome", "False", "Poster", "Line", "Comic"]
     var materialCollectionView: UICollectionView!
     var items = [MemeLoadDatum]() // 儲存從api取得資料
+    var firebaseMeme = [MaterialData]()//儲存從firebase取得的資料
     // 文字顏色按鈕
     @IBOutlet var textColorButton: UIButton!
     var photoViewGestures: [UIGestureRecognizer] = []
     // collectionView欄位設定
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         if isMaterialCollectionView {
-            return materialData.count
+            return firebaseMeme.count
         } else {
             return items.count
         }
@@ -68,13 +71,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         if isMaterialCollectionView == true {
             // materialCollectionView 的設置
-                let materialName = materialData[indexPath.row]
-                if let materialImage = UIImage(named: materialName) {
-                    cell.memeImage.image = materialImage
-                    //少了delegate，protocal就沒有辦法啟用喔！
-                    cell.delegate = self
-            } else {
-                print("Index out of range for materialData")
+                let material = firebaseMeme[indexPath.row]
+            cell.delegate = self
+            if let url = URL(string: material.url) {
+                cell.memeImage.kf.setImage(with: url)
             }
         } else {
                 let item = items[indexPath.row]
@@ -84,6 +84,17 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         return cell
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseLoadManager.fetchMaterialData { [weak self] (data, error) in
+                   if let error = error {
+                       print("Error fetching data: \(error)")
+                   } else if let data = data {
+                       self?.firebaseMeme = data
+                   }
+               }
+        }
+    
     // 調整collectionView的大小
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100) // 調整 cell 大小
@@ -208,9 +219,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
+  
     @objc func imageViewTapped(_ gesture: UITapGestureRecognizer) {
         if let imageView = gesture.view as? UIImageView {
             applyFilter(to: imageView, filterIndex: imageView.tag)

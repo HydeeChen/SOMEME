@@ -7,18 +7,13 @@
 
 import CoreData
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-//    var window: UIWindow?
+    var window: UIWindow?
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        let tabBarController = UITabBarController()
-//            // 設定 tabBarController 的 viewControllers
-//            // 創建主要的 UIWindow
-//            window = UIWindow(frame: UIScreen.main.bounds)
-//            window?.rootViewController = tabBarController
-//            window?.makeKeyAndVisible()
+        FirebaseApp.configure()
         return true
     }
 
