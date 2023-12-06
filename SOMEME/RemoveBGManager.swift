@@ -15,7 +15,6 @@ struct RemoveBGManager {
         let headers: HTTPHeaders = [
             "X-Api-Key": "rDc7uiRo7Kfq2tX2GxNRGCAn",
         ]
-
         AF.upload(multipartFormData: { data in
             let imageData = uiImage.jpegData(compressionQuality: 0.9)
             data.append(imageData!, withName: "image_file", fileName: UUID().uuidString, mimeType: "image/jpeg")

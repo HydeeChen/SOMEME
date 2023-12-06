@@ -28,8 +28,6 @@ class FavoritesManager {
         var favorites = favoritePhotos
         favorites.append(photoName)
         favoritePhotos = favorites
-
-        // 存儲圖片數據
         UserDefaults.standard.set(imageData, forKey: photoName)
     }
 
@@ -38,8 +36,6 @@ class FavoritesManager {
         if let index = favorites.firstIndex(of: photoName) {
             favorites.remove(at: index)
             favoritePhotos = favorites
-
-            // 移除相應的圖片數據
             UserDefaults.standard.removeObject(forKey: photoName)
         }
     }

@@ -98,7 +98,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
                    }
                }
         }
-    
     // 調整collectionView的大小
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100) // 調整 cell 大小
@@ -191,45 +190,34 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     func setupImageGestures() {
-           // 设置图片手势功能
            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
            panGesture.delegate = self
            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
            pinchGesture.delegate = self
            let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
            rotationGesture.delegate = self
-
-           // 添加手势到图片视图
            photoView.addGestureRecognizer(rotationGesture)
            photoView.addGestureRecognizer(panGesture)
            photoView.addGestureRecognizer(pinchGesture)
-
-           // 存储图片手势对象
            imageGestures.append(rotationGesture)
            imageGestures.append(panGesture)
            imageGestures.append(pinchGesture)
        }
 
        func setupLabelGestures() {
-           // 设置 Label 手势功能
            let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
            labelPanGesture.delegate = self
            let labelPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
            labelPinchGesture.delegate = self
            let labelRotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
            labelRotationGesture.delegate = self
-           // 点一下进行编辑、点旁边一下结束编辑
            let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
            doubleTapGesture.numberOfTapsRequired = 1
            doubleTapGesture.delegate = self
-
-           // 添加手势到图片视图
            photoView.addGestureRecognizer(labelRotationGesture)
            photoView.addGestureRecognizer(labelPanGesture)
            photoView.addGestureRecognizer(labelPinchGesture)
            photoView.addGestureRecognizer(doubleTapGesture)
-
-           // 存储标签手势对象
            labelGestures.append(labelRotationGesture)
            labelGestures.append(labelPanGesture)
            labelGestures.append(labelPinchGesture)
@@ -238,7 +226,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-  
     @objc func imageViewTapped(_ gesture: UITapGestureRecognizer) {
         if let imageView = gesture.view as? UIImageView {
             applyFilter(to: imageView, filterIndex: imageView.tag)
@@ -640,7 +627,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         for gestureRecognizer in labelGestures {
             gestureRecognizer.isEnabled = false
                }
- 
         for gestureRecognizer in imageGestures {
             gestureRecognizer.isEnabled = false
         }
@@ -679,5 +665,4 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             gestureRecognizer.isEnabled = (sender as AnyObject).isOn
                 }
     }
-    
 }
