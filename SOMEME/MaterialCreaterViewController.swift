@@ -173,15 +173,6 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
     }
     
     @IBAction func uploadMemes(_ sender: Any) {
-        workButtonFill = false
-        cuteButtonFill = false
-        animalButtonFill = false
-        usuallButtonFill = false
-        newsButtonFill = false
-        meansButtonFill = false
-        animeButtonFill = false
-        kusoButtonFill = false
-        funnyButtonFill = false
         // 清空 hashTagArray
         hashTagArray = []
         // 根據按鈕的狀態，將相應的標籤附加到 hashTagArray

@@ -32,12 +32,10 @@ struct MemeLoadDatum: Codable {
         case hashtag
         case contest
     }
-    
     struct Author: Codable {
         let id: Int
         let name: String
     }
-    
     struct CreatedAt: Codable {
         let timestamp: TimeInterval
         let dateTimeString: String
@@ -46,7 +44,6 @@ struct MemeLoadDatum: Codable {
             case dateTimeString = "date_time_string"
         }
     }
-    
     struct Contest: Codable {
         let id: Int
         let name: String

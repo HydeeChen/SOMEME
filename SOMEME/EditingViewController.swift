@@ -56,6 +56,10 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     // 文字顏色按鈕
     @IBOutlet var textColorButton: UIButton!
     var photoViewGestures: [UIGestureRecognizer] = []
+    @IBOutlet weak var moveLabelOutlet: UISwitch!
+    @IBOutlet weak var movePicOutlet: UISwitch!
+    var imageGestures: [UIGestureRecognizer] = []
+    var labelGestures: [UIGestureRecognizer] = []
     // collectionView欄位設定
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         if isMaterialCollectionView {
@@ -109,6 +113,8 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     // 設定viewDidLoad的功能
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupImageGestures()
+        setupLabelGestures()
         photoView.layer.cornerRadius = 30
         photoView.layer.shadowOpacity = Float(1)
         photoView.layer.shadowRadius = CGFloat(15)
@@ -144,38 +150,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         ])
         // 初始畫面並無梗圖標示
         collectionView.isHidden = true
-        // 設定圖片手勢功能
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        panGesture.delegate = self
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
-        pinchGesture.delegate = self
-        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
-        rotationGesture.delegate = self
-        photoView.addGestureRecognizer(rotationGesture)
-        photoView.addGestureRecognizer(panGesture)
-        photoView.addGestureRecognizer(pinchGesture)
-        photoViewGestures.append(rotationGesture)
-        photoViewGestures.append(panGesture)
-        photoViewGestures.append(pinchGesture)
-        // 設定 label 手勢功能
-        let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
-        labelPanGesture.delegate = self
-        let labelPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
-        labelPinchGesture.delegate = self
-        let labelRotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
-        labelRotationGesture.delegate = self
-        // 點一下進行編輯、點旁邊一下結束編輯
-        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
-        doubleTapGesture.numberOfTapsRequired = 1
-        doubleTapGesture.delegate = self
-        photoView.addGestureRecognizer(labelRotationGesture)
-        photoView.addGestureRecognizer(labelPanGesture)
-        photoView.addGestureRecognizer(labelPinchGesture)
-        photoView.addGestureRecognizer(doubleTapGesture)
-        photoViewGestures.append(labelRotationGesture)
-        photoViewGestures.append(labelPanGesture)
-        photoViewGestures.append(labelPinchGesture)
-        photoViewGestures.append(doubleTapGesture)
         // 初始字體顏色按鈕隱藏
         textColorButton.isHidden = true
         // 設定水平滑動的 scrollView
@@ -216,6 +190,51 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             doodleView.isUserInteractionEnabled = false
         }
     }
+    func setupImageGestures() {
+           // 设置图片手势功能
+           let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+           panGesture.delegate = self
+           let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+           pinchGesture.delegate = self
+           let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
+           rotationGesture.delegate = self
+
+           // 添加手势到图片视图
+           photoView.addGestureRecognizer(rotationGesture)
+           photoView.addGestureRecognizer(panGesture)
+           photoView.addGestureRecognizer(pinchGesture)
+
+           // 存储图片手势对象
+           imageGestures.append(rotationGesture)
+           imageGestures.append(panGesture)
+           imageGestures.append(pinchGesture)
+       }
+
+       func setupLabelGestures() {
+           // 设置 Label 手势功能
+           let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
+           labelPanGesture.delegate = self
+           let labelPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
+           labelPinchGesture.delegate = self
+           let labelRotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
+           labelRotationGesture.delegate = self
+           // 点一下进行编辑、点旁边一下结束编辑
+           let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+           doubleTapGesture.numberOfTapsRequired = 1
+           doubleTapGesture.delegate = self
+
+           // 添加手势到图片视图
+           photoView.addGestureRecognizer(labelRotationGesture)
+           photoView.addGestureRecognizer(labelPanGesture)
+           photoView.addGestureRecognizer(labelPinchGesture)
+           photoView.addGestureRecognizer(doubleTapGesture)
+
+           // 存储标签手势对象
+           labelGestures.append(labelRotationGesture)
+           labelGestures.append(labelPanGesture)
+           labelGestures.append(labelPinchGesture)
+           labelGestures.append(doubleTapGesture)
+       }
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -276,6 +295,8 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         // 將 UITextView 添加到畫面中
         photoImageView.addSubview(textView)
         addedTextViews.append(textView)
+        addedTextLabel.append(label)
+        textView.tag = label.tag
         // 將選定的 label 隱藏
         label.isHidden = true
         // 設定選定的 UITextView
@@ -616,8 +637,12 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBAction func doodle(_ sender: Any) {
         collectionView.isHidden = true
         doodleView.isUserInteractionEnabled = true
-        for gesture in photoViewGestures {
-            gesture.isEnabled = false
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = false
+               }
+ 
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = false
         }
     }
     @IBAction func removeDoodle(_ sender: Any) {
@@ -644,4 +669,15 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func moveLabel(_ sender: Any) {
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = (sender as AnyObject).isOn
+               }
+    }
+    @IBAction func movePic(_ sender: Any) {
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = (sender as AnyObject).isOn
+                }
+    }
+    
 }

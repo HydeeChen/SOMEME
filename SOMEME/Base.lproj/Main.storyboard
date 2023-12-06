@@ -604,7 +604,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgW-pm-NDq">
-                                <rect key="frame" x="128" y="95" width="92" height="34.333333333333371"/>
+                                <rect key="frame" x="127" y="94" width="92" height="34.333333333333371"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
@@ -626,7 +626,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDz-7m-X1u">
-                                <rect key="frame" x="333" y="45" width="47" height="35"/>
+                                <rect key="frame" x="332" y="56" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
@@ -635,6 +635,34 @@
                                     <action selector="dismiss:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="ztJ-rj-Ues"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmv-UV-kX9">
+                                <rect key="frame" x="274" y="58" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="moveLabel:" destination="eK9-Dy-vxW" eventType="valueChanged" id="TRA-SR-642"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUF-Wy-ALj">
+                                <rect key="frame" x="137" y="58" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="movePic:" destination="eK9-Dy-vxW" eventType="valueChanged" id="qe8-VE-qKI"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="文字移動" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT5-8H-Ru9">
+                                <rect key="frame" x="200" y="49" width="73" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="圖片移動" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-BH-js3">
+                                <rect key="frame" x="64" y="49" width="72" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w1o-1z-hTa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -650,6 +678,8 @@
                     <navigationItem key="navigationItem" id="d6k-wl-n5a"/>
                     <connections>
                         <outlet property="doodleView" destination="AEI-JT-ZSt" id="Chx-s7-We0"/>
+                        <outlet property="moveLabelOutlet" destination="cmv-UV-kX9" id="ncF-aT-MMW"/>
+                        <outlet property="movePicOutlet" destination="nUF-Wy-ALj" id="Obq-MG-woa"/>
                         <outlet property="photoImageView" destination="fFH-Hg-Y99" id="Jt1-O7-kKV"/>
                         <outlet property="photoView" destination="vlu-xc-lwQ" id="WvC-EQ-giv"/>
                         <outlet property="rotateOutlet" destination="lEJ-qD-hNo" id="u39-WK-9PJ"/>
