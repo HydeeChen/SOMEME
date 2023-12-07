@@ -747,6 +747,7 @@ PODS:
   - GTMSessionFetcher/Core (3.2.0)
   - Kingfisher (7.9.1)
   - leveldb-library (1.22.2)
+  - lottie-ios (4.3.4)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -762,6 +763,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - Kingfisher
+  - lottie-ios
   - SwiftLint
   - TOCropViewController
 
@@ -786,6 +788,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Kingfisher
     - leveldb-library
+    - lottie-ios
     - nanopb
     - PromisesObjC
     - SwiftLint
@@ -811,11 +814,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
+  lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
 
-PODFILE CHECKSUM: 4d274b519ca388a2a023a4ed955fefdc49522a00
+PODFILE CHECKSUM: fa21b4b7c8bd1caeab91662d26fa46a3c7e8005a
 
 COCOAPODS: 1.13.0

@@ -45,6 +45,13 @@
 		A25510B42B1DCF3200653960 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A25510B32B1DCD9800653960 /* GoogleService-Info.plist */; };
 		A25510B62B1DD80200653960 /* UpLoadStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510B52B1DD80200653960 /* UpLoadStorage.swift */; };
 		A25510B82B1F113300653960 /* FirebaseLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25510B72B1F113300653960 /* FirebaseLoadManager.swift */; };
+		A25510C32B216DEA00653960 /* arrow.json in Sources */ = {isa = PBXBuildFile; fileRef = A25510C22B216D6300653960 /* arrow.json */; };
+		A25510C52B21777200653960 /* arrow.json in Resources */ = {isa = PBXBuildFile; fileRef = A25510C22B216D6300653960 /* arrow.json */; };
+		A25510C72B2198CA00653960 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = A25510C62B2198CA00653960 /* star.json */; };
+		A25510CA2B219CCE00653960 /* rocketDog.json in Resources */ = {isa = PBXBuildFile; fileRef = A25510C92B219CCE00653960 /* rocketDog.json */; };
+		A25510CC2B219FDC00653960 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = A25510CB2B219FDC00653960 /* loading.json */; };
+		A25510D22B21A22F00653960 /* spark.json in Resources */ = {isa = PBXBuildFile; fileRef = A25510D12B21A22F00653960 /* spark.json */; };
+		A25510D42B21A46900653960 /* cat.json in Resources */ = {isa = PBXBuildFile; fileRef = A25510D32B21A46900653960 /* cat.json */; };
 		A25D280A2B0B054800857B98 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D28092B0B054700857B98 /* MyCollectionViewController.swift */; };
 		A25D280C2B0B079000857B98 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */; };
 		A25D280E2B0B5F6C00857B98 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D280D2B0B5F6C00857B98 /* HotViewController.swift */; };
@@ -97,6 +104,12 @@
 		A25510B32B1DCD9800653960 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A25510B52B1DD80200653960 /* UpLoadStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpLoadStorage.swift; sourceTree = "<group>"; };
 		A25510B72B1F113300653960 /* FirebaseLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLoadManager.swift; sourceTree = "<group>"; };
+		A25510C22B216D6300653960 /* arrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = arrow.json; sourceTree = "<group>"; };
+		A25510C62B2198CA00653960 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
+		A25510C92B219CCE00653960 /* rocketDog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocketDog.json; sourceTree = "<group>"; };
+		A25510CB2B219FDC00653960 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		A25510D12B21A22F00653960 /* spark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spark.json; sourceTree = "<group>"; };
+		A25510D32B21A46900653960 /* cat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cat.json; sourceTree = "<group>"; };
 		A25D28092B0B054700857B98 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		A25D280D2B0B5F6C00857B98 /* HotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
@@ -161,15 +174,11 @@
 				A22BE33F2B05E6AD0098B6A9 /* AppDelegate.swift */,
 				A22BE3412B05E6AD0098B6A9 /* SceneDelegate.swift */,
 				A22BE3452B05E6AD0098B6A9 /* Main.storyboard */,
-				A24443C82B18613C00A5B56D /* DoodleView.swift */,
-				A22BE35E2B0610450098B6A9 /* MemeLoadStruct.swift */,
-				A25510B52B1DD80200653960 /* UpLoadStorage.swift */,
-				A25D280F2B0C467E00857B98 /* HotAPIstruct.swift */,
-				A25D281B2B0F450100857B98 /* FavoritesManager.swift */,
-				A23953382B158CE900E57326 /* SearchManager.swift */,
-				A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */,
-				A25510B72B1F113300653960 /* FirebaseLoadManager.swift */,
+				A25510BB2B21635D00653960 /* Struct */,
+				A25510BC2B21637D00653960 /* Managers */,
+				A25510C82B219C5900653960 /* Lottie */,
 				A22BE3572B05EEDE0098B6A9 /* PhotoEditViewController.swift */,
+				A24443C82B18613C00A5B56D /* DoodleView.swift */,
 				A22BE35C2B0601800098B6A9 /* EditingViewController.swift */,
 				A22BE3602B06117E0098B6A9 /* EditingCollectionViewCell.swift */,
 				A25D28092B0B054700857B98 /* MyCollectionViewController.swift */,
@@ -180,14 +189,14 @@
 				A25D28192B0DCCC400857B98 /* SearchViewController.swift */,
 				A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */,
 				A25510AC2B1DAE4900653960 /* MaterialCreaterViewController.swift */,
+				A22BE34D2B05E6AE0098B6A9 /* LaunchScreen.storyboard */,
 				A25510B32B1DCD9800653960 /* GoogleService-Info.plist */,
-				A25510892B1DA84300653960 /* CoreMLHelpers copy */,
 				A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */,
 				A22BE3592B05EF360098B6A9 /* Mamelon.otf */,
 				A22BE34B2B05E6AE0098B6A9 /* Assets.xcassets */,
-				A22BE34D2B05E6AE0098B6A9 /* LaunchScreen.storyboard */,
 				A22BE3502B05E6AE0098B6A9 /* Info.plist */,
 				A22BE3482B05E6AD0098B6A9 /* SOMEME.xcdatamodeld */,
+				A25510892B1DA84300653960 /* CoreMLHelpers copy */,
 			);
 			path = SOMEME;
 			sourceTree = "<group>";
@@ -217,6 +226,40 @@
 			path = "../../../Downloads/super-eureka-main/BackgroundErase/CoreMLHelpers copy";
 			sourceTree = "<group>";
 		};
+		A25510BB2B21635D00653960 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				A25D280F2B0C467E00857B98 /* HotAPIstruct.swift */,
+				A22BE35E2B0610450098B6A9 /* MemeLoadStruct.swift */,
+			);
+			path = Struct;
+			sourceTree = "<group>";
+		};
+		A25510BC2B21637D00653960 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A25D281B2B0F450100857B98 /* FavoritesManager.swift */,
+				A23953382B158CE900E57326 /* SearchManager.swift */,
+				A24443CA2B19C43300A5B56D /* RemoveBGManager.swift */,
+				A25510B72B1F113300653960 /* FirebaseLoadManager.swift */,
+				A25510B52B1DD80200653960 /* UpLoadStorage.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A25510C82B219C5900653960 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				A25510C62B2198CA00653960 /* star.json */,
+				A25510C92B219CCE00653960 /* rocketDog.json */,
+				A25510CB2B219FDC00653960 /* loading.json */,
+				A25510D12B21A22F00653960 /* spark.json */,
+				A25510D32B21A46900653960 /* cat.json */,
+				A25510C22B216D6300653960 /* arrow.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,6 +270,7 @@
 				1CC9EB404F2E6A1B2BAE5FEB /* [CP] Check Pods Manifest.lock */,
 				A22BE3382B05E6AD0098B6A9 /* Sources */,
 				A22BE3392B05E6AD0098B6A9 /* Frameworks */,
+				A25510C42B21774E00653960 /* Resources */,
 				61950396820F6917BE611BF8 /* [CP] Embed Pods Frameworks */,
 				A22BE3562B05E7BD0098B6A9 /* ShellScript */,
 			);
@@ -271,6 +315,22 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A25510C42B21774E00653960 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A25510D22B21A22F00653960 /* spark.json in Resources */,
+				A25510C52B21777200653960 /* arrow.json in Resources */,
+				A25510D42B21A46900653960 /* cat.json in Resources */,
+				A25510C72B2198CA00653960 /* star.json in Resources */,
+				A25510CC2B219FDC00653960 /* loading.json in Resources */,
+				A25510CA2B219CCE00653960 /* rocketDog.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		1CC9EB404F2E6A1B2BAE5FEB /* [CP] Check Pods Manifest.lock */ = {
@@ -336,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A25510C32B216DEA00653960 /* arrow.json in Sources */,
 				A25510B42B1DCF3200653960 /* GoogleService-Info.plist in Sources */,
 				A25510B02B1DC64800653960 /* LaunchScreen.storyboard in Sources */,
 				A25510B82B1F113300653960 /* FirebaseLoadManager.swift in Sources */,

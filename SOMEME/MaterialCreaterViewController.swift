@@ -12,6 +12,7 @@ import CoreImage
 import Vision
 import FirebaseCore
 import FirebaseFirestore
+import Lottie
 
 class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     @IBOutlet weak var photoImageView: UIImageView!
@@ -163,6 +164,17 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
                 }
             }
         }
+        let AnimationView = LottieAnimationView()
+        let Animation = LottieAnimation.named("spark")
+        AnimationView.animation = Animation
+        AnimationView.frame = CGRect(x: -50, y: 40, width: 500, height: 500)
+        view.addSubview(AnimationView)
+        AnimationView.play()
+        AnimationView.play(fromProgress: 0.0, toProgress: 0.7, loopMode: .none) { (completed) in
+            if completed {
+                AnimationView.removeFromSuperview()
+            }
+        }
     }
     func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let observations = request.results as? [VNCoreMLFeatureValueObservation],
@@ -237,6 +249,18 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
             }
         }
         hashTagView.isHidden = true
+        let AnimationView = LottieAnimationView()
+        let Animation = LottieAnimation.named("rocketDog")
+        AnimationView.animation = Animation
+        AnimationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        AnimationView.center = view.center
+        view.addSubview(AnimationView)
+        AnimationView.play()
+        AnimationView.play(fromProgress: 0.0, toProgress: 0.4, loopMode: .none) { (completed) in
+            if completed {
+                AnimationView.removeFromSuperview()
+            }
+        }
     }
     @IBAction func funnyButtonAction(_ sender: Any) {
         if funnyButtonFill == false {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var searchResult = [MemeLoadDatum]()
@@ -81,18 +82,29 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         expandedImageView = nil
     }
     @IBAction func searchButton(_: Any) {
+        view.endEditing(true)
         guard let searchText = searchTextField.text, !searchText.isEmpty else {
             // 處理空搜尋文字
             return
         }
         MemeService.searchMemesByHashtag(hashtag: searchText) { [weak self] memes in
             DispatchQueue.main.async {
+                let animationView = LottieAnimationView()
+                let animation = LottieAnimation.named("cat")
+                animationView.animation = animation
+                animationView.frame = CGRect(x: 20, y: 100, width: 400, height: 500)
+                self?.view.addSubview(animationView)
+                animationView.play()
+                animationView.play(fromProgress: 0.0, toProgress: 1, loopMode: .none) { [weak self, weak animationView] (completed) in
+                    if completed {
+                        animationView?.removeFromSuperview()
+                    }
+                }
                 if let memes = memes {
                     // 過濾包含指定 hashtag 關鍵字的結果
                     self?.searchResult = memes.filter { $0.hashtag.contains(searchText) }
                     self?.collectionView.reloadData()
                     self?.resultLabel.text = "找到\(self!.searchResult.count)個結果！"
-                    self?.view.endEditing(true)
                 } else {
                     // 處理 API 請求錯誤
                     print("Error fetching memes")

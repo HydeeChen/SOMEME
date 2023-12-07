@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import Lottie
 
 class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //  拉陰影
@@ -14,6 +15,7 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet var shadowOfEdit: UIView!
     @IBOutlet var shadowOfCamera: UIView!
     @IBOutlet var shadowOfGallery: UIView!
+    @IBOutlet weak var shadowOfPhoto: UIView!
     // 照片顯示
     @IBOutlet var photoImageView: UIImageView!
     // 尚未選取照片的label
@@ -21,8 +23,22 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
     // 開始編輯紅色鈕ui
     @IBOutlet var redViewOfEdit: UIView!
     @IBOutlet var editButtonOutlet: UIButton!
+    @IBOutlet weak var startLabelOutlet: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 新增箭頭動畫
+        let arrowAnimationView = LottieAnimationView()
+        let arrowAnimation = LottieAnimation.named("arrow")
+        arrowAnimationView.animation = arrowAnimation
+        arrowAnimationView.frame = CGRect(x: -30, y: 250, width: 300, height: 300)
+//        arrowAnimationView.center = view.center
+        view.addSubview(arrowAnimationView)
+        arrowAnimationView.play()
+        // 陰影設定
+        shadowOfPhoto.layer.cornerRadius = CGFloat(30)
+        shadowOfPhoto.layer.shadowOpacity = Float(1)
+        shadowOfPhoto.layer.shadowRadius = CGFloat(20)
+        shadowOfPhoto.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         shadowOfCreate.layer.cornerRadius = CGFloat(30)
         shadowOfCreate.layer.shadowOpacity = Float(1)
         shadowOfCreate.layer.shadowRadius = CGFloat(15)
@@ -43,6 +59,7 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
         shadowOfEdit.isHidden = true
         redViewOfEdit.isHidden = true
         editButtonOutlet.isHidden = true
+        startLabelOutlet.isHidden = true
     }
 
     @IBAction func openGallery(_: Any) {
@@ -50,6 +67,7 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
         shadowOfEdit.isHidden = false
         redViewOfEdit.isHidden = false
         editButtonOutlet.isHidden = false
+        startLabelOutlet.isHidden = false
         // 選擇圖庫照片
         let controller = UIImagePickerController()
         controller.sourceType = .photoLibrary

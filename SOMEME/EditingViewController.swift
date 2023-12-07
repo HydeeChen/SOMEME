@@ -11,6 +11,7 @@ import TOCropViewController
 import CoreImage
 import FirebaseCore
 import FirebaseFirestore
+import Lottie
 
 class EditingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate, UIGestureRecognizerDelegate, UIColorPickerViewControllerDelegate, TOCropViewControllerDelegate {
     func didTapImage(imageView: UIImageView) {
@@ -75,29 +76,29 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         if isMaterialCollectionView == true {
             // materialCollectionView 的設置
-                let material = firebaseMeme[indexPath.row]
+            let material = firebaseMeme[indexPath.row]
             cell.delegate = self
             if let url = URL(string: material.url) {
                 cell.memeImage.kf.setImage(with: url)
             }
         } else {
-                let item = items[indexPath.row]
-                cell.delegate = self
-                cell.memeImage.kf.setImage(with: item.src)
-                cell.update(meme: item)
+            let item = items[indexPath.row]
+            cell.delegate = self
+            cell.memeImage.kf.setImage(with: item.src)
+            cell.update(meme: item)
         }
         return cell
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         FirebaseLoadManager.fetchMaterialData { [weak self] (data, error) in
-                   if let error = error {
-                       print("Error fetching data: \(error)")
-                   } else if let data = data {
-                       self?.firebaseMeme = data
-                   }
-               }
+            if let error = error {
+                print("Error fetching data: \(error)")
+            } else if let data = data {
+                self?.firebaseMeme = data
+            }
         }
+    }
     // 調整collectionView的大小
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100) // 調整 cell 大小
@@ -190,39 +191,39 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     func setupImageGestures() {
-           let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-           panGesture.delegate = self
-           let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
-           pinchGesture.delegate = self
-           let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
-           rotationGesture.delegate = self
-           photoView.addGestureRecognizer(rotationGesture)
-           photoView.addGestureRecognizer(panGesture)
-           photoView.addGestureRecognizer(pinchGesture)
-           imageGestures.append(rotationGesture)
-           imageGestures.append(panGesture)
-           imageGestures.append(pinchGesture)
-       }
-
-       func setupLabelGestures() {
-           let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
-           labelPanGesture.delegate = self
-           let labelPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
-           labelPinchGesture.delegate = self
-           let labelRotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
-           labelRotationGesture.delegate = self
-           let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
-           doubleTapGesture.numberOfTapsRequired = 1
-           doubleTapGesture.delegate = self
-           photoView.addGestureRecognizer(labelRotationGesture)
-           photoView.addGestureRecognizer(labelPanGesture)
-           photoView.addGestureRecognizer(labelPinchGesture)
-           photoView.addGestureRecognizer(doubleTapGesture)
-           labelGestures.append(labelRotationGesture)
-           labelGestures.append(labelPanGesture)
-           labelGestures.append(labelPinchGesture)
-           labelGestures.append(doubleTapGesture)
-       }
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        panGesture.delegate = self
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        pinchGesture.delegate = self
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotationGesture(_:)))
+        rotationGesture.delegate = self
+        photoView.addGestureRecognizer(rotationGesture)
+        photoView.addGestureRecognizer(panGesture)
+        photoView.addGestureRecognizer(pinchGesture)
+        imageGestures.append(rotationGesture)
+        imageGestures.append(panGesture)
+        imageGestures.append(pinchGesture)
+    }
+    
+    func setupLabelGestures() {
+        let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
+        labelPanGesture.delegate = self
+        let labelPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handleLabelPinchGesture(_:)))
+        labelPinchGesture.delegate = self
+        let labelRotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleLabelRotationGesture(_:)))
+        labelRotationGesture.delegate = self
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 1
+        doubleTapGesture.delegate = self
+        photoView.addGestureRecognizer(labelRotationGesture)
+        photoView.addGestureRecognizer(labelPanGesture)
+        photoView.addGestureRecognizer(labelPinchGesture)
+        photoView.addGestureRecognizer(doubleTapGesture)
+        labelGestures.append(labelRotationGesture)
+        labelGestures.append(labelPanGesture)
+        labelGestures.append(labelPinchGesture)
+        labelGestures.append(doubleTapGesture)
+    }
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -252,6 +253,17 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
                         photoImageView.image = filteredImage
                     }
                 }
+            }
+        }
+        let AnimationView = LottieAnimationView()
+        let Animation = LottieAnimation.named("spark")
+        AnimationView.animation = Animation
+        AnimationView.frame = CGRect(x: -50, y: 100, width: 500, height: 500)
+        view.addSubview(AnimationView)
+        AnimationView.play()
+        AnimationView.play(fromProgress: 0.0, toProgress: 1, loopMode: .none) { (completed) in
+            if completed {
+                AnimationView.removeFromSuperview()
             }
         }
     }
@@ -509,15 +521,28 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             let photoName = "EditedPhoto_" + UUID().uuidString
             // 將圖片名稱和圖片數據保存到 UserDefaults
             FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
+            // 新增箭頭動畫
+            let starAnimationView = LottieAnimationView()
+            let starAnimation = LottieAnimation.named("star")
+            starAnimationView.animation = starAnimation
+            starAnimationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+            starAnimationView.center = view.center
+            view.addSubview(starAnimationView)
+            starAnimationView.play()
+            starAnimationView.play(fromProgress: 0.0, toProgress: 1.0, loopMode: .none) { (completed) in
+                if completed {
+                    starAnimationView.removeFromSuperview()
+                }
+            }
             // 你可以選擇性地顯示成功添加的提示，例如一個提示框
-            let alert = UIAlertController(title: "成功", message: "已將照片添加到收藏夾", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        } else {
-            // 處理圖片轉換為 Data 失敗的情況
-            let alert = UIAlertController(title: "錯誤", message: "無法將圖片轉換為數據", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            //            let alert = UIAlertController(title: "成功", message: "已將照片添加到收藏夾", preferredStyle: .alert)
+            //            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
+            //            present(alert, animated: true, completion: nil)
+            //        } else {
+            //            // 處理圖片轉換為 Data 失敗的情況
+            //            let alert = UIAlertController(title: "錯誤", message: "無法將圖片轉換為數據", preferredStyle: .alert)
+            //            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
+            //            present(alert, animated: true, completion: nil)
         }
     }
     @IBAction func flipLeft(_ sender: Any) {
@@ -626,7 +651,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         doodleView.isUserInteractionEnabled = true
         for gestureRecognizer in labelGestures {
             gestureRecognizer.isEnabled = false
-               }
+        }
         for gestureRecognizer in imageGestures {
             gestureRecognizer.isEnabled = false
         }
@@ -658,11 +683,11 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBAction func moveLabel(_ sender: Any) {
         for gestureRecognizer in labelGestures {
             gestureRecognizer.isEnabled = (sender as AnyObject).isOn
-               }
+        }
     }
     @IBAction func movePic(_ sender: Any) {
         for gestureRecognizer in imageGestures {
             gestureRecognizer.isEnabled = (sender as AnyObject).isOn
-                }
+        }
     }
 }
