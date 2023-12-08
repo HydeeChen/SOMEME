@@ -32,7 +32,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         // 初始化 imageView
         memeImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         memeImage.center = CGPoint(x: contentView.center.x, y: contentView.frame.height / 2)
-        memeImage.contentMode = .scaleToFill
+        memeImage.contentMode = .scaleAspectFit
         contentView.addSubview(memeImage)
         // 新增分享按鈕
         shareButton = UIButton(type: .system)

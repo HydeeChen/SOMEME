@@ -745,6 +745,7 @@ PODS:
     - gRPC-Core/Interface (= 1.49.1)
   - gRPC-Core/Interface (1.49.1)
   - GTMSessionFetcher/Core (3.2.0)
+  - Hover (2.1.0)
   - Kingfisher (7.9.1)
   - leveldb-library (1.22.2)
   - lottie-ios (4.3.4)
@@ -762,6 +763,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
+  - Hover
   - Kingfisher
   - lottie-ios
   - SwiftLint
@@ -786,6 +788,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - Hover
     - Kingfisher
     - leveldb-library
     - lottie-ios
@@ -812,6 +815,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 2df8cba576898bdacd29f0266d5236fa0e26ba6a
   gRPC-Core: a21a60aefc08c68c247b439a9ef97174b0c54f96
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
+  Hover: b7821338bdaf54d0e46be24d603e443a869993e3
   Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
@@ -820,6 +824,6 @@ SPEC CHECKSUMS:
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
 
-PODFILE CHECKSUM: fa21b4b7c8bd1caeab91662d26fa46a3c7e8005a
+PODFILE CHECKSUM: 977567cb32bd72e75299fb9bdb261ad337bf6cf3
 
 COCOAPODS: 1.13.0

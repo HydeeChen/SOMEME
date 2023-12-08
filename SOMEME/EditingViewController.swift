@@ -12,11 +12,9 @@ import CoreImage
 import FirebaseCore
 import FirebaseFirestore
 import Lottie
+import Hover
 
-class EditingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, EditingCollectionViewCellDelegate, UIGestureRecognizerDelegate, UIColorPickerViewControllerDelegate, TOCropViewControllerDelegate {
-    func didTapImage(imageView: UIImageView) {
-        addImageViewToImageView(imageView: imageView)
-    }
+class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestureRecognizerDelegate {
     var flipCounts = 0
     var oneDegree = (CGFloat).pi/180
     var isFlipHorizontal = false
@@ -45,15 +43,13 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     var collectionView: UICollectionView!
     var isMaterialCollectionView = false
     @IBOutlet weak var doodleView: DoodleView!
-    // 設定假資料顯示內容
-    var textData = ["恐龍扛狼", "要確欸", "哇酷哇酷", "芭比 Q 了", "注意看，這個男人太狠了", "我沒了", "UCCU", "歸剛欸", "YYDS", "萊納，你坐啊！"]
-    var materialData = ["cool guy", "talk", "wacu", "我就爛", "技安", "是在哭", "柴犬", "煙", "貓", "鴨1", "鴨2", "鴨3", "黑人問號"]
+    @IBOutlet weak var saveOutlet: UIView!
     let filterArray = ["","CIPhotoEffectTonal","CIPhotoEffectMono","CIPhotoEffectTransfer", "CIPhotoEffectInstant","CIPhotoEffectFade","CIPhotoEffectProcess", "CIPhotoEffectChrome","CIFalseColor","CIColorPosterize","CILineOverlay","CIComicEffect"]
     let picArray = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"]
     let picName = ["Original", "Tonal", "Mono", "Transfer", "Instant", "Fade", "Process", "Chrome", "False", "Poster", "Line", "Comic"]
     var materialCollectionView: UICollectionView!
     var items = [MemeLoadDatum]() // 儲存從api取得資料
-    var firebaseMeme = [MaterialData]()//儲存從firebase取得的資料
+    var firebaseMeme = [MaterialData]() // 儲存從firebase取得的資料
     // 文字顏色按鈕
     @IBOutlet var textColorButton: UIButton!
     var photoViewGestures: [UIGestureRecognizer] = []
@@ -61,48 +57,11 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var movePicOutlet: UISwitch!
     var imageGestures: [UIGestureRecognizer] = []
     var labelGestures: [UIGestureRecognizer] = []
-    // collectionView欄位設定
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        if isMaterialCollectionView {
-            return firebaseMeme.count
-        } else {
-            return items.count
-        }
-    }
-    // 設定collectionView內容的來源
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditingCollectionViewCell", for: indexPath) as? EditingCollectionViewCell else {
-            fatalError("Unable to dequeue EditingCollectionViewCell")
-        }
-        if isMaterialCollectionView == true {
-            // materialCollectionView 的設置
-            let material = firebaseMeme[indexPath.row]
-            cell.delegate = self
-            if let url = URL(string: material.url) {
-                cell.memeImage.kf.setImage(with: url)
-            }
-        } else {
-            let item = items[indexPath.row]
-            cell.delegate = self
-            cell.memeImage.kf.setImage(with: item.src)
-            cell.update(meme: item)
-        }
-        return cell
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        FirebaseLoadManager.fetchMaterialData { [weak self] (data, error) in
-            if let error = error {
-                print("Error fetching data: \(error)")
-            } else if let data = data {
-                self?.firebaseMeme = data
-            }
-        }
-    }
-    // 調整collectionView的大小
-    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100) // 調整 cell 大小
-    }
+    @IBOutlet weak var moveOutlet: UIView!
+    // 設定移動outlet是隱藏的變數
+    var moveOutletIsHidden: Bool = true
+    // 設定儲存outlet是隱藏的變數
+    var saveOutletIsHidden: Bool = true
     // 新增水平滑動的 scrollView
     let imageScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -110,9 +69,24 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            FirebaseLoadManager.fetchMaterialData { [weak self] (data, error) in
+                if let error = error {
+                    print("Error fetching data: \(error)")
+                } else if let data = data {
+                    self?.firebaseMeme = data
+                    self?.collectionView.reloadData()
+                }
+            }
+        }
     // 設定viewDidLoad的功能
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 設定儲存outlet隱藏
+        saveOutlet.isHidden = saveOutletIsHidden
+        moveOutlet.isHidden = moveOutletIsHidden
+        // 設定手勢
         setupImageGestures()
         setupLabelGestures()
         photoView.layer.cornerRadius = 30
@@ -135,7 +109,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(EditingCollectionViewCell.self, forCellWithReuseIdentifier: EditingCollectionViewCell.cellID)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor(hex: 0x6BB6A1)
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
         // 把myCollectioniew加到畫面裡
         view.addSubview(collectionView)
@@ -155,9 +129,9 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         // 設定水平滑動的 scrollView
         view.addSubview(imageScrollView)
         NSLayoutConstraint.activate([
-            imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
             imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100), // 與上方的 filterScrollView 空出一些間距
+            imageScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -170),
             imageScrollView.heightAnchor.constraint(equalToConstant: 80) // 設定高度
         ])
         // 在 scrollView 內新增 imageView
@@ -165,12 +139,23 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             let imageView = UIImageView(image: UIImage(named: imageName))
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
+            imageView.layer.cornerRadius = 10  // 設置圓角半徑
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageScrollView.addSubview(imageView)
+            // Add a UILabel for picName
+                let label = UILabel()
+                label.text = picName[index]
+                label.textColor = UIColor.white
+                label.textAlignment = .center
+                label.translatesAutoresizingMaskIntoConstraints = false
+                imageView.addSubview(label)
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: imageScrollView.topAnchor),
                 imageView.widthAnchor.constraint(equalToConstant: 80), // 設定 imageView 寬度
-                imageView.heightAnchor.constraint(equalTo: imageScrollView.heightAnchor)
+                imageView.heightAnchor.constraint(equalTo: imageScrollView.heightAnchor),
+                // Positioning the label within the imageView
+                label.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+                label.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
             ])
             if index == 0 {
                 imageView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor).isActive = true
@@ -189,6 +174,26 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             rotateOutlet.isHidden = true
             doodleView.isUserInteractionEnabled = false
         }
+        // 設定滑動按鈕
+        let configuration = HoverConfiguration(image: UIImage(systemName: "trash.fill")?.withTintColor(UIColor(hex: 0x8B0000), renderingMode: .alwaysOriginal), color: .gradient(top: UIColor(hex: 0xD6D0AE), bottom: UIColor(hex: 0xDF6033)))
+        let items = [
+            HoverItem(title: "刪除文字", image: UIImage(systemName: "textformat")? .withConfiguration(UIImage.SymbolConfiguration(pointSize: 1, weight: .regular)), color: .gradient(top: .white, bottom: UIColor(hex: 0x6BB6A1))) { self.hoverRemoveText() },
+            HoverItem(title: "刪除圖片及素材", image: UIImage(systemName: "photo.artframe"), color: .gradient(top: .white, bottom: UIColor(hex: 0xD6D0Ae))) { self.hoverRemoveImageView() },
+            HoverItem(title: "刪除塗鴉", image: UIImage(systemName: "pencil.tip.crop.circle.fill"), color: .gradient(top: .white, bottom: UIColor(hex: 0xF5E68B))) { self.hoverRemoveDoodle()}
+        ]
+        let hoverView = HoverView(with: configuration, items: items)
+        view.addSubview(hoverView)
+        // 將hover移到最頂
+        view.bringSubviewToFront(hoverView)
+        hoverView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                hoverView.topAnchor.constraint(equalTo: view.topAnchor),
+                hoverView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                hoverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                hoverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ]
+        )
     }
     func setupImageGestures() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
@@ -204,7 +209,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         imageGestures.append(panGesture)
         imageGestures.append(pinchGesture)
     }
-    
     func setupLabelGestures() {
         let labelPanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLabelPanGesture(_:)))
         labelPanGesture.delegate = self
@@ -378,6 +382,28 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             self.collectionView.reloadData()
         }
     }
+    @IBAction func openSaveOutlet(_ sender: Any) {
+        UIView.transition(with: saveOutlet, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                if self.saveOutletIsHidden {
+                    self.saveOutlet.isHidden = false
+                    self.saveOutletIsHidden = false
+                } else {
+                    self.saveOutlet.isHidden = true
+                    self.saveOutletIsHidden = true
+                }
+            }, completion: nil)
+    }
+    @IBAction func openMoveOutlet(_ sender: Any) {
+        UIView.transition(with: moveOutlet, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                if self.moveOutletIsHidden {
+                    self.moveOutlet.isHidden = false
+                    self.moveOutletIsHidden = false
+                } else {
+                    self.moveOutlet.isHidden = true
+                    self.moveOutletIsHidden = true
+                }
+            }, completion: nil)
+    }
     @IBAction func addMeme(_: Any) {
         rotateOutlet.isHidden = true
         imageScrollView.isHidden = true
@@ -387,15 +413,19 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         updateCollectionView()
         textColorButton.isHidden = true
         doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = true
         }
     }
-    // 新增圖層
+    // 把圖片新增到圖層
     func addImageViewToImageView(imageView: UIImageView) {
         let newImageView = UIImageView(image: imageView.image)
         newImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         newImageView.center = CGPoint(x: photoImageView.bounds.midX, y: photoImageView.bounds.midY)
+        newImageView.contentMode = .scaleAspectFit
         newImageView.isUserInteractionEnabled = true
         photoImageView.addSubview(newImageView)
         // 新增tag
@@ -459,12 +489,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         controller.delegate = self
         present(controller, animated: true, completion: nil)
     }
-    // 新增顏色
-    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        selectedTextView?.textColor = viewController.selectedColor
-        selectedLabel?.textColor = viewController.selectedColor
-    }
-    @IBAction func removeText(_: Any) {
+    func hoverRemoveText() {
         for label in addedTextLabel {
             label.removeFromSuperview()
         }
@@ -476,7 +501,7 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         addedTextViews.removeAll()
         selectedTextView = nil
     }
-    @IBAction func removeImageView(_: Any) {
+    func hoverRemoveImageView() {
         for imageView in addedImageViews {
             imageView.removeFromSuperview()
         }
@@ -492,8 +517,11 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
         doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = true
         }
     }
     @IBAction func showMaterial(_: Any) {
@@ -505,8 +533,11 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         rotateOutlet.isHidden = true
         updateCollectionView()
         doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = true
         }
     }
     @IBAction func addMyfavorite(_ sender: Any) {
@@ -534,15 +565,6 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
                     starAnimationView.removeFromSuperview()
                 }
             }
-            // 你可以選擇性地顯示成功添加的提示，例如一個提示框
-            //            let alert = UIAlertController(title: "成功", message: "已將照片添加到收藏夾", preferredStyle: .alert)
-            //            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-            //            present(alert, animated: true, completion: nil)
-            //        } else {
-            //            // 處理圖片轉換為 Data 失敗的情況
-            //            let alert = UIAlertController(title: "錯誤", message: "無法將圖片轉換為數據", preferredStyle: .alert)
-            //            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-            //            present(alert, animated: true, completion: nil)
         }
     }
     @IBAction func flipLeft(_ sender: Any) {
@@ -596,25 +618,17 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             }
         }
     }
-    func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
-        // 在這裡處理裁切後的圖片
-        photoImageView.image = image
-        // 關閉 TOCropViewController
-        cropViewController.dismiss(animated: true, completion: nil)
-    }
-    // 裁剪取消時的回調
-    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
-        // 關閉 TOCropViewController
-        cropViewController.dismiss(animated: true, completion: nil)
-    }
     @IBAction func cropImageView(_ sender: Any) {
         imageScrollView.isHidden = true
         collectionView.isHidden = true
         rotateOutlet.isHidden = true
         textColorButton.isHidden = true
         doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = true
         }
         guard let image = photoImageView.image else {
             // 如果沒有圖片，不進行裁切
@@ -632,8 +646,11 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         rotateOutlet.isHidden = true
         textColorButton.isHidden = true
         doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = true
         }
     }
     @IBAction func rotateImage(_ sender: Any) {
@@ -641,9 +658,12 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         imageScrollView.isHidden = true
         collectionView.isHidden = true
         textColorButton.isHidden = true
-        doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        doodleView.isUserInteractionEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = true
         }
     }
     @IBAction func doodle(_ sender: Any) {
@@ -656,26 +676,8 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
             gestureRecognizer.isEnabled = false
         }
     }
-    @IBAction func removeDoodle(_ sender: Any) {
+    func hoverRemoveDoodle() {
         doodleView.clearCanvas()
-    }
-    @IBAction func removeBG(_ sender: Any) {
-        //        guard let image = photoImageView.image else {
-        //            // 確保有圖片可供去背
-        //            return
-        //        }
-        //        // 調用 RemoveBGManager 進行去背
-        //        RemoveBGManager.shared.removeImageBg(uiImage: image) { removedImage in
-        //            if let removedImage = removedImage {
-        //                // 成功處理去背後的圖片
-        //                DispatchQueue.main.async {
-        //                    self.photoImageView.image = removedImage
-        //                }
-        //            } else {
-        //                // 處理失敗的情況
-        //                print("Error removing background")
-        //            }
-        //        }
     }
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -691,3 +693,68 @@ class EditingViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
 }
+extension EditingViewController: TOCropViewControllerDelegate {
+    func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
+        // 在這裡處理裁切後的圖片
+        photoImageView.image = image
+        // 關閉 TOCropViewController
+        cropViewController.dismiss(animated: true, completion: nil)
+        imageViewLoad = image
+    }
+    // 裁剪取消時的回調
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        // 關閉 TOCropViewController
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+}
+extension EditingViewController: UIColorPickerViewControllerDelegate {
+    // 新增顏色選擇工具
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        selectedTextView?.textColor = viewController.selectedColor
+        selectedLabel?.textColor = viewController.selectedColor
+    }
+}
+
+extension EditingViewController: UICollectionViewDelegateFlowLayout {
+    // 調整collectionView的大小
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100) // 調整 cell 大小
+    }
+}
+extension EditingViewController: EditingCollectionViewCellDelegate {
+    func didTapImage(imageView: UIImageView) {
+        addImageViewToImageView(imageView: imageView)
+    }
+}
+
+extension  EditingViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditingCollectionViewCell", for: indexPath) as? EditingCollectionViewCell else {
+            fatalError("Unable to dequeue EditingCollectionViewCell")
+        }
+        if isMaterialCollectionView == true {
+            // materialCollectionView 的設置
+            let material = firebaseMeme[indexPath.row]
+            cell.delegate = self
+            if let url = URL(string: material.url) {
+                cell.memeImage.kf.setImage(with: url)
+            }
+        } else {
+            let item = items[indexPath.row]
+            cell.delegate = self
+            cell.memeImage.kf.setImage(with: item.src)
+            cell.update(meme: item)
+        }
+        return cell
+    }
+
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        if isMaterialCollectionView {
+            return firebaseMeme.count
+        } else {
+            return items.count
+        }
+    }
+}
+
+

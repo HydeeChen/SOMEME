@@ -36,7 +36,7 @@ class EditingCollectionViewCell: UICollectionViewCell {
     func configure() {
         // 初始化 imageView
         memeImage = UIImageView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
-        memeImage.contentMode = .scaleToFill
+        memeImage.contentMode = .scaleAspectFit
         contentView.addSubview(memeImage)
     }
     func update(meme: MemeLoadDatum) {

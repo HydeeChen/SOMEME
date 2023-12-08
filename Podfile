@@ -13,5 +13,6 @@ target 'SOMEME' do
     pod 'FirebaseFirestoreSwift'
     pod 'Firebase/Storage'
     pod 'lottie-ios'
+    pod 'Hover'
 
 end
