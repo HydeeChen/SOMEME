@@ -14,7 +14,7 @@ import FirebaseFirestore
 import Lottie
 import Hover
 
-class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestureRecognizerDelegate {
+class EditingViewController: UIViewController, UICollectionViewDelegate {
     var flipCounts = 0
     var oneDegree = (CGFloat).pi/180
     var isFlipHorizontal = false
@@ -228,9 +228,6 @@ class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestu
         labelGestures.append(labelPinchGesture)
         labelGestures.append(doubleTapGesture)
     }
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
     @objc func imageViewTapped(_ gesture: UITapGestureRecognizer) {
         if let imageView = gesture.view as? UIImageView {
             applyFilter(to: imageView, filterIndex: imageView.tag)
@@ -273,21 +270,22 @@ class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestu
     }
     @objc func handleDoubleTap(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
-            let location = sender.location(in: photoImageView)
-            // 檢查是否點擊在 label 上
-            for label in addedTextLabel {
-                if label.frame.contains(location) {
-                    // 進行文字編輯
-                    startEditing(label: label)
-                    return
-                }
-            }
-            // 若點擊在 label 以外的地方，結束編輯
-            endEditing()
-        }
+               let location = sender.location(in: photoImageView)
+               // 檢查是否點擊在 label 上
+               for label in addedTextLabel {
+                   if label.frame.contains(location) {
+                       // 進行文字編輯
+                       startEditing(label: label)
+                       return
+                   }
+               }
+               // 若點擊在 label 以外的地方，結束編輯
+               endEditing()
+           }
     }
     // 開始文字編輯
     func startEditing(label: UILabel) {
+        textColorButton.isHidden = false
         // 建立一個 UITextView 並放置在與 label 相同位置
         let textView = UITextView(frame: label.frame)
         textView.text = label.text
@@ -308,6 +306,7 @@ class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestu
         textView.becomeFirstResponder()
     }
     func endEditing() {
+        textColorButton.isHidden = true
         // 如果有選定的 UITextView，結束編輯
         if let textView = selectedTextView {
             textView.resignFirstResponder()
@@ -324,10 +323,6 @@ class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestu
     // UITextViewDelegate 方法，用於結束編輯時的處理
     func textViewDidEndEditing(_: UITextView) {
         endEditing()
-    }
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        // 防止與其他手勢衝突
-        return gestureRecognizer is UIPanGestureRecognizer && otherGestureRecognizer is UITapGestureRecognizer
     }
     // 調整位置
     @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
@@ -456,13 +451,12 @@ class EditingViewController: UIViewController, UICollectionViewDelegate, UIGestu
         addedTextLabel.append(label)
         // 選定新增的圖層
         selectedLabel = label
-        // Ensure that subviews of the label also respond to user interaction
-        for subview in label.subviews {
-            subview.isUserInteractionEnabled = true
-        }
         doodleView.isUserInteractionEnabled = false
-        for gesture in photoViewGestures {
-            gesture.isEnabled = true
+        for gestureRecognizer in labelGestures {
+            gestureRecognizer.isEnabled = true
+        }
+        for gestureRecognizer in imageGestures {
+            gestureRecognizer.isEnabled = false
         }
     }
     @objc func handleLabelPanGesture(_ sender: UIPanGestureRecognizer) {
@@ -727,6 +721,14 @@ extension EditingViewController: EditingCollectionViewCellDelegate {
     }
 }
 
+extension EditingViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return gestureRecognizer is UIPanGestureRecognizer && otherGestureRecognizer is UITapGestureRecognizer
+    }
+}
 extension  EditingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditingCollectionViewCell", for: indexPath) as? EditingCollectionViewCell else {
@@ -756,5 +758,3 @@ extension  EditingViewController: UICollectionViewDataSource {
         }
     }
 }
-
-
