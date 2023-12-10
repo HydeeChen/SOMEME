@@ -28,7 +28,7 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NW5-Q8-25y" userLabel="shadow of create">
-                                <rect key="frame" x="223" y="689" width="136" height="30"/>
+                                <rect key="frame" x="223" y="693" width="136" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
@@ -38,7 +38,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5i-9g-xAq">
-                                <rect key="frame" x="35" y="220" width="323" height="324"/>
+                                <rect key="frame" x="35" y="220" width="323" height="343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="Color 1"/>
                                 <userDefinedRuntimeAttributes>
@@ -48,7 +48,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q1W-zd-Rft">
-                                <rect key="frame" x="230" y="599" width="120" height="30"/>
+                                <rect key="frame" x="230" y="603" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                             </view>
@@ -58,12 +58,12 @@
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jsc-9T-55C">
-                                <rect key="frame" x="36" y="598" width="136" height="30"/>
+                                <rect key="frame" x="36" y="602" width="136" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-ms-NYW">
-                                <rect key="frame" x="36" y="566" width="136" height="63"/>
+                                <rect key="frame" x="36" y="570" width="136" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijC-3z-yGK">
@@ -92,7 +92,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70e-Bd-bg9">
-                                <rect key="frame" x="223" y="566" width="136" height="63"/>
+                                <rect key="frame" x="223" y="570" width="136" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="gallery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VA-iy-eFX">
@@ -148,7 +148,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aHK-ud-DdZ">
-                                <rect key="frame" x="223" y="659" width="136" height="63"/>
+                                <rect key="frame" x="223" y="660" width="136" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="free mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yuw-t2-7gB">
@@ -220,17 +220,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-sm-F7j">
-                                <rect key="frame" x="16" y="149" width="361" height="555"/>
-                                <color key="backgroundColor" name="Color 1"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My collection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nz-a3-84g">
-                                <rect key="frame" x="16" y="59" width="361" height="55"/>
+                                <rect key="frame" x="16" y="52" width="361" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="37"/>
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
@@ -238,29 +229,23 @@
                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xis-va-Wrn">
-                                <rect key="frame" x="16" y="725" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="Color 2"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-sm-F7j">
+                                <rect key="frame" x="16" y="131" width="361" height="622"/>
+                                <color key="backgroundColor" name="Color 3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                        <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cross.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="t9t-om-omx">
-                                <rect key="frame" x="244" y="707.66666666666663" width="133" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="Color 3"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xta-oF-HgP"/>
                         <color key="backgroundColor" name="Color"/>
                         <constraints>
                             <constraint firstItem="Sz7-sm-F7j" firstAttribute="leading" secondItem="xta-oF-HgP" secondAttribute="leading" constant="16" id="27E-72-NGA"/>
                             <constraint firstItem="Sz7-sm-F7j" firstAttribute="trailing" secondItem="xta-oF-HgP" secondAttribute="trailing" constant="-16" id="F7Y-Jp-MuR"/>
-                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="top" secondItem="xta-oF-HgP" secondAttribute="top" constant="90" id="SVX-rB-wjb"/>
-                            <constraint firstItem="xta-oF-HgP" firstAttribute="bottom" secondItem="Sz7-sm-F7j" secondAttribute="bottom" constant="65" id="qxg-sk-eWc"/>
+                            <constraint firstItem="Sz7-sm-F7j" firstAttribute="top" secondItem="xta-oF-HgP" secondAttribute="top" constant="72" id="SVX-rB-wjb"/>
+                            <constraint firstItem="xta-oF-HgP" firstAttribute="bottom" secondItem="Sz7-sm-F7j" secondAttribute="bottom" constant="16" id="qxg-sk-eWc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="star" catalog="system" largeContentSizeImage="star" selectedImage="star.fill" id="MxC-yl-FLU"/>
@@ -280,22 +265,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="柴犬" translatesAutoresizingMaskIntoConstraints="NO" id="U1L-F3-G3X">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="166"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNZ-HF-kwG">
-                                <rect key="frame" x="16" y="174" width="361" height="575"/>
+                                <rect key="frame" x="16" y="127" width="361" height="622"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGl-5t-Tl3">
-                                        <rect key="frame" x="37" y="18" width="51" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="list.dash" catalog="system"/>
-                                        <connections>
-                                            <action selector="popBurgerList:" destination="piK-yA-uNO" eventType="touchUpInside" id="1nu-mX-BRA"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64T-zS-TIs">
                                         <rect key="frame" x="212" y="7" width="163" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -305,29 +277,48 @@
                                         <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="2" height="2"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Now:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssz-Uz-Wxm">
+                                        <rect key="frame" x="156" y="8" width="104" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="2" height="2"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="Color 1"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCt-ML-t3w">
-                                <rect key="frame" x="250" y="117" width="66" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hot MEME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKa-Bx-hpD">
+                                <rect key="frame" x="16" y="51" width="361" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="37"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGl-5t-Tl3">
+                                <rect key="frame" x="16" y="59" width="51" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Color 2"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="list.dash" catalog="system"/>
+                                <connections>
+                                    <action selector="popBurgerList:" destination="piK-yA-uNO" eventType="touchUpInside" id="1nu-mX-BRA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UfG-uO-Ord"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Color"/>
                         <constraints>
                             <constraint firstItem="VNZ-HF-kwG" firstAttribute="leading" secondItem="UfG-uO-Ord" secondAttribute="leading" constant="16" id="1F3-Tm-fYd"/>
-                            <constraint firstItem="VNZ-HF-kwG" firstAttribute="top" secondItem="UfG-uO-Ord" secondAttribute="top" constant="115" id="2NQ-Da-VDv"/>
+                            <constraint firstItem="VNZ-HF-kwG" firstAttribute="top" secondItem="UfG-uO-Ord" secondAttribute="top" constant="68" id="2NQ-Da-VDv"/>
                             <constraint firstItem="VNZ-HF-kwG" firstAttribute="trailing" secondItem="UfG-uO-Ord" secondAttribute="trailing" constant="-16" id="UJ0-Yp-J6h"/>
                             <constraint firstItem="UfG-uO-Ord" firstAttribute="bottom" secondItem="VNZ-HF-kwG" secondAttribute="bottom" constant="20" id="khB-zC-vYa"/>
                         </constraints>
@@ -1089,7 +1080,6 @@
         <image name="camera.filters" catalog="system" width="128" height="119"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="crop" catalog="system" width="128" height="116"/>
-        <image name="cross.fill" catalog="system" width="128" height="116"/>
         <image name="flame.circle" catalog="system" width="128" height="123"/>
         <image name="flame.circle.fill" catalog="system" width="128" height="123"/>
         <image name="flip.horizontal.fill" catalog="system" width="128" height="109"/>
@@ -1110,7 +1100,6 @@
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <image name="柴犬" width="327" height="327"/>
         <namedColor name="AccentColor">
             <color red="0.82099997997283936" green="0.14900000393390656" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

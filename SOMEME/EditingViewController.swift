@@ -409,7 +409,7 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
         textColorButton.isHidden = true
         doodleView.isUserInteractionEnabled = false
         for gestureRecognizer in labelGestures {
-            gestureRecognizer.isEnabled = true
+            gestureRecognizer.isEnabled = false
         }
         for gestureRecognizer in imageGestures {
             gestureRecognizer.isEnabled = true
@@ -528,7 +528,7 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
         updateCollectionView()
         doodleView.isUserInteractionEnabled = false
         for gestureRecognizer in labelGestures {
-            gestureRecognizer.isEnabled = true
+            gestureRecognizer.isEnabled = false
         }
         for gestureRecognizer in imageGestures {
             gestureRecognizer.isEnabled = true
