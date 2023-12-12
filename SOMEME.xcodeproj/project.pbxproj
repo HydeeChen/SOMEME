@@ -272,7 +272,8 @@
 				A22BE3392B05E6AD0098B6A9 /* Frameworks */,
 				A25510C42B21774E00653960 /* Resources */,
 				61950396820F6917BE611BF8 /* [CP] Embed Pods Frameworks */,
-				A22BE3562B05E7BD0098B6A9 /* ShellScript */,
+				A22BE3562B05E7BD0098B6A9 /* SwiftLint */,
+				A27C19562B28079A002EDC2D /* FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
@@ -372,7 +373,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SOMEME/Pods-SOMEME-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A22BE3562B05E7BD0098B6A9 /* ShellScript */ = {
+		A22BE3562B05E7BD0098B6A9 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -381,6 +382,7 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -388,6 +390,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		A27C19562B28079A002EDC2D /* FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = FirebaseCrashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -594,6 +619,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = M4YMY53R7K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SOMEME/Info.plist;

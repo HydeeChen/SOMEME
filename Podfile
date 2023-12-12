@@ -14,5 +14,7 @@ target 'SOMEME' do
     pod 'Firebase/Storage'
     pod 'lottie-ios'
     pod 'Hover'
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/Analytics'
 
 end
