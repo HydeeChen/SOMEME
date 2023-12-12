@@ -17,6 +17,7 @@ protocol HotCollectionViewCellDelegate: AnyObject {
 class HotCollectionViewCell: UICollectionViewCell {
     static let cellID: String = "HotCollectionViewCell"
     var memeImage: UIImageView!
+    var frameImage: UIImageView!
     var shareButton: UIButton!
     var EditButton: UIButton!
     var likeButton: UIButton!
@@ -32,32 +33,44 @@ class HotCollectionViewCell: UICollectionViewCell {
 
     func configure() {
         // 初始化 imageView
-        memeImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 220, height: 220))
-        memeImage.center = CGPoint(x: contentView.center.x, y: contentView.frame.height / 2)
-        memeImage.contentMode = .scaleAspectFit
+        memeImage = UIImageView(frame: CGRect(x: 75, y: 35, width: 230, height: 230))
+        memeImage.layer.cornerRadius = 15
+        memeImage.layer.masksToBounds = true
+        memeImage.contentMode = .scaleAspectFill
         contentView.addSubview(memeImage)
+        // 新增邊框imageView
+        frameImage = UIImageView(frame: CGRect(x: 40, y: 0, width: 300, height: 290))
+        frameImage.image = UIImage(named: "frame3")
+        frameImage.contentMode = .scaleToFill
+        contentView.addSubview(frameImage)
         // 新增分享按鈕
         shareButton = UIButton(type: .system)
-        shareButton.setTitle("分享", for: .normal)
-        shareButton.setTitleColor(.white, for: .normal)
-        shareButton.backgroundColor = UIColor(hex: 0xCA0D1F)
-        shareButton.layer.cornerRadius = 5
+        shareButton.setTitle("", for: .normal)
+        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        shareButton.tintColor = .color2
+        shareButton.setTitleColor(.color2, for: .normal)
+        shareButton.backgroundColor = .color1
+        shareButton.layer.cornerRadius = 20
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         contentView.addSubview(shareButton)
         // 新增編輯按鈕
         EditButton = UIButton(type: .system)
-        EditButton.setTitle("編輯", for: .normal)
-        EditButton.setTitleColor(.white, for: .normal)
-        EditButton.backgroundColor = UIColor(hex: 0xCA0D1F)
-        EditButton.layer.cornerRadius = 5
+        EditButton.setTitle("", for: .normal)
+        EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
+        EditButton.tintColor = .color2
+        EditButton.setTitleColor(.color2, for: .normal)
+        EditButton.backgroundColor = .color1
+        EditButton.layer.cornerRadius = 20
         EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
         contentView.addSubview(EditButton)
         // 新增收藏按鈕
         likeButton = UIButton(type: .system)
-        likeButton.setTitle("收藏", for: .normal)
+        likeButton.setTitle("", for: .normal)
+        likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         likeButton.setTitleColor(.white, for: .normal)
-        likeButton.backgroundColor = UIColor(hex: 0xCA0D1F)
-        likeButton.layer.cornerRadius = 5
+        likeButton.backgroundColor = .color1
+        likeButton.tintColor = .color2
+        likeButton.layer.cornerRadius = 20
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         contentView.addSubview(likeButton)
         // 設定按鈕的 constraints
@@ -65,18 +78,18 @@ class HotCollectionViewCell: UICollectionViewCell {
         EditButton.translatesAutoresizingMaskIntoConstraints = false
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            shareButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50),
-            shareButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            shareButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            shareButton.heightAnchor.constraint(equalToConstant: 30), // 設定高度
-            EditButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 5),
-            EditButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            EditButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            EditButton.heightAnchor.constraint(equalToConstant: 30), // 設定高度
-            likeButton.leadingAnchor.constraint(equalTo: EditButton.trailingAnchor, constant: 5),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            likeButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            likeButton.heightAnchor.constraint(equalToConstant: 30) // 設定高度
+            shareButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            shareButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 90),
+            shareButton.widthAnchor.constraint(equalToConstant: 40), // 設定寬度
+            shareButton.heightAnchor.constraint(equalToConstant: 40), // 設定高度
+            EditButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            EditButton.topAnchor.constraint(equalTo: shareButton.bottomAnchor, constant: 5),
+            EditButton.widthAnchor.constraint(equalToConstant: 40), // 設定寬度
+            EditButton.heightAnchor.constraint(equalToConstant: 40), // 設定高度
+            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            likeButton.topAnchor.constraint(equalTo: EditButton.bottomAnchor, constant: 5),
+            likeButton.widthAnchor.constraint(equalToConstant: 40), // 設定寬度
+            likeButton.heightAnchor.constraint(equalToConstant: 40) // 設定高度
         ])
     }
 

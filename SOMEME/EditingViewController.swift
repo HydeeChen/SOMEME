@@ -546,7 +546,7 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
             let photoName = "EditedPhoto_" + UUID().uuidString
             // 將圖片名稱和圖片數據保存到 UserDefaults
             FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
-            // 新增箭頭動畫
+            // 新增收藏動畫
             let starAnimationView = LottieAnimationView()
             let starAnimation = LottieAnimation.named("star")
             starAnimationView.animation = starAnimation

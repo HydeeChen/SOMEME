@@ -84,26 +84,35 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         overlayView.isHidden = false
         // 新增分享按鈕
         shareButton = UIButton(type: .system)
-        shareButton.setTitle("分享", for: .normal)
-        shareButton.setTitleColor(.white, for: .normal)
-        shareButton.backgroundColor = .color
-        shareButton.layer.cornerRadius = 5
+        shareButton.setTitle("share", for: .normal)
+        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        shareButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        shareButton.tintColor = .color2
+        shareButton.setTitleColor( .color2, for: .normal)
+        shareButton.backgroundColor = .color1
+        shareButton.layer.cornerRadius = 40
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         overlayView.addSubview(shareButton)
         // 新增編輯按鈕
         EditButton = UIButton(type: .system)
-        EditButton.setTitle("編輯", for: .normal)
-        EditButton.setTitleColor(.white, for: .normal)
-        EditButton.backgroundColor = .color
-        EditButton.layer.cornerRadius = 5
+        EditButton.setTitle("edit", for: .normal)
+        EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
+        EditButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        EditButton.tintColor = .color2
+        EditButton.setTitleColor( .color2, for: .normal)
+        EditButton.backgroundColor = .color1
+        EditButton.layer.cornerRadius = 40
         EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
         overlayView.addSubview(EditButton)
         // 新增移除收藏按鈕
         removeButton = UIButton(type: .system)
-        removeButton.setTitle("刪除", for: .normal)
-        removeButton.setTitleColor(.white, for: .normal)
-        removeButton.backgroundColor = .color
-        removeButton.layer.cornerRadius = 5
+        removeButton.setTitle("delete", for: .normal)
+        removeButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        removeButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        removeButton.tintColor = .color2
+        removeButton.setTitleColor(.color2, for: .normal)
+        removeButton.backgroundColor = .color1
+        removeButton.layer.cornerRadius = 40
         removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
         overlayView.addSubview(removeButton)
         // 設定按鈕的 constraints
@@ -113,16 +122,16 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         NSLayoutConstraint.activate([
             shareButton.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 20),
             shareButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            shareButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            shareButton.heightAnchor.constraint(equalToConstant: 30), // 設定高度
+            shareButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
+            shareButton.heightAnchor.constraint(equalToConstant: 80), // 設定高度
             EditButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 10),
             EditButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            EditButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            EditButton.heightAnchor.constraint(equalToConstant: 30), // 設定高度
+            EditButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
+            EditButton.heightAnchor.constraint(equalToConstant: 80), // 設定高度
             removeButton.leadingAnchor.constraint(equalTo: EditButton.trailingAnchor, constant: 10),
             removeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            removeButton.widthAnchor.constraint(equalToConstant: 60), // 設定寬度
-            removeButton.heightAnchor.constraint(equalToConstant: 30) // 設定高度
+            removeButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
+            removeButton.heightAnchor.constraint(equalToConstant: 80) // 設定高度
         ])
     }
     @objc func shareButtonTapped() {
@@ -168,7 +177,6 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
                 // 顯示提示框
                 present(alertController, animated: true, completion: nil)
             }
-       
     }
     @objc func removeExpandedImageView() {
         // Remove the expandedImageView when tapped

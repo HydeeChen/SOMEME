@@ -20,19 +20,24 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         let item = searchResult[indexPath.row]
         cell.memeImage.kf.setImage(with: item.src)
         cell.update(meme: item)
-        cell.delegate = self
         return cell
     }
     // 調整collectionView的大小
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150) // 調整 cell 大小
+        return CGSize(width: 175, height: 175) // 調整 cell 大小
     }
     @IBOutlet var searchTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
+    // 黑色背景
+    var overlayView = UIView()
     //  點了會有放大圖的神奇功能
     var expandedImageView: UIImageView?
     // 設定collectionView
     var collectionView: UICollectionView!
+    var shareButton: UIButton!
+    var EditButton: UIButton!
+    var likeButton: UIButton!
+    var selectedCell: MyCollectionViewCell?
     override func viewDidLoad() {
         super.viewDidLoad()
         let layout = UICollectionViewFlowLayout()
@@ -41,7 +46,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(SOMEME.SearchCollectionViewCell.self as AnyClass, forCellWithReuseIdentifier: SOMEME.SearchCollectionViewCell.cellID)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.clear
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
         // 把myCollectioniew加到畫面裡
         view.addSubview(collectionView)
@@ -51,12 +56,122 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 170),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
         ])
+        // 黑色底平常為隱藏
+        overlayView.frame = view.bounds
+        overlayView.backgroundColor = UIColor.black
+        overlayView.alpha = 0.9
+        overlayView.isHidden = true
+        view.addSubview(overlayView)
+        // 新增分享按鈕
+        shareButton = UIButton(type: .system)
+        shareButton.setTitle("share", for: .normal)
+        shareButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        shareButton.setTitleColor(.color2, for: .normal)
+        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        shareButton.tintColor = .color2
+        shareButton.backgroundColor = .color3
+        shareButton.layer.cornerRadius = 40
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        overlayView.addSubview(shareButton)
+        // 新增編輯按鈕
+        EditButton = UIButton(type: .system)
+        EditButton.setTitle("edit", for: .normal)
+        EditButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
+        EditButton.tintColor = .color2
+        EditButton.setTitleColor(.color2, for: .normal)
+        EditButton.backgroundColor = .color3
+        EditButton.layer.cornerRadius = 40
+        EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
+        overlayView.addSubview(EditButton)
+        // 新增收藏按鈕
+        likeButton = UIButton(type: .system)
+        likeButton.setTitle("add", for: .normal)
+        likeButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        likeButton.tintColor = .color2
+        likeButton.setTitleColor(.color2, for: .normal)
+        likeButton.backgroundColor = .color3
+        likeButton.layer.cornerRadius = 40
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        overlayView.addSubview(likeButton)
+        // 設定按鈕的 constraints
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        EditButton.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            shareButton.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 20),
+            shareButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            shareButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
+            shareButton.heightAnchor.constraint(equalToConstant: 80), // 設定高度
+            EditButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 10),
+            EditButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            EditButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
+            EditButton.heightAnchor.constraint(equalToConstant: 80), // 設定高度
+            likeButton.leadingAnchor.constraint(equalTo: EditButton.trailingAnchor, constant: 10),
+            likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            likeButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
+            likeButton.heightAnchor.constraint(equalToConstant: 80) // 設定高度
+        ])
+    }
+    @objc func likeButtonTapped() {
+        // 確認 expandedImageView 不為 nil
+        guard let expandedImageView = expandedImageView else {
+            return
+        }
+        // 檢查 expandedImageView 是否為 UIImageView 對象
+        if let image = expandedImageView.image, let imageData = image.jpegData(compressionQuality: 1.0) {
+            // 生成一個唯一的名稱，可以使用 UUID
+            let photoName = "EditedPhoto_" + UUID().uuidString
+            // 將圖片名稱和圖片數據保存到 UserDefaults
+            FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
+            // 新增收藏動畫
+            let starAnimationView = LottieAnimationView()
+            let starAnimation = LottieAnimation.named("star")
+            starAnimationView.animation = starAnimation
+            starAnimationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+            starAnimationView.center = view.center
+            view.addSubview(starAnimationView)
+            starAnimationView.play()
+            starAnimationView.play(fromProgress: 0.0, toProgress: 1.0, loopMode: .none) { (completed) in
+                if completed {
+                    starAnimationView.removeFromSuperview()
+                }
+            }
+        }
+    }
+    @objc func shareButtonTapped() {
+        // Ensure the expandedImageView has a valid size
+        guard let expandedImageView = expandedImageView else {
+            return
+        }
+        // Capture the image from the expandedImageView with its actual size
+        let editedImage = UIGraphicsImageRenderer(size: expandedImageView.bounds.size).image { _ in
+            // Draw the expandedImageView's image directly
+            expandedImageView.image?.draw(in: expandedImageView.bounds)
+        }
+        let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
+    @objc func EditButtonTapped() {
+        guard let image = expandedImageView?.image else {
+            return
+        }
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+        // 傳遞圖片給 EditingViewController
+        editVC.imageViewLoad = image
+        // 設定全螢幕呈現模式
+        editVC.modalPresentationStyle = .fullScreen
+        self.present(editVC, animated: true)
     }
     // 點了放大
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        overlayView.isHidden = false
+        selectedCell = collectionView.cellForItem(at: indexPath) as? MyCollectionViewCell
         let selectedItem = searchResult[indexPath.row]
         if let existingExpandedImageView = expandedImageView {
             existingExpandedImageView.removeFromSuperview()
@@ -80,6 +195,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         // Remove the expandedImageView when tapped
         expandedImageView?.removeFromSuperview()
         expandedImageView = nil
+        overlayView.isHidden = true
     }
     @IBAction func searchButton(_: Any) {
         view.endEditing(true)
@@ -113,45 +229,4 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
 }
-extension SearchViewController: SearchCollectionViewCellDelegate {
-    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressShareButton Button: Any) {
-        if let indexPath = collectionView.indexPath(for: _Cell) {
-            let selectedItem = searchResult[indexPath.row]
-            let renderer = UIGraphicsImageRenderer(size: _Cell.memeImage.bounds.size)
-            let editedImage = renderer.image { _ in
-                _Cell.memeImage.drawHierarchy(in: _Cell.memeImage.bounds, afterScreenUpdates: true)
-            }
-            let activityViewController = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
-        }
-    }
-    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressEditButton Button: Any, withImage image: UIImage?) {
-        let st = UIStoryboard(name: "Main", bundle: nil)
-               let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
-               // 傳遞圖片給 EditingViewController
-               editVC.imageViewLoad = image
-               // 設定全螢幕呈現模式
-               editVC.modalPresentationStyle = .fullScreen
-               self.present(editVC, animated: true)
-    }    
-    func SearchCollectionViewCell(_Cell: SearchCollectionViewCell, didPressLikeButton Button: Any) {
-        // 將圖片轉換為 Data
-            if let image = _Cell.memeImage.image, let imageData = image.jpegData(compressionQuality: 1.0) {
-                // 生成一個唯一的名稱，可以使用 UUID
-                let photoName = "EditedPhoto_" + UUID().uuidString
-                // 將圖片名稱和圖片數據保存到 UserDefaults
-                FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
-                // 顯示成功添加的提示
-                showAlert(title: "成功", message: "已將照片添加到收藏夾")
-            } else {
-                // 處理圖片為空的情況
-                showAlert(title: "錯誤", message: "無法將圖片轉換為數據")
-            }
-        // 提取的提示框處理函數
-           func showAlert(title: String, message: String) {
-               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-               present(alert, animated: true, completion: nil)
-           }
-    }
-    }
+

@@ -26,6 +26,7 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
     @IBOutlet weak var animeButtonOutlet: UIButton!
     @IBOutlet weak var kusoButtonOutlet: UIButton!
     @IBOutlet weak var funnyButtonOutlet: UIButton!
+    @IBOutlet weak var shadowOfPhoto: UIView!
     var workButtonFill = false
     var cuteButtonFill = false
     var animalButtonFill = false
@@ -41,6 +42,11 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
     var request: VNCoreMLRequest?
     var visionModel: VNCoreMLModel?
     @IBOutlet weak var hashTagView: UIView!
+    @IBOutlet weak var shadowOfCamera: UIView!
+    @IBOutlet weak var shadowOfGallery: UIView!
+    @IBOutlet weak var shadowOFRBG: UIView!
+    @IBOutlet weak var shadowOfUpLoad: UIView!
+    @IBOutlet weak var labelOutlet: UILabel!
     let segmentationModel: DeepLabV3 = {
         do {
             let config = MLModelConfiguration()
@@ -52,6 +58,26 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        shadowOfPhoto.layer.cornerRadius = CGFloat(30)
+        shadowOfPhoto.layer.shadowOpacity = Float(1)
+        shadowOfPhoto.layer.shadowRadius = CGFloat(20)
+        shadowOfPhoto.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        shadowOfCamera.layer.cornerRadius = CGFloat(30)
+        shadowOfCamera.layer.shadowOpacity = Float(1)
+        shadowOfCamera.layer.shadowRadius = CGFloat(20)
+        shadowOfCamera.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        shadowOfGallery.layer.cornerRadius = CGFloat(30)
+        shadowOfGallery.layer.shadowOpacity = Float(1)
+        shadowOfGallery.layer.shadowRadius = CGFloat(20)
+        shadowOfGallery.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        shadowOFRBG.layer.cornerRadius = CGFloat(30)
+        shadowOFRBG.layer.shadowOpacity = Float(1)
+        shadowOFRBG.layer.shadowRadius = CGFloat(20)
+        shadowOFRBG.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        shadowOfUpLoad.layer.cornerRadius = CGFloat(30)
+        shadowOfUpLoad.layer.shadowOpacity = Float(1)
+        shadowOfUpLoad.layer.shadowRadius = CGFloat(20)
+        shadowOfUpLoad.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         hashTagView.isHidden = true
         if let visionModel = try? VNCoreMLModel(for: segmentationModel.model) {
             self.visionModel = visionModel
@@ -78,10 +104,31 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
         dismiss(animated: true)
     }
     @IBAction func uploadMaterial(_ sender: Any) {
+        labelOutlet.isHidden = true
+        workButtonFill = false
+        workButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        cuteButtonFill = false
+        cuteButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        animalButtonFill = false
+        animalButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        usuallButtonFill = false
+        usualButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        newsButtonFill = false
+        newsButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        meansButtonFill = false
+        meansButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        animeButtonFill = false
+        animeButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        kusoButtonFill = false
+        kusoButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        funnyButtonFill = false
+        funnyButtonOutlet.setImage(emptyCircleImage, for: .normal)
+        textFieldOutlet.text = ""
         hashTagView.isHidden = false
         //
     }
     @IBAction func gallery(_ sender: Any) {
+        labelOutlet.isHidden = true
         // 選擇圖庫照片
         let controller = UIImagePickerController()
         controller.sourceType = .photoLibrary
@@ -89,6 +136,7 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
         present(controller, animated: true)
     }
     @IBAction func camera(_ sender: Any) {
+        labelOutlet.isHidden = true
         // 檢查相機是否可用
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             print("相機不可用")
@@ -183,8 +231,8 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
             applyBackgroundMask(maskUIImage)
         }
     }
-    
     @IBAction func uploadMemes(_ sender: Any) {
+        // 初始所有按鈕為false和清空按鈕
         // 清空 hashTagArray
         hashTagArray = []
         // 根據按鈕的狀態，將相應的標籤附加到 hashTagArray
@@ -342,6 +390,10 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
             workButtonOutlet.setImage(emptyCircleImage, for: .normal)
             workButtonFill = false
         }
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        hashTagView.isHidden = true
     }
 }
 extension UIImage {

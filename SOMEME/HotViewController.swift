@@ -7,12 +7,14 @@
 
 import Kingfisher
 import UIKit
+import Lottie
 
 class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var selectedCategoryIndex: Int?
     @IBOutlet var photoImageView: UIImageView!
     var expandedImageView: UIImageView?
     @IBOutlet var nowPosition: UILabel!
+    var overlayView = UIView()
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return items.count
     }
@@ -44,6 +46,7 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedItem = items[indexPath.row]
         // Check if expandedImageView is already present, remove it if it is
+        overlayView.isHidden = false
         if let existingExpandedImageView = expandedImageView {
             existingExpandedImageView.removeFromSuperview()
             expandedImageView = nil
@@ -67,6 +70,7 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Remove the expandedImageView when tapped
         expandedImageView?.removeFromSuperview()
         expandedImageView = nil
+        overlayView.isHidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +92,7 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(SOMEME.HotCollectionViewCell.self as AnyClass, forCellWithReuseIdentifier: SOMEME.HotCollectionViewCell.cellID)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.clear
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
         // 把myCollectioniew加到畫面裡
         view.addSubview(collectionView)
@@ -98,12 +102,18 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
         ])
         if let initialApiUrl = URL(string: "https://memes.tw/wtf/api") {
             loadMemeData(apiUrl: initialApiUrl)
         }
+        // 黑色底平常為隱藏
+        overlayView.frame = view.bounds
+        overlayView.backgroundColor = UIColor.black
+        overlayView.alpha = 0.9
+        overlayView.isHidden = true
+        view.addSubview(overlayView)
     }
     @objc func photoImageViewTapped() {
         // Hide the photoImageView when tapped
@@ -125,6 +135,8 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             .compactMap { $0 }
             .first?.windows
             .filter { $0.isKeyWindow }.first
+        // 設定漢堡頁背景透明視圖的背景色
+        burgerTransparentView.backgroundColor = .color1
         burgerTransparentView.frame = window?.frame ?? view.frame
         view.addSubview(burgerTransparentView)
         burgerTableView.frame = CGRect(x: view.bounds.minX - 10,
@@ -227,31 +239,41 @@ extension HotViewController: HotCollectionViewCellDelegate {
     }
     func HotCollectionViewCell(_Cell Cell: HotCollectionViewCell, didPressEditButton _: Any, withImage image: UIImage? ) {
         let st = UIStoryboard(name: "Main", bundle: nil)
-               let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
-               // 傳遞圖片給 EditingViewController
-               editVC.imageViewLoad = image
-               // 設定全螢幕呈現模式
-               editVC.modalPresentationStyle = .fullScreen
-               self.present(editVC, animated: true)
+        let editVC = st.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+        // 傳遞圖片給 EditingViewController
+        editVC.imageViewLoad = image
+        // 設定全螢幕呈現模式
+        editVC.modalPresentationStyle = .fullScreen
+        self.present(editVC, animated: true)
     }
     func HotCollectionViewCell(_Cell Cell: HotCollectionViewCell, didPressLikeButton _: Any) {
         // 將圖片轉換為 Data
-            if let image = Cell.memeImage.image, let imageData = image.jpegData(compressionQuality: 1.0) {
-                // 生成一個唯一的名稱，可以使用 UUID
-                let photoName = "EditedPhoto_" + UUID().uuidString
-                // 將圖片名稱和圖片數據保存到 UserDefaults
-                FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
-                // 顯示成功添加的提示
-                showAlert(title: "成功", message: "已將照片添加到收藏夾")
-            } else {
-                // 處理圖片為空的情況
-                showAlert(title: "錯誤", message: "無法將圖片轉換為數據")
-            }
+        if let image = Cell.memeImage.image, let imageData = image.jpegData(compressionQuality: 1.0) {
+            // 生成一個唯一的名稱，可以使用 UUID
+            let photoName = "EditedPhoto_" + UUID().uuidString
+            // 將圖片名稱和圖片數據保存到 UserDefaults
+            FavoritesManager.shared.addFavorite(photoName, imageData: imageData)
+            // 新增收藏動畫
+            let starAnimationView = LottieAnimationView()
+            let starAnimation = LottieAnimation.named("star")
+            starAnimationView.animation = starAnimation
+            starAnimationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+            starAnimationView.center = view.center
+            view.addSubview(starAnimationView)
+            starAnimationView.play()
+            starAnimationView.play(fromProgress: 0.0, toProgress: 1.0, loopMode: .none) { (completed) in
+                if completed {
+                    starAnimationView.removeFromSuperview()
+                }}
+        } else {
+            // 處理圖片為空的情況
+            showAlert(title: "錯誤", message: "無法將圖片轉換為數據")
+        }
         // 提取的提示框處理函數
-           func showAlert(title: String, message: String) {
-               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-               present(alert, animated: true, completion: nil)
-           }
+        func showAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
