@@ -12,22 +12,29 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="y8p-dU-Zpn">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="KSY-O7-ehW">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The best way to share funny pictures." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-8g-YR7">
+                                <rect key="frame" x="31" y="75" width="337" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="y8p-dU-Zpn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5E2-yO-Sai"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="y8p-dU-Zpn" secondAttribute="bottom" constant="-34" id="Ipm-wt-ckO"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="y8p-dU-Zpn" secondAttribute="trailing" id="NNU-Qp-Sq2"/>
-                            <constraint firstItem="y8p-dU-Zpn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-59" id="pde-Cy-TQD"/>
+                            <constraint firstItem="KSY-O7-ehW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Cpe-OQ-uBc"/>
+                            <constraint firstItem="KSY-O7-ehW" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ET4-bY-9A6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KSY-O7-ehW" secondAttribute="bottom" constant="-34" id="qTg-NL-N2L"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KSY-O7-ehW" secondAttribute="trailing" id="ugF-LK-zIZ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +44,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="1128" height="2100"/>
+        <image name="launchScreen" width="1128" height="2100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

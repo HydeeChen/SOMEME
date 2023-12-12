@@ -24,19 +24,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
 import CoreGraphics
+import Foundation
 #if os(macOS)
-import AppKit
+    import AppKit
 #else
-import UIKit
+    import UIKit
 #endif
 
 /// An `CacheSerializer` is used to convert some data to an image object after
 /// retrieving it from disk storage, and vice versa, to convert an image to data object
 /// for storing to the disk storage.
 public protocol CacheSerializer {
-    
     /// Gets the serialized data from a provided image
     /// and optional original data for caching to disk.
     ///
@@ -57,7 +56,7 @@ public protocol CacheSerializer {
     /// - Returns: An image deserialized or `nil` when no valid image
     ///            could be deserialized.
     func image(with data: Data, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage?
-    
+
     /// Whether this serializer prefers to cache the original data in its implementation.
     /// If `true`, after creating the image from the disk data, Kingfisher will continue to apply the processor to get
     /// the final image.
@@ -74,7 +73,6 @@ public extension CacheSerializer {
 /// It could serialize and deserialize images in PNG, JPEG and GIF format. For
 /// image other than these formats, a normalized `pngRepresentation` will be used.
 public struct DefaultCacheSerializer: CacheSerializer {
-    
     /// The default general cache serializer used across Kingfisher's cache.
     public static let `default` = DefaultCacheSerializer()
 
@@ -89,13 +87,13 @@ public struct DefaultCacheSerializer: CacheSerializer {
     /// Returnes the `preferCacheOriginalData` value. When the original data is used, Kingfisher needs to re-apply the
     /// processors to get the desired final image.
     public var originalDataUsed: Bool { preferCacheOriginalData }
-    
+
     /// Creates a cache serializer that serialize and deserialize images in PNG, JPEG and GIF format.
     ///
     /// - Note:
     /// Use `DefaultCacheSerializer.default` unless you need to specify your own properties.
     ///
-    public init() { }
+    public init() {}
 
     /// - Parameters:
     ///   - image: The image needed to be serialized.
@@ -123,7 +121,7 @@ public struct DefaultCacheSerializer: CacheSerializer {
             )
         }
     }
-    
+
     /// Gets an image deserialized from provided data.
     ///
     /// - Parameters:

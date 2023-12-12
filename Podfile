@@ -7,4 +7,14 @@ target 'SOMEME' do
   # Pods for SOMEME
     pod 'Kingfisher'
     pod 'SwiftLint'
+    pod 'TOCropViewController'
+    pod 'Alamofire', '~> 5.0'
+    pod 'Firebase/Firestore'
+    pod 'FirebaseFirestoreSwift'
+    pod 'Firebase/Storage'
+    pod 'lottie-ios'
+    pod 'Hover'
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/Analytics'
+
 end
