@@ -9,6 +9,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Mamelon.otf">
+            <string>Mamelon</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Photo Edit View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -194,10 +199,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a Pic or Free mode🍩" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9F-Q4-Uhh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="請選擇照片進行編輯或free mode開始創作🍩" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9F-Q4-Uhh">
                                 <rect key="frame" x="69" y="339" width="254" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="21"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -288,7 +293,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日熱門" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64T-zS-TIs">
                                         <rect key="frame" x="212" y="7" width="163" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -359,30 +364,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFS-we-p1l">
-                                <rect key="frame" x="288" y="139" width="85" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFS-we-p1l">
+                                <rect key="frame" x="282" y="139" width="100" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" name="Color 1"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="magnifyingglass" catalog="system" title="搜尋"/>
+                                <buttonConfiguration key="configuration" style="gray" image="magnifyingglass" catalog="system" title="search">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="14"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="searchButton:" destination="029-Il-70Q" eventType="touchUpInside" id="k7K-Oy-4K2"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入搜尋內容" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5u-VC-gGh">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入搜尋文字" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5u-VC-gGh">
                                 <rect key="frame" x="33" y="140" width="226" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVo-UT-dEy">
                                 <rect key="frame" x="33" y="180" width="340" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="why you 搜 meme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69D-If-MDv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="why you    meme" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69D-If-MDv">
                                 <rect key="frame" x="16" y="55" width="361" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="33"/>
@@ -390,6 +397,13 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="搜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cf6-Dn-w3o">
+                                <rect key="frame" x="197" y="73" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jTo-VO-eBf"/>
@@ -414,7 +428,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlu-xc-lwQ">
-                                <rect key="frame" x="34.666666666666657" y="193" width="323.66666666666674" height="343"/>
+                                <rect key="frame" x="34.666666666666657" y="235" width="323.66666666666674" height="343"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fFH-Hg-Y99">
                                         <rect key="frame" x="0.0" y="0.0" width="323.66666666666669" height="343"/>
@@ -424,6 +438,11 @@
                                                 <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23Z-lo-zBG">
+                                        <rect key="frame" x="0.0" y="0.0" width="323.66666666666663" height="343"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" restorationIdentifier="DoodleView" translatesAutoresizingMaskIntoConstraints="NO" id="AEI-JT-ZSt" customClass="DoodleView" customModule="SOMEME" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="323.66666666666669" height="343"/>
@@ -443,7 +462,7 @@
                                     <constraint firstItem="AEI-JT-ZSt" firstAttribute="leading" secondItem="vlu-xc-lwQ" secondAttribute="leading" id="ydV-ic-Nzw"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDz-7m-X1u">
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDz-7m-X1u">
                                 <rect key="frame" x="340.66666666666669" y="61.666666666666657" width="46.333333333333314" height="34.333333333333343"/>
                                 <color key="tintColor" name="Color 1"/>
                                 <state key="normal" title="Button"/>
@@ -453,62 +472,102 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sXj-Uz-gJT">
-                                <rect key="frame" x="4" y="143" width="393" height="35"/>
+                                <rect key="frame" x="4" y="140" width="393" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="CDi-RA-T1J">
-                                        <rect key="frame" x="0.0" y="0.0" width="500" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="roQ-gm-Cfb">
-                                                <rect key="frame" x="0.0" y="-13" width="80" height="60"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="5ec-gy-ceu">
+                                                <rect key="frame" x="10" y="1" width="45" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
-                                                <state key="normal" title="Button"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="dmF-Z8-JTc">
+                                                <rect key="frame" x="70" y="1" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="tzl-ut-qpk">
+                                                <rect key="frame" x="130" y="1" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="sQV-Qn-vZv">
+                                                <rect key="frame" x="190" y="1" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="Gs5-Zm-lZV">
+                                                <rect key="frame" x="251" y="1" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="stc-JJ-Roq">
+                                                <rect key="frame" x="310" y="1" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yellow circle view" translatesAutoresizingMaskIntoConstraints="NO" id="Q23-Oe-mOG">
+                                                <rect key="frame" x="368" y="1" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="梗圖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1U-qr-zXm">
+                                                <rect key="frame" x="196" y="14" width="34" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="素材" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sva-FX-HIa">
+                                                <rect key="frame" x="258" y="15" width="34" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="roQ-gm-Cfb">
+                                                <rect key="frame" x="4" y="-7" width="60" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Button" image="arrow.triangle.2.circlepath" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                                </state>
                                                 <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.2.circlepath" catalog="system">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="rotateImage:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="vuq-CT-G7P"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Sb4-cZ-dzT">
-                                                <rect key="frame" x="60" y="-13" width="80" height="60"/>
+                                                <rect key="frame" x="64" y="-7" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="camera.filters" catalog="system">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="filter:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="Dd7-XE-b3j"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="SRU-p0-Go9">
-                                                <rect key="frame" x="180" y="-14" width="80" height="60"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="SRU-p0-Go9">
+                                                <rect key="frame" x="184" y="-5" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="梗圖"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=""/>
                                                 <connections>
                                                     <action selector="addMeme:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="3T0-26-Ghw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIn-ia-gp6">
-                                                <rect key="frame" x="360" y="-13" width="80" height="60"/>
+                                                <rect key="frame" x="364" y="-7" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="pencil.tip.crop.circle.badge.plus.fill" catalog="system">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="doodle:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="kwO-5n-kg8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KmG-qS-hgT">
-                                                <rect key="frame" x="300" y="-13" width="80" height="60"/>
+                                                <rect key="frame" x="304" y="-7" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="A">
                                                     <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="25"/>
@@ -518,22 +577,22 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Uaz-dx-do2">
-                                                <rect key="frame" x="240" y="-13" width="80" height="60"/>
+                                                <rect key="frame" x="244" y="-7" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="素材"/>
+                                                <buttonConfiguration key="configuration" style="plain">
+                                                    <attributedString key="attributedSubtitle"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="showMaterial:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="OZh-Lu-eMx"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eY4-AX-avm">
-                                                <rect key="frame" x="120" y="-13" width="80" height="60"/>
+                                                <rect key="frame" x="124" y="-7" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" name="Color 1"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="crop" catalog="system">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="cropImageView:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="BOa-5L-b21"/>
@@ -580,7 +639,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCk-1X-7aq">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="star.fill" catalog="system"/>
                                         <connections>
@@ -590,7 +649,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="wOA-pW-qxn">
                                         <rect key="frame" x="53" y="0.0" width="50" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.fill" catalog="system"/>
                                         <connections>
@@ -605,15 +664,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="文字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT5-8H-Ru9">
-                                        <rect key="frame" x="8" y="7" width="35" height="21"/>
+                                        <rect key="frame" x="8" y="7" width="34" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" name="Color 2"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        <color key="textColor" name="Color 1"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmv-UV-kX9">
                                         <rect key="frame" x="51" y="2" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" systemColor="systemYellowColor"/>
                                         <connections>
                                             <action selector="moveLabel:" destination="eK9-Dy-vxW" eventType="valueChanged" id="TRA-SR-642"/>
                                         </connections>
@@ -621,13 +681,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="圖片" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUS-BH-js3">
                                         <rect key="frame" x="89" y="0.0" width="72" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" name="Color 2"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        <color key="textColor" name="Color 1"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nUF-Wy-ALj">
                                         <rect key="frame" x="147" y="2" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" systemColor="systemYellowColor"/>
                                         <connections>
                                             <action selector="movePic:" destination="eK9-Dy-vxW" eventType="valueChanged" id="qe8-VE-qKI"/>
                                         </connections>
@@ -698,30 +759,85 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="輸入搜尋文字" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bi4-wX-80d">
+                                <rect key="frame" x="145" y="191" width="213" height="40"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6R-va-mcb">
+                                <rect key="frame" x="87" y="191" width="49.666666666666657" height="38.666666666666657"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="magnifyingglass.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="searchMaterial:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="Ef9-D2-GPM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="塗鴉模式on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBG-fY-8RZ">
+                                <rect key="frame" x="278" y="108" width="115" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Color 1"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="21"/>
+                                <color key="textColor" name="Color 1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgw-he-NM4">
+                                <rect key="frame" x="4" y="191" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Color 1"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.uturn.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="undo:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="i4H-gC-dMF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQ7-cq-CHe">
+                                <rect key="frame" x="44" y="191" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Color 1"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.uturn.forward" catalog="system"/>
+                                <connections>
+                                    <action selector="redo:" destination="eK9-Dy-vxW" eventType="touchUpInside" id="mNq-U4-B6C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w1o-1z-hTa"/>
                         <color key="backgroundColor" name="Color"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="sXj-Uz-gJT" firstAttribute="top" secondItem="Wet-Zc-wVi" secondAttribute="bottom" constant="8.3333333333333428" id="2vw-5L-nJM"/>
+                            <constraint firstItem="vlu-xc-lwQ" firstAttribute="top" secondItem="n6R-va-mcb" secondAttribute="bottom" constant="5.3300000000000001" id="9Ux-K2-o2X"/>
+                            <constraint firstItem="sXj-Uz-gJT" firstAttribute="top" secondItem="8Uv-DH-UJR" secondAttribute="top" constant="143" id="AwL-lg-UJB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sXj-Uz-gJT" secondAttribute="trailing" constant="-20" id="Cwu-Df-qd3"/>
+                            <constraint firstItem="Bi4-wX-80d" firstAttribute="top" secondItem="sXj-Uz-gJT" secondAttribute="bottom" constant="3" id="Fgf-tm-CJe"/>
                             <constraint firstItem="Wet-Zc-wVi" firstAttribute="top" secondItem="IDz-7m-X1u" secondAttribute="bottom" constant="1" id="G1H-Kl-KRM"/>
                             <constraint firstItem="w1o-1z-hTa" firstAttribute="trailing" secondItem="IDz-7m-X1u" secondAttribute="trailing" constant="6" id="IYi-UE-nti"/>
-                            <constraint firstItem="vlu-xc-lwQ" firstAttribute="top" secondItem="8Uv-DH-UJR" secondAttribute="top" constant="193" id="J2T-mJ-d0c"/>
-                            <constraint firstItem="vlu-xc-lwQ" firstAttribute="top" secondItem="sXj-Uz-gJT" secondAttribute="bottom" constant="15" id="LP3-PH-Tg8"/>
+                            <constraint firstItem="vlu-xc-lwQ" firstAttribute="top" secondItem="8Uv-DH-UJR" secondAttribute="top" constant="235" id="J2T-mJ-d0c"/>
+                            <constraint firstItem="n6R-va-mcb" firstAttribute="leading" secondItem="w1o-1z-hTa" secondAttribute="leading" constant="87" id="L9w-sY-UOX"/>
                             <constraint firstItem="w1o-1z-hTa" firstAttribute="bottom" secondItem="lEJ-qD-hNo" secondAttribute="bottom" constant="189" id="Oqq-Wb-FnA"/>
-                            <constraint firstItem="sXj-Uz-gJT" firstAttribute="top" secondItem="Wet-Zc-wVi" secondAttribute="bottom" constant="8.3300000000000001" id="PlG-Uu-8gM"/>
                             <constraint firstItem="vlu-xc-lwQ" firstAttribute="centerX" secondItem="8Uv-DH-UJR" secondAttribute="centerX" id="QmA-mz-amJ"/>
+                            <constraint firstItem="vlu-xc-lwQ" firstAttribute="top" secondItem="sXj-Uz-gJT" secondAttribute="bottom" constant="47" id="SQV-5Y-Xy0"/>
                             <constraint firstItem="IDz-7m-X1u" firstAttribute="top" secondItem="w1o-1z-hTa" secondAttribute="top" constant="2.6699999999999999" id="UfC-Gu-aag"/>
-                            <constraint firstAttribute="trailing" secondItem="sXj-Uz-gJT" secondAttribute="trailing" constant="-4" id="Wew-C8-qL2"/>
+                            <constraint firstItem="n6R-va-mcb" firstAttribute="top" secondItem="sXj-Uz-gJT" secondAttribute="bottom" constant="3" id="Wfn-0j-Biv"/>
+                            <constraint firstItem="sXj-Uz-gJT" firstAttribute="leading" secondItem="w1o-1z-hTa" secondAttribute="leading" constant="4" id="eFp-Dw-INn"/>
+                            <constraint firstItem="Bi4-wX-80d" firstAttribute="leading" secondItem="n6R-va-mcb" secondAttribute="trailing" constant="8.3300000000000001" id="g12-05-erA"/>
                             <constraint firstItem="lEJ-qD-hNo" firstAttribute="leading" secondItem="w1o-1z-hTa" secondAttribute="leading" constant="36" id="he0-DV-OP8"/>
                             <constraint firstItem="w1o-1z-hTa" firstAttribute="trailing" secondItem="lEJ-qD-hNo" secondAttribute="trailing" constant="33" id="iqA-ew-HhG"/>
                             <constraint firstItem="vlu-xc-lwQ" firstAttribute="leading" secondItem="w1o-1z-hTa" secondAttribute="leading" constant="34.666666666666657" id="mTf-jF-uIz"/>
-                            <constraint firstItem="lEJ-qD-hNo" firstAttribute="top" secondItem="vlu-xc-lwQ" secondAttribute="bottom" constant="48" id="rgm-CW-bzb"/>
+                            <constraint firstItem="vlu-xc-lwQ" firstAttribute="top" secondItem="Bi4-wX-80d" secondAttribute="bottom" constant="4" id="qIm-51-4zr"/>
+                            <constraint firstItem="Bi4-wX-80d" firstAttribute="leading" secondItem="n6R-va-mcb" secondAttribute="trailing" constant="8.3300000000000001" id="qv4-Xu-P6r"/>
+                            <constraint firstItem="lEJ-qD-hNo" firstAttribute="top" secondItem="vlu-xc-lwQ" secondAttribute="bottom" constant="6" id="rgm-CW-bzb"/>
                             <constraint firstItem="Wet-Zc-wVi" firstAttribute="trailing" secondItem="w1o-1z-hTa" secondAttribute="trailing" id="rnx-DW-8OR"/>
-                            <constraint firstItem="sXj-Uz-gJT" firstAttribute="leading" secondItem="w1o-1z-hTa" secondAttribute="leading" constant="4" id="wr9-r6-3PO"/>
+                            <constraint firstItem="w1o-1z-hTa" firstAttribute="trailing" secondItem="Bi4-wX-80d" secondAttribute="trailing" constant="35" id="xav-Cg-5Pe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="d6k-wl-n5a"/>
                     <connections>
+                        <outlet property="contentImageView" destination="23Z-lo-zBG" id="Zdc-wG-9IH"/>
+                        <outlet property="doodleLabelOutlet" destination="lBG-fY-8RZ" id="Ruf-Fn-5OW"/>
                         <outlet property="doodleView" destination="AEI-JT-ZSt" id="Chx-s7-We0"/>
                         <outlet property="moveLabelOutlet" destination="cmv-UV-kX9" id="ncF-aT-MMW"/>
                         <outlet property="moveOutlet" destination="Gth-Ah-HKy" id="JBd-Cq-tU8"/>
@@ -730,6 +846,8 @@
                         <outlet property="photoView" destination="vlu-xc-lwQ" id="WvC-EQ-giv"/>
                         <outlet property="rotateOutlet" destination="lEJ-qD-hNo" id="u39-WK-9PJ"/>
                         <outlet property="saveOutlet" destination="ccI-gk-WEY" id="5ry-pb-io9"/>
+                        <outlet property="searchButtonOutlet" destination="n6R-va-mcb" id="gLG-2K-jAD"/>
+                        <outlet property="searchTextFieldOutlet" destination="Bi4-wX-80d" id="5sY-Le-fue"/>
                         <outlet property="textColorButton" destination="Wet-Zc-wVi" id="Y0Y-bM-Xp6"/>
                     </connections>
                 </viewController>
@@ -779,13 +897,22 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a Pic or remove BG y want🍩" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbe-bP-aox">
-                                        <rect key="frame" x="37" y="130" width="254" height="87"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="這裡可以上傳個人素材，並於編輯模式的素材區使用☕️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbe-bP-aox">
+                                        <rect key="frame" x="33" y="26" width="263" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="21"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instruction" translatesAutoresizingMaskIntoConstraints="NO" id="rqU-T4-aE2">
+                                        <rect key="frame" x="59" y="121" width="203" height="87"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="Color 1"/>
                                 <userDefinedRuntimeAttributes>
@@ -821,7 +948,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="Color 3"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="30"/>
@@ -855,7 +982,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="Color 3"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="30"/>
@@ -889,7 +1016,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="Color 3"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="30"/>
@@ -905,11 +1032,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="remove BG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-EU-O4G">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="圖像去背" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-EU-O4G">
                                         <rect key="frame" x="38" y="18" width="98" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -923,114 +1050,120 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="Color 3"/>
+                                <color key="backgroundColor" name="Color"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upload Yr MEME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHr-SE-26g">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="上傳個人素材" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHr-SE-26g">
                                 <rect key="frame" x="16" y="59" width="361" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="31"/>
+                                <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="31"/>
                                 <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <view contentMode="scaleToFill" id="aPy-Wd-iVc">
-                                <rect key="frame" x="32" y="500" width="329" height="249"/>
+                                <rect key="frame" x="35" y="488" width="329" height="249"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j10-ec-u2Z">
-                                        <rect key="frame" x="16" y="17" width="85" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j10-ec-u2Z">
+                                        <rect key="frame" x="21" y="18" width="82" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="搞笑"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="搞笑">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="16"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="funnyButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="H1j-dK-kvH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEx-z7-hu8">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEx-z7-hu8">
                                         <rect key="frame" x="119" y="18" width="93" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="惡搞"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="惡搞">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="16"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="kusoButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="idz-jd-FyH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pog-js-EM2">
-                                        <rect key="frame" x="227" y="18" width="85" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pog-js-EM2">
+                                        <rect key="frame" x="228" y="18" width="84" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="動畫"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="動畫">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="animeButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="bV9-J8-ONt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QB8-mB-70q">
-                                        <rect key="frame" x="18" y="61" width="85" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QB8-mB-70q">
+                                        <rect key="frame" x="20" y="61" width="84" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="嗆人"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="嗆人">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="meansButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="Y6C-fK-i0p"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ko-Kt-IrV">
-                                        <rect key="frame" x="18" y="104" width="85" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ko-Kt-IrV">
+                                        <rect key="frame" x="20" y="104" width="84" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="動物"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="動物">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="animalButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="sJX-Br-yR7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGf-5i-qrD">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGf-5i-qrD">
                                         <rect key="frame" x="118" y="104" width="93" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="可愛"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="可愛">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="cuteButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="XhR-Ec-duG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-5V-xwz">
-                                        <rect key="frame" x="227" y="104" width="85" height="35"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zi-5V-xwz">
+                                        <rect key="frame" x="228" y="104" width="84" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="工作"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="工作">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="workButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="gFE-EJ-1HQ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRX-Dp-TXL">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRX-Dp-TXL">
                                         <rect key="frame" x="119" y="61" width="93" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="時事"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="時事">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="newsButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="8Q0-8P-Bon"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zn2-Wc-VLj">
-                                        <rect key="frame" x="227" y="60" width="85" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="日常"/>
-                                        <connections>
-                                            <action selector="usualButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="Y9q-Vu-qJJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cF8-Kn-Jdf">
@@ -1039,7 +1172,8 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="上傳素材">
-                                            <color key="baseBackgroundColor" name="Color 2"/>
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                            <color key="baseBackgroundColor" name="Color"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="uploadMemes:" destination="n8l-ak-biW" eventType="touchUpInside" id="FLn-Wc-Wo0"/>
@@ -1048,31 +1182,46 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="自行輸入" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIV-tl-2VI">
                                         <rect key="frame" x="119" y="156" width="193" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自定義標籤：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khm-0F-3ds">
                                         <rect key="frame" x="8" y="163" width="116" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.79215686269999996" green="0.049585771809999998" blue="0.1216961785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" name="Color 2"/>
+                                        <fontDescription key="fontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-TA-l6x">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-TA-l6x">
                                         <rect key="frame" x="18" y="202" width="85" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Color 2"/>
+                                        <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="取消"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="取消">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="18"/>
+                                            <color key="baseBackgroundColor" name="Color"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="cancel:" destination="n8l-ak-biW" eventType="touchUpInside" id="nBd-D9-6hF"/>
                                             <action selector="workButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="wjK-dn-Ruv"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zn2-Wc-VLj">
+                                        <rect key="frame" x="228" y="61" width="84" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="circle" catalog="system" title="日常">
+                                            <fontDescription key="titleFontDescription" name="Mamelon" family="Mamelon" pointSize="17"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="usualButtonAction:" destination="n8l-ak-biW" eventType="touchUpInside" id="Y9q-Vu-qJJ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="rg6-EY-ZGL"/>
-                                <color key="backgroundColor" name="Color 3"/>
+                                <color key="backgroundColor" red="1" green="0.95954506799999995" blue="0.81874468540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="20"/>
@@ -1081,7 +1230,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HUA-R1-sEm"/>
-                        <color key="backgroundColor" name="Color"/>
+                        <color key="backgroundColor" name="Color 3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="上傳素材" image="plus.square.fill.on.square.fill" catalog="system" largeContentSizeImage="plus.square.fill.on.square.fill" selectedImage="plus.square.fill.on.square.fill" id="ac7-q7-45X"/>
                     <connections>
@@ -1092,6 +1241,7 @@
                         <outlet property="hashTagView" destination="aPy-Wd-iVc" id="ljY-gU-Sy0"/>
                         <outlet property="kusoButtonOutlet" destination="rEx-z7-hu8" id="szd-j2-ucO"/>
                         <outlet property="labelOutlet" destination="Nbe-bP-aox" id="EkL-5i-pXm"/>
+                        <outlet property="materialImage" destination="rqU-T4-aE2" id="USE-vz-MH2"/>
                         <outlet property="meansButtonOutlet" destination="QB8-mB-70q" id="p1P-3B-2q7"/>
                         <outlet property="newsButtonOutlet" destination="mRX-Dp-TXL" id="sRp-2I-o9m"/>
                         <outlet property="photoImageView" destination="5Rt-Q2-K20" id="7AA-w6-fuK"/>
@@ -1157,6 +1307,8 @@
     <resources>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="arrow.up.and.down.righttriangle.up.righttriangle.down.fill" catalog="system" width="128" height="124"/>
+        <image name="arrow.uturn.backward" catalog="system" width="128" height="113"/>
+        <image name="arrow.uturn.forward" catalog="system" width="128" height="113"/>
         <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="camera.filters" catalog="system" width="128" height="119"/>
         <image name="circle" catalog="system" width="128" height="123"/>
@@ -1166,6 +1318,7 @@
         <image name="flip.horizontal.fill" catalog="system" width="128" height="109"/>
         <image name="folder.fill.badge.plus" catalog="system" width="128" height="93"/>
         <image name="hand.draw.fill" catalog="system" width="128" height="124"/>
+        <image name="instruction" width="498" height="230"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
@@ -1185,6 +1338,7 @@
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="yellow circle view" width="800" height="800"/>
         <namedColor name="Color">
             <color red="0.41960784792900085" green="0.7137255072593689" blue="0.63137257099151611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1197,6 +1351,9 @@
         <namedColor name="Color 3">
             <color red="0.83921569585800171" green="0.81568628549575806" blue="0.68235301971435547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -1204,10 +1361,16 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

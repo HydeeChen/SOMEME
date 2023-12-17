@@ -69,9 +69,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         shareButton = UIButton(type: .system)
         shareButton.setTitle("share", for: .normal)
         shareButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        shareButton.setTitleColor(.color2, for: .normal)
+        shareButton.setTitleColor(.systemTeal, for: .normal)
         shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        shareButton.tintColor = .color2
+        shareButton.tintColor = .systemTeal
         shareButton.backgroundColor = .color3
         shareButton.layer.cornerRadius = 40
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
@@ -81,8 +81,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         EditButton.setTitle("edit", for: .normal)
         EditButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
         EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
-        EditButton.tintColor = .color2
-        EditButton.setTitleColor(.color2, for: .normal)
+        EditButton.tintColor = .systemTeal
+        EditButton.setTitleColor(.systemTeal, for: .normal)
         EditButton.backgroundColor = .color3
         EditButton.layer.cornerRadius = 40
         EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
@@ -92,8 +92,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         likeButton.setTitle("add", for: .normal)
         likeButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
         likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        likeButton.tintColor = .color2
-        likeButton.setTitleColor(.color2, for: .normal)
+        likeButton.tintColor = .systemTeal
+        likeButton.setTitleColor(.systemTeal, for: .normal)
         likeButton.backgroundColor = .color3
         likeButton.layer.cornerRadius = 40
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)

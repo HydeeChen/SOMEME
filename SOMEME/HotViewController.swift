@@ -136,7 +136,7 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             .first?.windows
             .filter { $0.isKeyWindow }.first
         // 設定漢堡頁背景透明視圖的背景色
-        burgerTransparentView.backgroundColor = .color1
+        burgerTransparentView.backgroundColor = .color
         burgerTransparentView.frame = window?.frame ?? view.frame
         view.addSubview(burgerTransparentView)
         burgerTableView.frame = CGRect(x: view.bounds.minX - 10,
@@ -174,6 +174,9 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "HotTableViewCell", for: indexPath)
         cell.textLabel?.text = memeCategories[indexPath.row].name
         cell.textLabel?.textAlignment = .center
+        let fontUrl = Bundle.main.url(forResource: "Mamelon", withExtension: "otf")! as CFURL
+        CTFontManagerRegisterFontsForURL(fontUrl, .process, nil)
+        cell.textLabel?.font = UIFont(name: "Mamelon", size: 18) ?? UIFont.systemFont(ofSize: 18)
         if indexPath.row == selectedCategoryIndex {
             cell.textLabel?.textColor = .blue // Set your desired highlight color
         } else {

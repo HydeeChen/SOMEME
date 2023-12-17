@@ -47,8 +47,8 @@ class HotCollectionViewCell: UICollectionViewCell {
         shareButton = UIButton(type: .system)
         shareButton.setTitle("", for: .normal)
         shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        shareButton.tintColor = .color2
-        shareButton.setTitleColor(.color2, for: .normal)
+        shareButton.tintColor = .color
+        shareButton.setTitleColor(.color, for: .normal)
         shareButton.backgroundColor = .color1
         shareButton.layer.cornerRadius = 20
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
@@ -57,8 +57,8 @@ class HotCollectionViewCell: UICollectionViewCell {
         EditButton = UIButton(type: .system)
         EditButton.setTitle("", for: .normal)
         EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
-        EditButton.tintColor = .color2
-        EditButton.setTitleColor(.color2, for: .normal)
+        EditButton.tintColor = .color
+        EditButton.setTitleColor(.color, for: .normal)
         EditButton.backgroundColor = .color1
         EditButton.layer.cornerRadius = 20
         EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
@@ -69,7 +69,7 @@ class HotCollectionViewCell: UICollectionViewCell {
         likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         likeButton.setTitleColor(.white, for: .normal)
         likeButton.backgroundColor = .color1
-        likeButton.tintColor = .color2
+        likeButton.tintColor = .color
         likeButton.layer.cornerRadius = 20
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         contentView.addSubview(likeButton)

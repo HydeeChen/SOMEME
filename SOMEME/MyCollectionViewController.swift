@@ -87,8 +87,8 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         shareButton.setTitle("share", for: .normal)
         shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         shareButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        shareButton.tintColor = .color2
-        shareButton.setTitleColor( .color2, for: .normal)
+        shareButton.tintColor = .systemTeal
+        shareButton.setTitleColor( .systemTeal, for: .normal)
         shareButton.backgroundColor = .color1
         shareButton.layer.cornerRadius = 40
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
@@ -98,8 +98,8 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         EditButton.setTitle("edit", for: .normal)
         EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
         EditButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        EditButton.tintColor = .color2
-        EditButton.setTitleColor( .color2, for: .normal)
+        EditButton.tintColor = .systemTeal
+        EditButton.setTitleColor( .systemTeal, for: .normal)
         EditButton.backgroundColor = .color1
         EditButton.layer.cornerRadius = 40
         EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
@@ -109,8 +109,8 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         removeButton.setTitle("delete", for: .normal)
         removeButton.setImage(UIImage(systemName: "trash"), for: .normal)
         removeButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        removeButton.tintColor = .color2
-        removeButton.setTitleColor(.color2, for: .normal)
+        removeButton.tintColor = .systemTeal
+        removeButton.setTitleColor(.systemTeal, for: .normal)
         removeButton.backgroundColor = .color1
         removeButton.layer.cornerRadius = 40
         removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
