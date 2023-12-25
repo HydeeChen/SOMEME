@@ -33,7 +33,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         memeImage.center = CGPoint(x: contentView.center.x, y: contentView.frame.height / 2)
         memeImage.contentMode = .scaleToFill
         memeImage.layer.cornerRadius = 20
-        memeImage.layer.masksToBounds = true  
+        memeImage.layer.masksToBounds = true
         contentView.addSubview(memeImage)
         // 新增frame
         frameImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 180, height: 180))

@@ -79,6 +79,7 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
     var isSearchMaterial: Bool = false
     var searchMemeResult : [ MaterialData] = []
     @IBOutlet weak var doodleLabelOutlet: UILabel!
+    var undoMng = UndoManager()
     // 設定viewWillAppear內容
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -91,128 +92,18 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
             }
         }
     }
-    // 設定viewDidLoad的功能
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        doodleLabelOutlet.isHidden = true
-        // 設定初始搜尋outlet隱藏
-        searchTextFieldOutlet.isHidden = true
-        searchButtonOutlet.isHidden = true
-        // 設定儲存outlet隱藏
-        saveOutlet.isHidden = saveOutletIsHidden
-        moveOutlet.isHidden = moveOutletIsHidden
-        // 設定手勢
-        setupImageGestures()
-        setupLabelGestures()
-        photoView.layer.cornerRadius = 30
-        photoView.layer.shadowOpacity = Float(1)
-        photoView.layer.shadowRadius = CGFloat(15)
-        photoView.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-        doodleView.clipsToBounds = true
-        doodleView.isMultipleTouchEnabled = false
-        tabBarController?.tabBar.isHidden = false
-        // 設定顯示傳值過來的圖片
-        photoImageView.image = imageViewLoad
-        // 梗圖collectionView設定
-        let layoutPersonal = UICollectionViewFlowLayout()
-        layoutPersonal.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 0)
-        layoutPersonal.minimumLineSpacing = CGFloat(integerLiteral: 10)
-        layoutPersonal.minimumInteritemSpacing = CGFloat(integerLiteral: 10)
-        layoutPersonal.scrollDirection = UICollectionView.ScrollDirection.vertical
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutPersonal)
-        // collectionView資料源設定
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(EditingCollectionViewCell.self, forCellWithReuseIdentifier: EditingCollectionViewCell.cellID)
-        collectionView.backgroundColor = UIColor(hex: 0x6BB6A1)
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
-        // 把myCollectioniew加到畫面裡
-        view.addSubview(collectionView)
-        // 自動調整關閉
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        // CollectionView的限制
-        NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 40),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20)
-        ])
-        // 初始畫面並無梗圖標示
-        collectionView.isHidden = true
-        // 初始字體顏色按鈕隱藏
-        textColorButton.isHidden = true
-        // 設定水平滑動的 scrollView
-        view.addSubview(imageScrollView)
-        NSLayoutConstraint.activate([
-            imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
-            imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -170),
-            imageScrollView.heightAnchor.constraint(equalToConstant: 80) // 設定高度
-        ])
-        // 在 scrollView 內新增 imageView
-        for (index, imageName) in picArray.enumerated() {
-            let imageView = UIImageView(image: UIImage(named: imageName))
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 10  // 設置圓角半徑
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageScrollView.addSubview(imageView)
-            // Add a UILabel for picName
-            let label = UILabel()
-            label.text = picName[index]
-            label.textColor = UIColor.white
-            label.textAlignment = .center
-            label.translatesAutoresizingMaskIntoConstraints = false
-            imageView.addSubview(label)
-            NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: imageScrollView.topAnchor),
-                imageView.widthAnchor.constraint(equalToConstant: 80), // 設定 imageView 寬度
-                imageView.heightAnchor.constraint(equalTo: imageScrollView.heightAnchor),
-                // Positioning the label within the imageView
-                label.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-                label.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
-            ])
-            if index == 0 {
-                imageView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor).isActive = true
-            } else {
-                imageView.leadingAnchor.constraint(equalTo: imageScrollView.subviews[index - 1].trailingAnchor, constant: 10).isActive = true // 加上一些間距
-            }
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
-            imageView.addGestureRecognizer(tapGesture)
-            imageView.isUserInteractionEnabled = true
-            imageView.tag = index
-            // Add imageView to the array
-            imageViews.append(imageView)
-            // 設定 contentSize，確保可以左右滑動
-            imageScrollView.contentSize = CGSize(width: CGFloat(picArray.count) * 90, height: 80)
-            imageScrollView.isHidden = true
-            rotateOutlet.isHidden = true
-            doodleView.isUserInteractionEnabled = false
-        }
-        // 設定滑動按鈕
-        let configuration = HoverConfiguration(image: UIImage(systemName: "trash.fill")?.withTintColor(UIColor(hex: 0x8B0000), renderingMode: .alwaysOriginal), color: .gradient(top: UIColor(hex: 0xD6D0AE), bottom: UIColor(hex: 0xDF6033)))
-        let items = [
-            HoverItem(title: "刪除文字", image: UIImage(systemName: "textformat")? .withConfiguration(UIImage.SymbolConfiguration(pointSize: 1, weight: .regular)), color: .gradient(top: .white, bottom: UIColor(hex: 0x6BB6A1))) { self.hoverRemoveText() },
-            HoverItem(title: "刪除圖片及素材", image: UIImage(systemName: "photo.artframe"), color: .gradient(top: .white, bottom: UIColor(hex: 0xD6D0Ae))) { self.hoverRemoveImageView() },
-            HoverItem(title: "刪除塗鴉", image: UIImage(systemName: "pencil.tip.crop.circle.fill"), color: .gradient(top: .white, bottom: UIColor(hex: 0xF5E68B))) { self.hoverRemoveDoodle()}
-        ]
-        let hoverView = HoverView(with: configuration, items: items)
-        view.addSubview(hoverView)
-        // 將hover移到最頂
-        view.bringSubviewToFront(hoverView)
-        hoverView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [
-                hoverView.topAnchor.constraint(equalTo: view.topAnchor),
-                hoverView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                hoverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                hoverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ]
-        )
-    }
     @objc func imageViewTapped(_ gesture: UITapGestureRecognizer) {
+        guard !undoMng.isUndoing else {
+            return
+        }
         if let imageView = gesture.view as? UIImageView {
+            let oldFilterIndex = imageView.tag
+            let oldImage = imageView.image
             applyFilter(to: imageView, filterIndex: imageView.tag)
+            undoMng.registerUndo(withTarget: self) { [weak self] targetSelf in
+                imageView.tag = oldFilterIndex
+                imageView.image = oldImage
+            }
         }
     }
     // 使用 Core Image 應用濾鏡
@@ -362,16 +253,16 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
         label.textAlignment = .center
         label.textColor = .color
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 17)
         label.isUserInteractionEnabled = true
         // 使用 `UIFont` 設定黑體加粗
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize:17)
         // 設定文字的外框
         let attributedString = NSMutableAttributedString(string: label.text!)
         attributedString.addAttribute(.strokeWidth, value: -3, range: NSMakeRange(0, attributedString.length))
-         // 加入外框顏色
-         attributedString.addAttribute(.strokeColor, value: UIColor.black, range: NSMakeRange(0, attributedString.length) )
-         label.attributedText = attributedString
+        // 加入外框顏色
+        attributedString.addAttribute(.strokeColor, value: UIColor.black, range: NSMakeRange(0, attributedString.length) )
+        label.attributedText = attributedString
         contentImageView.addSubview(label)
         // 新增tag
         label.tag = addedTextLabel.count
@@ -497,19 +388,19 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
     }
     @IBAction func flipLeft(_ sender: Any) {
         rotationCounts -= 1
-            photoImageView.transform = CGAffineTransform(rotationAngle: oneDegree * 90 * rotationCounts)
+        photoImageView.transform = CGAffineTransform(rotationAngle: oneDegree * 90 * rotationCounts)
     }
     @IBAction func flipRight(_ sender: Any) {
         rotationCounts += 1
-            photoImageView.transform = CGAffineTransform(rotationAngle: oneDegree * 90 * rotationCounts)
+        photoImageView.transform = CGAffineTransform(rotationAngle: oneDegree * 90 * rotationCounts)
     }
     @IBAction func flipHorizantal(_ sender: Any) {
         if isFlippedHorizontally {
-               photoImageView.transform = photoImageView.transform.scaledBy(x: -1, y: 1)
-           } else {
-               photoImageView.transform = photoImageView.transform.scaledBy(x: 1, y: 1)
-           }
-           isFlippedHorizontally = !isFlippedHorizontally
+            photoImageView.transform = photoImageView.transform.scaledBy(x: -1, y: 1)
+        } else {
+            photoImageView.transform = photoImageView.transform.scaledBy(x: 1, y: 1)
+        }
+        isFlippedHorizontally = !isFlippedHorizontally
     }
     @IBAction func flipVertical(_ sender: Any) {
         photoImageView.transform = photoImageView.transform.scaledBy(x: 1, y: -1)
@@ -639,8 +530,8 @@ class EditingViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     @IBAction func undo(_ sender: Any) {
+
     }
     @IBAction func redo(_ sender: Any) {
     }
 }
-

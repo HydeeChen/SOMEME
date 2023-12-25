@@ -177,22 +177,15 @@
 				A22BE33F2B05E6AD0098B6A9 /* AppDelegate.swift */,
 				A22BE3412B05E6AD0098B6A9 /* SceneDelegate.swift */,
 				A22BE3452B05E6AD0098B6A9 /* Main.storyboard */,
+				A22BE3572B05EEDE0098B6A9 /* PhotoEditViewController.swift */,
+				A25510AC2B1DAE4900653960 /* MaterialCreaterViewController.swift */,
 				A25510BB2B21635D00653960 /* Struct */,
 				A25510BC2B21637D00653960 /* Managers */,
 				A25510C82B219C5900653960 /* Lottie */,
-				A22BE3572B05EEDE0098B6A9 /* PhotoEditViewController.swift */,
-				A24443C82B18613C00A5B56D /* DoodleView.swift */,
-				A22BE35C2B0601800098B6A9 /* EditingViewController.swift */,
-				A27C195B2B284173002EDC2D /* EditingViewControllerExtension.swift */,
-				A22BE3602B06117E0098B6A9 /* EditingCollectionViewCell.swift */,
-				A25D28092B0B054700857B98 /* MyCollectionViewController.swift */,
-				A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */,
-				A25D280D2B0B5F6C00857B98 /* HotViewController.swift */,
-				A25D28132B0C4FF100857B98 /* HotCollectionViewCell.swift */,
-				A25D28112B0C49B500857B98 /* HotTableViewCell.swift */,
-				A25D28192B0DCCC400857B98 /* SearchViewController.swift */,
-				A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */,
-				A25510AC2B1DAE4900653960 /* MaterialCreaterViewController.swift */,
+				A266B6242B394A73005F203C /* Editing */,
+				A266B6252B394EA0005F203C /* MyCollection */,
+				A266B6262B394FFC005F203C /* Hot */,
+				A266B6272B395152005F203C /* Search */,
 				A22BE34D2B05E6AE0098B6A9 /* LaunchScreen.storyboard */,
 				A25510B32B1DCD9800653960 /* GoogleService-Info.plist */,
 				A24443CC2B1C874700A5B56D /* DeepLabV3.mlmodel */,
@@ -262,6 +255,45 @@
 				A25510C22B216D6300653960 /* arrow.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		A266B6242B394A73005F203C /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				A24443C82B18613C00A5B56D /* DoodleView.swift */,
+				A22BE35C2B0601800098B6A9 /* EditingViewController.swift */,
+				A27C195B2B284173002EDC2D /* EditingViewControllerExtension.swift */,
+				A22BE3602B06117E0098B6A9 /* EditingCollectionViewCell.swift */,
+			);
+			name = Editing;
+			sourceTree = "<group>";
+		};
+		A266B6252B394EA0005F203C /* MyCollection */ = {
+			isa = PBXGroup;
+			children = (
+				A25D28092B0B054700857B98 /* MyCollectionViewController.swift */,
+				A25D280B2B0B079000857B98 /* MyCollectionViewCell.swift */,
+			);
+			path = MyCollection;
+			sourceTree = "<group>";
+		};
+		A266B6262B394FFC005F203C /* Hot */ = {
+			isa = PBXGroup;
+			children = (
+				A25D280D2B0B5F6C00857B98 /* HotViewController.swift */,
+				A25D28112B0C49B500857B98 /* HotTableViewCell.swift */,
+				A25D28132B0C4FF100857B98 /* HotCollectionViewCell.swift */,
+			);
+			path = Hot;
+			sourceTree = "<group>";
+		};
+		A266B6272B395152005F203C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A25D28192B0DCCC400857B98 /* SearchViewController.swift */,
+				A24366B62B1498BF00FED5DD /* SearchCollectionViewCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -625,7 +657,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = M4YMY53R7K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SOMEME/Info.plist;

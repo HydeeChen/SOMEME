@@ -83,38 +83,11 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
         expandedImageView = imageView
         overlayView.isHidden = false
         // 新增分享按鈕
-        shareButton = UIButton(type: .system)
-        shareButton.setTitle("share", for: .normal)
-        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        shareButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        shareButton.tintColor = .systemTeal
-        shareButton.setTitleColor( .systemTeal, for: .normal)
-        shareButton.backgroundColor = .color1
-        shareButton.layer.cornerRadius = 40
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(shareButton)
+        shareButton = createButton(title: "share", imageName: "square.and.arrow.up", action: #selector(shareButtonTapped))
         // 新增編輯按鈕
-        EditButton = UIButton(type: .system)
-        EditButton.setTitle("edit", for: .normal)
-        EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
-        EditButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        EditButton.tintColor = .systemTeal
-        EditButton.setTitleColor( .systemTeal, for: .normal)
-        EditButton.backgroundColor = .color1
-        EditButton.layer.cornerRadius = 40
-        EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(EditButton)
-        // 新增移除收藏按鈕
-        removeButton = UIButton(type: .system)
-        removeButton.setTitle("delete", for: .normal)
-        removeButton.setImage(UIImage(systemName: "trash"), for: .normal)
-        removeButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        removeButton.tintColor = .systemTeal
-        removeButton.setTitleColor(.systemTeal, for: .normal)
-        removeButton.backgroundColor = .color1
-        removeButton.layer.cornerRadius = 40
-        removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(removeButton)
+        EditButton = createButton(title: "edit", imageName: "pencil.and.scribble", action: #selector(EditButtonTapped))
+        // 新增移除按鈕
+        removeButton = createButton(title: "delete", imageName: "trash", action: #selector(removeButtonTapped))
         // 設定按鈕的 constraints
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         removeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -133,6 +106,19 @@ class MyCollectionViewController: UIViewController, UICollectionViewDataSource, 
             removeButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
             removeButton.heightAnchor.constraint(equalToConstant: 80) // 設定高度
         ])
+    }
+    func createButton(title: String, imageName: String, action: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setImage(UIImage(systemName: imageName), for: .normal)
+        button.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        button.tintColor = .systemTeal
+        button.setTitleColor(.systemTeal, for: .normal)
+        button.backgroundColor = .color1
+        button.layer.cornerRadius = 40
+        button.addTarget(self, action: action, for: .touchUpInside)
+        overlayView.addSubview(button)
+        return button
     }
     @objc func shareButtonTapped() {
         // Ensure the expandedImageView has a valid size

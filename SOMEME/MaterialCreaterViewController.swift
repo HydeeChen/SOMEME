@@ -402,7 +402,6 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
             workButtonFill = false
         }
     }
-    
     @IBAction func cancel(_ sender: Any) {
         hashTagView.isHidden = true
     }

@@ -199,7 +199,6 @@ class HotViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 let decoder = JSONDecoder()
                 do {
                     let memes = try decoder.decode([MemeLoadDatum].self, from: data)
-                    // 將取得的飲料資料存入 items 陣列
                     self.items = memes
                     self.updateCollectionView() // 成功就更新collectionView
                 } catch {

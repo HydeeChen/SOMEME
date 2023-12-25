@@ -17285,7 +17285,7 @@
 		91A83863BD28AF3114E8F55E05A901F8 /* output.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = output.cc; path = absl/strings/internal/str_format/output.cc; sourceTree = "<group>"; };
 		91A8ADBAEEAD38B8C3ED3D0CFD17ED8F /* Hover-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Hover-dummy.m"; sourceTree = "<group>"; };
 		91E251ACD6C4832B75FC20012C1F9C23 /* struct.upbdefs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = struct.upbdefs.h; path = "src/core/ext/upbdefs-generated/envoy/type/matcher/v3/struct.upbdefs.h"; sourceTree = "<group>"; };
-		92000153CD73F7FC2DBAB4AB708269F3 /* FirebaseFirestore */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseFirestore; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92000153CD73F7FC2DBAB4AB708269F3 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9213C5AFF4FB0963CD94962518E10979 /* common.upb.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = common.upb.h; path = "src/core/ext/upb-generated/envoy/extensions/transport_sockets/tls/v3/common.upb.h"; sourceTree = "<group>"; };
 		922464B7BDD9CF1F7BDFCB051F0E5302 /* promise_based_filter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = promise_based_filter.h; path = src/core/lib/channel/promise_based_filter.h; sourceTree = "<group>"; };
 		92263EE584B55982C56AAFE6CF1FA12D /* message_decompress_filter.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = message_decompress_filter.cc; path = src/core/ext/filters/http/message_compress/message_decompress_filter.cc; sourceTree = "<group>"; };
@@ -22892,7 +22892,7 @@
 				AEF1DC80F0EB62580B81D18786BAF924 /* FirebaseCoreExtension */,
 				148D0F9E8C7373FEAF40D800FC5F1BAA /* FirebaseCoreInternal */,
 				86375444C196BA272DDBB8165BF64A15 /* FirebaseCrashlytics */,
-				92000153CD73F7FC2DBAB4AB708269F3 /* FirebaseFirestore */,
+				92000153CD73F7FC2DBAB4AB708269F3 /* FirebaseFirestore.framework */,
 				720974C5A5873C4DB14E6CC7A51AFDB7 /* FirebaseFirestoreSwift */,
 				13C8C8B254851998F9289F71229B28A2 /* FirebaseInstallations */,
 				83F5CCB22EE126A829F2A8820798DC8D /* FirebaseSessions */,
@@ -30302,7 +30302,7 @@
 			);
 			name = FirebaseFirestore;
 			productName = FirebaseFirestore;
-			productReference = 92000153CD73F7FC2DBAB4AB708269F3 /* FirebaseFirestore */;
+			productReference = 92000153CD73F7FC2DBAB4AB708269F3 /* FirebaseFirestore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		DD28B439BE8B17D9339D9B526F144347 /* FirebaseAppCheckInterop */ = {
