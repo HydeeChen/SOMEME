@@ -44,35 +44,11 @@ class HotCollectionViewCell: UICollectionViewCell {
         frameImage.contentMode = .scaleToFill
         contentView.addSubview(frameImage)
         // 新增分享按鈕
-        shareButton = UIButton(type: .system)
-        shareButton.setTitle("", for: .normal)
-        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        shareButton.tintColor = .color2
-        shareButton.setTitleColor(.color2, for: .normal)
-        shareButton.backgroundColor = .color1
-        shareButton.layer.cornerRadius = 20
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        contentView.addSubview(shareButton)
+        shareButton = createButton(imageName: "square.and.arrow.up", action: #selector(shareButtonTapped))
         // 新增編輯按鈕
-        EditButton = UIButton(type: .system)
-        EditButton.setTitle("", for: .normal)
-        EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
-        EditButton.tintColor = .color2
-        EditButton.setTitleColor(.color2, for: .normal)
-        EditButton.backgroundColor = .color1
-        EditButton.layer.cornerRadius = 20
-        EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
-        contentView.addSubview(EditButton)
+        EditButton = createButton(imageName: "pencil.and.scribble", action: #selector(EditButtonTapped))
         // 新增收藏按鈕
-        likeButton = UIButton(type: .system)
-        likeButton.setTitle("", for: .normal)
-        likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        likeButton.setTitleColor(.white, for: .normal)
-        likeButton.backgroundColor = .color1
-        likeButton.tintColor = .color2
-        likeButton.layer.cornerRadius = 20
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        contentView.addSubview(likeButton)
+        likeButton = createButton(imageName: "star.fill", action: #selector(likeButtonTapped))
         // 設定按鈕的 constraints
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         EditButton.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +68,18 @@ class HotCollectionViewCell: UICollectionViewCell {
             likeButton.heightAnchor.constraint(equalToConstant: 40) // 設定高度
         ])
     }
-
+    func createButton(imageName: String, action: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: imageName), for: .normal)
+        button.setTitle("", for: .normal)
+        button.tintColor = .color
+        button.setTitleColor(.color, for: .normal)
+        button.backgroundColor = .color1
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: action, for: .touchUpInside)
+        contentView.addSubview(button)
+        return button
+    }
     func update(meme: MemeLoadDatum) {
         memeImage.kf.setImage(with: meme.src)
     }

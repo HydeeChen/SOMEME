@@ -13,7 +13,7 @@ struct RemoveBGManager {
 
     func removeImageBg(uiImage: UIImage, completion: @escaping (UIImage?) -> Void) {
         let headers: HTTPHeaders = [
-            "X-Api-Key": "rDc7uiRo7Kfq2tX2GxNRGCAn",
+            "X-Api-Key": "rDc7uiRo7Kfq2tX2GxNRGCAn"
         ]
         AF.upload(multipartFormData: { data in
             let imageData = uiImage.jpegData(compressionQuality: 0.9)

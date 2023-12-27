@@ -32,7 +32,6 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
         let arrowAnimation = LottieAnimation.named("arrow")
         arrowAnimationView.animation = arrowAnimation
         arrowAnimationView.frame = CGRect(x: -30, y: 250, width: 300, height: 300)
-//        arrowAnimationView.center = view.center
         view.addSubview(arrowAnimationView)
         arrowAnimationView.play()
         // 陰影設定
@@ -107,6 +106,7 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
                 editButtonOutlet.isHidden = false
                 // 尚未選擇照片文字隱藏
                 unselectLabel.isHidden = true
+                startLabelOutlet.isHidden = false
             case .notDetermined:
                 // 尚未詢問用戶許可權，執行詢問用戶
                 AVCaptureDevice.requestAccess(for: .video) { granted in
