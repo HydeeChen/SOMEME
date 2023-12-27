@@ -635,6 +635,8 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.24):
     - BoringSSL-GRPC/Interface (= 0.0.24)
   - BoringSSL-GRPC/Interface (0.0.24)
+  - Firebase (10.16.0):
+    - Firebase/Core (= 10.16.0)
   - Firebase/Analytics (10.16.0):
     - Firebase/Core
   - Firebase/Core (10.16.0):
@@ -847,6 +849,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0)
+  - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
   - Firebase/Firestore
@@ -927,6 +930,6 @@ SPEC CHECKSUMS:
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
 
-PODFILE CHECKSUM: bf8cb41752e39198ab5a68e5a1c4be7c3379daf6
+PODFILE CHECKSUM: 9f3bd075a7e1e406e6129d050460d50ad7661c5d
 
 COCOAPODS: 1.13.0

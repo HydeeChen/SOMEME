@@ -27,6 +27,7 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
     @IBOutlet weak var kusoButtonOutlet: UIButton!
     @IBOutlet weak var funnyButtonOutlet: UIButton!
     @IBOutlet weak var shadowOfPhoto: UIView!
+    @IBOutlet weak var materialImage: UIImageView!
     var workButtonFill = false
     var cuteButtonFill = false
     var animalButtonFill = false
@@ -58,6 +59,13 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 新增箭頭動畫
+        let arrowAnimationView = LottieAnimationView()
+        let arrowAnimation = LottieAnimation.named("arrow")
+        arrowAnimationView.animation = arrowAnimation
+        arrowAnimationView.frame = CGRect(x: -30, y: 190, width: 300, height: 300)
+        view.addSubview(arrowAnimationView)
+        arrowAnimationView.play()
         shadowOfPhoto.layer.cornerRadius = CGFloat(30)
         shadowOfPhoto.layer.shadowOpacity = Float(1)
         shadowOfPhoto.layer.shadowRadius = CGFloat(20)
@@ -104,6 +112,7 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
         dismiss(animated: true)
     }
     @IBAction func uploadMaterial(_ sender: Any) {
+        materialImage.isHidden = true
         labelOutlet.isHidden = true
         workButtonFill = false
         workButtonOutlet.setImage(emptyCircleImage, for: .normal)
@@ -128,6 +137,7 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
         //
     }
     @IBAction func gallery(_ sender: Any) {
+        materialImage.isHidden = true
         labelOutlet.isHidden = true
         // 選擇圖庫照片
         let controller = UIImagePickerController()
@@ -136,6 +146,7 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
         present(controller, animated: true)
     }
     @IBAction func camera(_ sender: Any) {
+        materialImage.isHidden = true
         labelOutlet.isHidden = true
         // 檢查相機是否可用
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
@@ -391,7 +402,6 @@ class MaterialCreaterViewController: UIViewController,UIImagePickerControllerDel
             workButtonFill = false
         }
     }
-    
     @IBAction func cancel(_ sender: Any) {
         hashTagView.isHidden = true
     }

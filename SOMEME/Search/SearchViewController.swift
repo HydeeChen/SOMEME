@@ -65,39 +65,14 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         overlayView.alpha = 0.9
         overlayView.isHidden = true
         view.addSubview(overlayView)
-        // 新增分享按鈕
-        shareButton = UIButton(type: .system)
-        shareButton.setTitle("share", for: .normal)
-        shareButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        shareButton.setTitleColor(.color2, for: .normal)
-        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        shareButton.tintColor = .color2
-        shareButton.backgroundColor = .color3
-        shareButton.layer.cornerRadius = 40
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(shareButton)
-        // 新增編輯按鈕
-        EditButton = UIButton(type: .system)
-        EditButton.setTitle("edit", for: .normal)
-        EditButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        EditButton.setImage(UIImage(systemName: "pencil.and.scribble"), for: .normal)
-        EditButton.tintColor = .color2
-        EditButton.setTitleColor(.color2, for: .normal)
-        EditButton.backgroundColor = .color3
-        EditButton.layer.cornerRadius = 40
-        EditButton.addTarget(self, action: #selector(EditButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(EditButton)
-        // 新增收藏按鈕
-        likeButton = UIButton(type: .system)
-        likeButton.setTitle("add", for: .normal)
-        likeButton.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
-        likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        likeButton.tintColor = .color2
-        likeButton.setTitleColor(.color2, for: .normal)
-        likeButton.backgroundColor = .color3
-        likeButton.layer.cornerRadius = 40
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        overlayView.addSubview(likeButton)
+        // 使用函數新增分享按鈕
+        shareButton = addButton(title: "share", imageName: "square.and.arrow.up", action: #selector(shareButtonTapped))
+
+        // 使用函數新增編輯按鈕
+        EditButton = addButton(title: "edit", imageName: "pencil.and.scribble", action: #selector(EditButtonTapped))
+
+        // 使用函數新增收藏按鈕
+        likeButton = addButton(title: "add", imageName: "star.fill", action: #selector(likeButtonTapped))
         // 設定按鈕的 constraints
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         EditButton.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +91,19 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             likeButton.widthAnchor.constraint(equalToConstant: 80), // 設定寬度
             likeButton.heightAnchor.constraint(equalToConstant: 80) // 設定高度
         ])
+    }
+    func addButton(title: String, imageName: String, action: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont(name: "chalkduster", size: 16)
+        button.setImage(UIImage(systemName: imageName), for: .normal)
+        button.tintColor = .systemTeal
+        button.setTitleColor(.systemTeal, for: .normal)
+        button.backgroundColor = .color3
+        button.layer.cornerRadius = 40
+        button.addTarget(self, action: action, for: .touchUpInside)
+        overlayView.addSubview(button)
+        return button
     }
     @objc func likeButtonTapped() {
         // 確認 expandedImageView 不為 nil
