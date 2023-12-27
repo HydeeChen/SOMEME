@@ -8,8 +8,8 @@
 import XCTest
 @testable import SOMEME
 
-
-final class StructTest: XCTestCase {
+// 測試struct
+final class StructTest: XCTestCase { 
     func testMemeCategoryInitialization() {
            let apiUrl = URL(string: "https://memes.tw/wtf/api")!
            let memeCategory = MemeCategory(name: "Test Category", apiUrl: apiUrl)
