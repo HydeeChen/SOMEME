@@ -27,7 +27,7 @@ class PhotoEditViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 //        fatalError()
-        // 新增箭頭動畫
+        // 新增箭頭動畫 
         let arrowAnimationView = LottieAnimationView()
         let arrowAnimation = LottieAnimation.named("arrow")
         arrowAnimationView.animation = arrowAnimation
