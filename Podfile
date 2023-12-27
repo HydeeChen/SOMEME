@@ -16,5 +16,8 @@ target 'SOMEME' do
     pod 'Hover'
     pod 'Firebase/Crashlytics'
     pod 'Firebase/Analytics'
+    target 'SOMEMETests1' do
+      pod 'Firebase'
+      end
 
 end
